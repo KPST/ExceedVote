@@ -3,3 +3,5 @@ vvvvv
 
 
 bbcccc
+public static void main(String[] args){
+}
