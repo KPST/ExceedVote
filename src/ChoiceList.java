@@ -1,18 +1,17 @@
-import java.sql.SQLException;
+
 import java.util.ArrayList;
 
-import com.mysql.jdbc.Connection;
 
 
 public class ChoiceList {
 	ArrayList<Choice> choices = new ArrayList<Choice>();
 	DatebaseManager dm;
-	public void init_Database(Connection dbcon) throws SQLException{
-		dm = new DatebaseManager();
-		dm.init_Database(dbcon);
-		}
+	public ChoiceList(DatebaseManager dm) {
+		// TODO Auto-generated constructor stub
+	this.dm = dm;
+	}
 	public void getChoiceFromDatabase(){
-		ArrayList<Object[]> o = dm.getChoiceList();
+		ArrayList<Object[]> o = dm.getListFromDatabase(DatebaseManager.CHOICE);
 		for(int i = 0 ; i < o.size(); i++){
 			addChoice((String)o.get(i)[0], (Integer)o.get(i)[1] , (String) o.get(i)[2]);
 		}

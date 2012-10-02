@@ -13,29 +13,24 @@ public class Client {
 	ChoiceList cl;
     int userid;
     Statement[] st;
+    DatebaseManager dm;
     public Client() {
 	// TODO Auto-generated constructor stub
     // TODO
+    	dm = new DatebaseManager();
     	sc = new Scanner(System.in);
     	init_database();
-    	sl = new StatementList();
-    	cl = new ChoiceList();
+    	
     	try {
-			sl.init_Database(dbConnection);
-			sl.getStatementFromDatabase();
-		} catch (SQLException e) {
+			dm.init_Database(dbConnection);
+		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
-			System.out.println("ERRORS");
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
-    	try {
-			cl.init_Database(dbConnection);
-			cl.getChoiceFromDatabase();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			System.out.println("ERROR when connect choice databases");
-			e.printStackTrace();
-		}
+    	sl = new StatementList(dm);
+    	cl = new ChoiceList(dm);
+    	sl.getStatementFromDatabase();
+    	cl.getChoiceFromDatabase();
     	st = sl.getAllStatement();
     	
     }
@@ -78,14 +73,9 @@ public class Client {
      * g = choice
      */
     public void vote(int i,int g){
-    	Ballot b = new Ballot(userid);
-		try {
-			b.insertBallot(dbConnection, i, g);
-			} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			System.out.println("ERROR when insert");
-			e.printStackTrace();
-		}
+    	Ballot b = new Ballot(userid,dm);
+			b.insertBallot(i, g);
+			
     }
     
 } 

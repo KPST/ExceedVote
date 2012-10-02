@@ -9,7 +9,6 @@ public class Main {
 		Client client = new Client();
 		UI ui = new UI();
 		ClientController c = new ClientController(client,ui);
-		
 		c.run();
 	}
 

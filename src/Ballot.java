@@ -1,4 +1,4 @@
-import java.sql.SQLException;
+
 import com.mysql.jdbc.Connection;
 
 
@@ -8,14 +8,17 @@ public class Ballot {
 	 int choice;
 	 int user;
 	 DatebaseManager dm;
-		public Ballot(int user) {
+		public Ballot(int user,DatebaseManager dm) {
 	     this.user = user;
-	     dm = new DatebaseManager();
+	     this.dm = dm;
 		}
-		public void insertBallot(Connection dbcon,int question,int choice) throws SQLException{
+		public void insertBallot(int question,int choice) {
 			//get all statement from database
-			dm.init_Database(dbcon);
+			try{
 	        dm.putBallotToDatabase(this.user, question, choice);
+			}catch(Exception e){
+				System.err.println("ERROR when Insert ballot");
+			}
 		}
 		
 }

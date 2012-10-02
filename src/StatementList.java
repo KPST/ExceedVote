@@ -1,27 +1,20 @@
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 
+import java.util.ArrayList;
 import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
 
 
 public class StatementList {
 	ArrayList<Statement> statement = new ArrayList<Statement>();
 	Connection c;
 	DatebaseManager dm;
-	public StatementList() {
+	public StatementList(DatebaseManager dm) {
 	// TODO Auto-generated constructor stub
 	// TODO add all statement from database to List
-		
+		this.dm = dm;
 	}
-	public void init_Database(Connection dbcon) throws SQLException{
-		//get all statement from database
-		dm = new DatebaseManager();
-		dm.init_Database(dbcon);
-	}
+	
 	public void getStatementFromDatabase(){
-		ArrayList<Object[]> o = dm.getStatementList();
+		ArrayList<Object[]> o = dm.getListFromDatabase(DatebaseManager.STATEMENT);
 		for(int i = 0 ; i < o.size() ; i++){
 		addStatement((String) o.get(i)[0]);
 		}
