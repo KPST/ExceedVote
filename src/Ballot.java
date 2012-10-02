@@ -1,8 +1,5 @@
-import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
 
 
 public class Ballot {
@@ -10,7 +7,6 @@ public class Ballot {
 	 int questionid;
 	 int choice;
 	 int user;
-	private PreparedStatement preparedStatement = null;
 		public Ballot(int user) {
 	     this.user = user;
 		}

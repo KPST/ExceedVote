@@ -12,6 +12,7 @@ public class Client {
 	Scanner sc;
 	ChoiceList cl;
     int userid;
+    Statement[] st;
     public Client() {
 	// TODO Auto-generated constructor stub
     // TODO
@@ -33,6 +34,7 @@ public class Client {
 			System.out.println("ERROR when connect choice databases");
 			e.printStackTrace();
 		}
+    	st = sl.getAllStatement();
     	
     }
     public void init_database(){
@@ -44,7 +46,7 @@ public class Client {
     			System.out.println( "Couldn’t get connection!" );
     		}
     }
-    //todo login
+    //TODO login
     public void login(String user,String pass){
     	userid = 1;
     }
@@ -59,6 +61,7 @@ public class Client {
     		sb.append(st[i].getName());
     		sb.append(" Des : ");
     		sb.append(st[i].getDescription());
+    		if(i != st.length-1)
     		sb.append("\n");
     	}
     	sb.append(" ");
@@ -68,26 +71,19 @@ public class Client {
     public String getStatementDescription(Statement[] st ,int num){
     	return st[num].getDescription();
     }
-    
-    public void run(){
-    	login("KK","GG");
-    	//System.out.println(convertStatementtoString());
-    	Statement[] st = sl.getAllStatement();
-    	//show statement
-    	for(int i = 0 ; i < st.length ; i++){
-    		System.out.println(getStatementDescription(st, i));
-    		//TODO show choice
-    		System.out.println(convertChoicestoString());
-    		int g = Integer.parseInt(sc.nextLine());
-    		Ballot b = new Ballot(userid);
-    		try {
-				b.init_Database(dbConnection, i, g);
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				System.out.println("ERROR when insert");
-				e.printStackTrace();
-			}
-    	}
+    /*
+     * i = no.question
+     * g = choice
+     */
+    public void vote(int i,int g){
+    	Ballot b = new Ballot(userid);
+		try {
+			b.init_Database(dbConnection, i, g);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("ERROR when insert");
+			e.printStackTrace();
+		}
     }
     
 } 
