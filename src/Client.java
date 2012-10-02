@@ -22,6 +22,7 @@ public class Client {
     	cl = new ChoiceList();
     	try {
 			sl.init_Database(dbConnection);
+			sl.getStatementFromDatabase();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("ERRORS");
@@ -29,6 +30,7 @@ public class Client {
 		}
     	try {
 			cl.init_Database(dbConnection);
+			cl.getChoiceFromDatabase();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("ERROR when connect choice databases");
@@ -78,8 +80,8 @@ public class Client {
     public void vote(int i,int g){
     	Ballot b = new Ballot(userid);
 		try {
-			b.init_Database(dbConnection, i, g);
-		} catch (SQLException e) {
+			b.insertBallot(dbConnection, i, g);
+			} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("ERROR when insert");
 			e.printStackTrace();

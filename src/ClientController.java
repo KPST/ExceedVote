@@ -14,7 +14,7 @@ public class ClientController {
 		//input login username
 		c.login("KK","GG");
 		
-		for (int i = 0 ; i < c.st.length ; i ++){
+		for (int i = 0 ; i < c.st.length ; i++){
 			ui.update(c.getStatementDescription(c.st, i));
 			ui.update(c.convertChoicestoString());
 			int g = ui.getInput();

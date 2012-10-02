@@ -9,34 +9,24 @@ import com.mysql.jdbc.PreparedStatement;
 public class StatementList {
 	ArrayList<Statement> statement = new ArrayList<Statement>();
 	Connection c;
-	PreparedStatement preparedStatement = null;
+	DatebaseManager dm;
 	public StatementList() {
 	// TODO Auto-generated constructor stub
 	// TODO add all statement from database to List
+		
 	}
 	public void init_Database(Connection dbcon) throws SQLException{
 		//get all statement from database
-         c = dbcon;
-         c.setAutoCommit(false);
-         preparedStatement = (PreparedStatement) c.prepareStatement("SELECT id, description from statement");
-             ResultSet resultSet = preparedStatement.executeQuery();
-             try {
-            	 while(true)
-            	 if(resultSet.next()){
-				// System.out.println(resultSet.getString("description"));
-            	 addStatement(resultSet.getString("description"));
-            	 }
-            	 else
-            		 break;
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				System.out.println("Error when ");
-				e.printStackTrace();
-			}
-
-			c.commit();
+		dm = new DatebaseManager();
+		dm.init_Database(dbcon);
 	}
-	public void  addStatement(String des){
+	public void getStatementFromDatabase(){
+		ArrayList<Object[]> o = dm.getStatementList();
+		for(int i = 0 ; i < o.size() ; i++){
+		addStatement((String) o.get(i)[0]);
+		}
+	}
+	public void addStatement(String des){
 		Statement st = new Statement();
 		st.setDescription(des);
 		statement.add(st); 

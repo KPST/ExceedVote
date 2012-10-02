@@ -1,38 +1,23 @@
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
 
 
 public class ChoiceList {
 	ArrayList<Choice> choices = new ArrayList<Choice>();
-	Connection c;
-	PreparedStatement preparedStatement = null;
+	DatebaseManager dm;
 	public void init_Database(Connection dbcon) throws SQLException{
-		//get all statement from database
-         c = dbcon;
-         c.setAutoCommit(false);
-         preparedStatement = (PreparedStatement) c.prepareStatement("SELECT * from choice");
-             ResultSet resultSet = preparedStatement.executeQuery();
-             try {
-            	 while(true)
-            	 if(resultSet.next()){
-				// System.out.println(resultSet.getString("description"));
-            	 addChoice(resultSet.getString("description"),resultSet.getInt("id"),resultSet.getString("name"));
-            	 }
-            	 else
-            		 break;
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				System.out.println("Error when ");
-				e.printStackTrace();
-			}
-
-			c.commit();
+		dm = new DatebaseManager();
+		dm.init_Database(dbcon);
+		}
+	public void getChoiceFromDatabase(){
+		ArrayList<Object[]> o = dm.getChoiceList();
+		for(int i = 0 ; i < o.size(); i++){
+			addChoice((String)o.get(i)[0], (Integer)o.get(i)[1] , (String) o.get(i)[2]);
+		}
 	}
-	public void  addChoice(String des,int id,String name){
+	public void addChoice(String des,int id,String name){
 		Choice st = new Choice();
 		st.setDescription(des);
 		st.setId(id);

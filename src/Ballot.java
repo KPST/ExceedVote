@@ -7,15 +7,15 @@ public class Ballot {
 	 int questionid;
 	 int choice;
 	 int user;
+	 DatebaseManager dm;
 		public Ballot(int user) {
 	     this.user = user;
+	     dm = new DatebaseManager();
 		}
-		public void init_Database(Connection dbcon,int question,int choice) throws SQLException{
+		public void insertBallot(Connection dbcon,int question,int choice) throws SQLException{
 			//get all statement from database
-	         c = dbcon;
-	         
-	         java.sql.Statement statement = c.createStatement();
-	         ((java.sql.Statement) statement).executeUpdate("INSERT INTO  ballot ( id , user ,questionid ,choice) VALUES (NULL ,' "+this.user+" ' , '"+question+"',  '"+choice+"')");
+			dm.init_Database(dbcon);
+	        dm.putBallotToDatabase(this.user, question, choice);
 		}
 		
 }
