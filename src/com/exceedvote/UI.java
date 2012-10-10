@@ -14,4 +14,7 @@ public class UI {
 		public int getInput(){
 			return Integer.parseInt(sc.nextLine());
 		}
+		public String getString(){
+			return sc.nextLine();
+		}
 }

@@ -7,9 +7,9 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		Client client = new Client();
+		Authentication a = new Authentication();
 		UI ui = new UI();
-		ClientController c = new ClientController(client,ui);
+		ClientController c = new ClientController(a,ui);
 		c.run();
 	}
 

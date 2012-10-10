@@ -1,8 +1,6 @@
 package com.exceedvote;
 
 import java.util.ArrayList;
-import java.util.concurrent.CyclicBarrier;
-
 import com.mysql.jdbc.Connection;
 
 

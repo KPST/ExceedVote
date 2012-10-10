@@ -24,13 +24,9 @@ public class Client {
     	st = sl.getAllStatement();
     	
     }
-    //TODO login
-    public void login(String user,String pass){
-    	userid = 1;
-    }
     
     public String convertChoicestoString(){
-    	Choice[] st = cl.getAllStatement();
+    	Choice[] st = cl.getAllChoices();
     	StringBuilder sb = new StringBuilder();
     	for(int i = 0 ; i < st.length ; i++){
     		sb.append(" ID : ");

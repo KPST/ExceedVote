@@ -51,7 +51,12 @@
 
 		<h1 class="demo-title">Exceed Vote</h1>
 
-	
+		<nav class="main-nav">
+			<a class="current" href="index.html">Main Demo</a>
+			<a class="play" href="http://jsfiddle.net/Mottie/acV4n/">Back</a>
+			<a class="git" href="https://github.com/CSS-Tricks/MovingBoxes/wiki">Next</a>
+			<a class="git" href="https://github.com/CSS-Tricks/MovingBoxes/downloads">Exit</a>
+		</nav>
 
 		<!-- MovingBoxes Slider -->
 		<ul id="slider">

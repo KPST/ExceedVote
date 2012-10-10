@@ -25,7 +25,7 @@ public class ChoiceList {
 		choices.add(st); 
 	}
 	//return all statement
-	public Choice[] getAllStatement(){
+	public Choice[] getAllChoices(){
 		Choice[] state = new Choice[choices.size()];
 		for(int i = 0 ; i < choices.size() ; i ++){
 			state[i] = choices.get(i);
