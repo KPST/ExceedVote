@@ -1,7 +1,7 @@
-package com.exceedvote;
+package com.exceedvote.core;
 
 public class Admin {
-	Counter k;
+	public Counter k;
 	public Admin() {
 		// TODO Auto-generated constructor stub
 		DatebaseManager dm = new DatebaseManager();

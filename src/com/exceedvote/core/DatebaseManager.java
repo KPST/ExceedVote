@@ -1,4 +1,4 @@
-package com.exceedvote;
+package com.exceedvote.core;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -83,7 +83,7 @@ public class DatebaseManager {
 
 	return arrayout;	
 	}
-	public int findUser(String user,String pass){
+	public int[] findUser(String user,String pass){
 		try{
 				preparedStatement = (PreparedStatement) c.prepareStatement("SELECT * from auth where user='"+user+"'and pass='"+pass+"'");
 			
@@ -92,19 +92,21 @@ public class DatebaseManager {
         c.commit();
         if(resultSet.next()){
         	System.out.println("OK");
-        	int priority = resultSet.getInt("priority");
-        	return priority;
+        	int[] userid = new int[2];
+        	userid[0] = resultSet.getInt("id");
+        	userid[1] = resultSet.getInt("priority");
+        	return userid;
         }
         else{
         	System.out.println("USER NOT FOUND");
-        	return -1;
+        	return null;
         }
        	
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			System.out.println("ERROR WHEN CONNECT TO DATABASE");
 			e.printStackTrace();
-			return -1;
+			return null;
 		}
 
 		

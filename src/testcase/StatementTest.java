@@ -1,5 +1,9 @@
 package testcase;
 import com.exceedvote.*;
+import com.exceedvote.core.DatebaseManager;
+import com.exceedvote.core.Statement;
+import com.exceedvote.core.StatementList;
+
 import static org.junit.Assert.*;
 
 import org.junit.Test;

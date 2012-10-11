@@ -1,4 +1,4 @@
-package com.exceedvote;
+package com.exceedvote.core;
 import java.util.Scanner;
 
 public class Client {
@@ -6,8 +6,8 @@ public class Client {
 	StatementList sl;
 	Scanner sc;
 	ChoiceList cl;
-    int userid;
-    Statement[] st;
+    //int userid;
+    public Statement[] st;
     DatebaseManager dm;
     public Client() {
 	// TODO Auto-generated constructor stub
@@ -49,9 +49,9 @@ public class Client {
      * i = no.question
      * g = choice
      */
-    public void vote(int i,int g){
-    	Ballot b = new Ballot(userid,dm);
-			b.insertBallot(i, g);
+    public void vote(int userid,int i,int g){
+    	Ballot b = new Ballot(dm);
+			b.insertBallot(userid,i, g);
 			
     }
     

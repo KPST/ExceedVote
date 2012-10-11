@@ -1,4 +1,4 @@
-package com.exceedvote;
+package com.exceedvote.core;
 
 import java.util.ArrayList;
 

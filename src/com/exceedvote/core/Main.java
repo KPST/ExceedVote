@@ -1,4 +1,7 @@
-package com.exceedvote;
+package com.exceedvote.core;
+
+import com.exceedvote.controller.ClientController;
+import com.exceedvote.ui.UI;
 
 public class Main {
 

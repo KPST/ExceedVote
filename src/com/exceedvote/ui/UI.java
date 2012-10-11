@@ -1,4 +1,4 @@
-package com.exceedvote;
+package com.exceedvote.ui;
 import java.util.Scanner;
 
 

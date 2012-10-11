@@ -1,4 +1,9 @@
-package com.exceedvote;
+package com.exceedvote.controller;
+
+import com.exceedvote.core.Admin;
+import com.exceedvote.core.Authentication;
+import com.exceedvote.core.Client;
+import com.exceedvote.ui.UI;
 
 
 
@@ -11,14 +16,13 @@ public class ClientController {
 	}
 	
 	public void run(){
-		//TODO login parse
 		//input login username
 		ui.update("LOGIN");
 		ui.update("Username");
 		String user = ui.getString();
 		ui.update("Password");
 		String pass = ui.getString();
-		a.login(user,pass);
+		if(a.login(user,pass)){
 		if(a.isAdmin){
 			ui.update("Admin System");
 			Admin admin = new Admin();
@@ -31,8 +35,12 @@ public class ClientController {
 			ui.update(c.getStatementDescription(c.st, i));
 			ui.update(c.convertChoicestoString());
 			int g = ui.getInput();
-			c.vote(i + 1, g);
+			//a.getUserId();
+			c.vote(a.getUserId(),i + 1, g);
 	    }
 		}
+		}
+		else
+			ui.update("Please Restart Program");
 	}
 }
