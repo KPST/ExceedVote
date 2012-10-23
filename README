@@ -1,0 +1,7 @@
+ExceedVote project of KPST group is a Voting system that have to used in exceed camp.
+doc/ contain document
+demo/ contain demo of program
+lib/ contain libary that use in this program
+sql/ contain sql 
+scr/ contain code of program
+ExceedUI/ contain draw of UI
