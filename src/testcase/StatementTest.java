@@ -8,7 +8,11 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-
+/**
+ * TestCase
+ * @author Kunat Pipatanakul
+ * @version 2012.10.23
+ */
 public class StatementTest {
 
 @Test
@@ -61,7 +65,7 @@ assertEquals(list.getAllStatement().length, 0);
 //end of statementlist test
 //start of database manager test
 //testcase1, test unusable flag
-assertNull(dm.getListFromDatabase(3));
+assertNull(dm.getListFromDatabase(4));
 //testcase2, test usable flag
 assertNotNull(dm.getListFromDatabase(DatebaseManager.STATEMENT));
 //testcase3, test the same flag should return same data

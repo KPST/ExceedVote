@@ -7,18 +7,30 @@ import java.util.ArrayList;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
 
-
+/**
+ * DatabaseManager is the class connect to Database.
+ * @author Kunat Pipatanakul
+ * @version 2012.10.23
+ */
 public class DatebaseManager {
 	Connection c;
 	PreparedStatement preparedStatement = null;
 	public static final int STATEMENT = 1;
 	public static final int CHOICE = 2;
 	public static final int BALLOT = 3;
+	/**
+	 * Constructor
+	 * 
+	 */
 	public DatebaseManager() {
 		// TODO Auto-generated constructor stub
 		init_Database();
 	
 	}
+	/**
+	 * Connect to Database.
+	 * @return {@link DatebaseManager} this.
+	 */
 	public DatebaseManager init_Database(){
 		//get all statement from database
 		try{
@@ -32,6 +44,11 @@ public class DatebaseManager {
          return this;
         
      }
+	/**
+	 * getrawInformation from database
+	 * @param flag static int STATEMENT CHOICE OR BALLOT
+	 * @return List of raw information from database.
+	 */
 	public ArrayList<Object[]> getListFromDatabase(int flag){
 		ArrayList<Object[]> arrayout = new ArrayList<Object[]>();
 		try{
@@ -52,7 +69,6 @@ public class DatebaseManager {
         
        	 while(true)
        	 if(resultSet.next()){
-			// System.out.println(resultSet.getString("description"));
        		 if(flag == STATEMENT){
        		 Object[] temp = {resultSet.getString("description")};
        		 arrayout.add(temp);
@@ -75,14 +91,19 @@ public class DatebaseManager {
        		 break;
        	 c.commit();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			System.out.println("Error when ");
+			System.out.println("Error when get Result");
 			e.printStackTrace();
 			return null;
 		}
 
 	return arrayout;	
 	}
+	/**
+	 * findUser from Database 
+	 * @param user username that user inputed.
+	 * @param pass password that user inputed.
+	 * @return null if user not found || array of int contain [0] = id [1] = priority
+	 */
 	public int[] findUser(String user,String pass){
 		try{
 				preparedStatement = (PreparedStatement) c.prepareStatement("SELECT * from auth where user='"+user+"'and pass='"+pass+"'");
@@ -104,13 +125,19 @@ public class DatebaseManager {
        	
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			System.out.println("ERROR WHEN CONNECT TO DATABASE");
+			System.out.println("ERROR WHEN GET RESULT");
 			e.printStackTrace();
 			return null;
 		}
 
 		
 	}
+	/**
+	 * put Ballot to Database
+	 * @param user userid
+	 * @param question int no.of question
+	 * @param choice int no.of choice
+	 */
 	public void putBallotToDatabase(int user ,int question , int choice){
 	
         try {

@@ -1,18 +1,31 @@
 package com.exceedvote.core;
 
 import java.util.ArrayList;
-
+/**
+ * Counter is for count the vote from ballot in database
+ * @author Kunat Pipatanakul
+ * @version 2012.10.23
+ *
+ */
 public class Counter {
 	DatebaseManager dm;
 	int[][] choicevalue;
 	int statementsize;
 	int choicesize;
+	/**
+	 * Constructor
+	 * @param dm {@link DatebaseManager} object
+	 */
 	public Counter(DatebaseManager dm) {
 		this.dm = dm;
 		statementsize = dm.getListFromDatabase(DatebaseManager.STATEMENT).size();
     	choicesize = dm.getListFromDatabase(DatebaseManager.CHOICE).size();
     	choicevalue = new int[statementsize][choicesize];
 	}
+	/**
+	 * get Ballot from Database and calculate Result
+	 * @return String of result
+	 */
 	public String getResult(){
 		ArrayList<Object[]> t =  dm.getListFromDatabase(DatebaseManager.BALLOT);
 		for(int i = 0 ; i < t.size() ; i++){
