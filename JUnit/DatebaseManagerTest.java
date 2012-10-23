@@ -7,7 +7,11 @@ import org.junit.Test;
 
 import com.exceedvote.DatebaseManager;
 import com.mysql.jdbc.AssertionFailedException;
-
+/**
+ * DatabaseManagerTest tests for a DatabaseManager class
+ * @author Tanachot Teachajarupan
+ * @version 2012.10.23
+ */
 
 public class DatebaseManagerTest {
 

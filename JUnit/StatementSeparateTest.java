@@ -6,7 +6,11 @@ import org.junit.Test;
 import com.exceedvote.DatebaseManager;
 import com.exceedvote.Statement;
 import com.exceedvote.StatementList;
-
+/**
+ * StatementSeparateTest tests for a Statment class and a StatementList class.
+ * @author Tanachot Teachajarupan
+ * @version 2012.10.23
+ */
 
 public class StatementSeparateTest {
 

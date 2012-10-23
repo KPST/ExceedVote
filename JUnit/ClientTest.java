@@ -7,7 +7,11 @@ import com.exceedvote.Client;
 import com.exceedvote.DatebaseManager;
 import com.exceedvote.Statement;
 import com.exceedvote.StatementList;
-
+/**
+ * ClientTest tests for a Client Class
+ * @author Tanachot Teachajarupan
+ * @version 2012.10.23
+ */
 
 public class ClientTest {
 

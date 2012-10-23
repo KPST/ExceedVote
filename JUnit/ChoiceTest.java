@@ -6,7 +6,11 @@ import org.junit.Test;
 import com.exceedvote.Choice;
 import com.exceedvote.ChoiceList;
 import com.exceedvote.DatebaseManager;
-
+/**
+ * ChoiceTest tests for a Choice class
+ * @author Tanachot Teachajarupan
+ * @version 2012.10.23
+ */
 
 public class ChoiceTest {
 
