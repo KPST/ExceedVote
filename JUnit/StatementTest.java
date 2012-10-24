@@ -1,4 +1,3 @@
-package testcase;
 
 import com.exceedvote.*;
 import static org.junit.Assert.*;
@@ -10,6 +9,7 @@ import org.junit.Test;
  * working with a DatabaseManager class.
  * 
  * @author Tanachot Teachajarupan
+ * @author Kunat Pipatanakul
  * @version 2012.10.23
  */
 

@@ -5,3 +5,5 @@ lib/ contain libary that use in this program
 sql/ contain sql 
 scr/ contain code of program
 ExceedUI/ contain draw of UI
+template/ contain UI template that have to edit
+web/ contain web content
