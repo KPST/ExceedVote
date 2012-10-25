@@ -1,4 +1,5 @@
 package com.exceedvote.controller;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import com.exceedvote.core.Ballot;
@@ -73,9 +74,16 @@ public class Client {
      * @param g = choice
      */
     public void vote(int userid,int i,int g){
-    	Ballot b = new Ballot(dm);
-			b.insertBallot(userid,i, g);
+    	Ballot b = new Ballot(userid,i,g);
+		b.setDatabaseManager(dm);	
+    	b.insertBallot();
 			
+    }
+    public Ballot[] findBallot(int userid , int question){
+    	ArrayList<Ballot> ab = dm.findmyBallot(userid, question);
+    	Ballot[] g = new Ballot[ab.size()];
+    	ab.toArray(g);
+    	return g;
     }
     
 } 

@@ -14,12 +14,13 @@
 <%
 Client c =(Client) session.getAttribute("Cl");
 UserInfo user = (UserInfo) session.getAttribute("user");
-//qnum = statement num.
+//qnum = statement num. start at 0
 int qnum = 2;
 Statement s = c.getStatement(qnum);
 session.setAttribute("Statement",s); 
 session.setAttribute("snum", qnum);%>
 <%= c %>
 <A HREF="vote.jsp">Continue</A>
+<A href="history.jsp">HIStory</A>
 </body>
 </html>	

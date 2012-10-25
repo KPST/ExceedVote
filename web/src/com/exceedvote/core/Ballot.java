@@ -10,20 +10,45 @@ import com.mysql.jdbc.Connection;
 public class Ballot {
 	 Connection c;
 	 DatebaseManager dm;
-	 /**
-	  * Constructor
-	  * @param dm {@link DatebaseManager} that want this class to connect
-	  */
-		public Ballot(DatebaseManager dm) {
-	     this.dm = dm;
+	 int userid;
+	 int question;
+	 int choice;
+		/**
+		 * 
+		 * @param user
+		 * @param question
+		 * @param choice
+		 */
+		public Ballot(int user,int question,int choice){
+			this.userid = user;
+			this.question = question;
+			this.choice = choice;
 		}
 		/**
 		 * Put Ballot into database
-		 * @param userid userid,int
-		 * @param question no.of this ballot question
-		 * @param choice no.of choice the user select
 		 */
-		public void insertBallot(int userid,int question,int choice) {
+		public void setDatabaseManager(DatebaseManager dm){
+			this.dm = dm;
+		}
+		public int getUserid() {
+			return userid;
+		}
+		public void setUserid(int userid) {
+			this.userid = userid;
+		}
+		public int getQuestion() {
+			return question;
+		}
+		public void setQuestion(int question) {
+			this.question = question;
+		}
+		public int getChoice() {
+			return choice;
+		}
+		public void setChoice(int choice) {
+			this.choice = choice;
+		}
+		public void insertBallot() {
 			//get all statement from database
 			try{
 	        dm.putBallotToDatabase(userid, question, choice);

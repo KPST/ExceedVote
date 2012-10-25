@@ -156,4 +156,19 @@ public class DatebaseManager {
 			e.printStackTrace();
 		}
 	}
+	public ArrayList<Ballot> findmyBallot(int user,int question){
+		ArrayList<Ballot> ab = new ArrayList<Ballot>();
+		try{
+		preparedStatement = (PreparedStatement) c.prepareStatement("SELECT * from ballot where user='"+user+"'and questionid='"+question+"'");
+		ResultSet resultSet = preparedStatement.executeQuery();
+		c.commit();
+		while(resultSet.next()){
+			Ballot temp = new Ballot(user, question, resultSet.getInt("choice"));
+			ab.add(temp);
+		}
+		}catch(Exception e){
+			System.out.println("Error when add find ballot "+e.getMessage());
+		}
+		return ab;
+	}
 }

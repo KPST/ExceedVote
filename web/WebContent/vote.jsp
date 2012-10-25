@@ -29,7 +29,7 @@
 	<!--  <script src="js/jquery.movingboxes.min"></script>-->
 	<script src="js/jquery-1.8.2.js"></script>
 	<script src="js/jquery.movingboxes.js"></script>
-	<script language="javascript" type="text/javascript" src="jx.js"></script>
+	<script type="text/javascript" src="jx.js"></script>
 	<!-- get No.question  -->
 	
 	<!-- Demo only -->
@@ -104,7 +104,7 @@
             <%
 				for(int i = 0 ; i < cs ;i++){
 				out.println("<li><h2>News Heading</h2>");
-				out.println(c.getChoice(i));
+				//out.println(c.getChoice(i));
 				out.println("</li>");
 		      } %>
 		</ul><!-- end Slider #1 -->
