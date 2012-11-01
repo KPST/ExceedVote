@@ -1,0 +1,50 @@
+<!-- 
+ index.html is a HTML file with login interface form 
+ @author Tanachot Teachajarupan
+ @version 2012.10.23
+-->
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Welcome to eXceed Vote!</title>
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"></link>
+  <style>
+    #loginrow{
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
+    input{
+
+    }
+    #lo{
+      color:#d71700;
+      font-size: 32px;
+    }
+    body{
+      background-color:#000000;
+    }
+  </style>
+</head>
+<body>
+<form name="form1" method="get" action="login.jsp">
+  <center>
+  <div class="container" border="1">
+      <div class="row" id="loginrow"><font id="lo">Login</font></div>
+      <div class="row" id="userow">
+        &nbsp;
+        <input name="username" placeholder="user name" type="text" id="username">
+      </div>
+      <div class="row">
+        &nbsp;
+        <input name="password" placeholder="password" type="password" id="password">
+      </div>
+  </div>
+  <br>
+  <input class="btn" type="submit" name="Submit" value="Login">
+</center>
+</form>
+
+
+</body>
+</html>
