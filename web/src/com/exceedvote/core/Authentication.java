@@ -15,8 +15,7 @@ public class Authentication {
 	 * Constructor
 	 */
 	public Authentication() {
-		dm = new DatebaseManager();
-		dm.init_Database();
+		dm = DatebaseManager.getDatabaseManager();
 	
 	// TODO Auto-generated constructor stub
 	}

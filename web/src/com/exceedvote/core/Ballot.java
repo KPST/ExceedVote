@@ -10,6 +10,7 @@ import com.mysql.jdbc.Connection;
 public class Ballot {
 	 Connection c;
 	 DatebaseManager dm;
+	 int id;
 	 int userid;
 	 int question;
 	 int choice;
@@ -19,7 +20,13 @@ public class Ballot {
 		 * @param question
 		 * @param choice
 		 */
-		public Ballot(int user,int question,int choice){
+	 	public Ballot(int user,int question,int choice) {
+			this.userid = user;
+			this.question = question;
+			this.choice = choice;
+		}
+		public Ballot(int id ,int user,int question,int choice){
+			this.id = id;
 			this.userid = user;
 			this.question = question;
 			this.choice = choice;
@@ -29,6 +36,9 @@ public class Ballot {
 		 */
 		public void setDatabaseManager(DatebaseManager dm){
 			this.dm = dm;
+		}
+		public int getId(){
+			return id;
 		}
 		public int getUserid() {
 			return userid;

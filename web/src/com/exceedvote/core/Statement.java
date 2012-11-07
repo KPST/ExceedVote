@@ -5,8 +5,8 @@ package com.exceedvote.core;
  * @version 2012.10.23
  */
 public class Statement {
+	public int id;
 	public String description = "";
-	public Choice[] choice;
 	/**
 	 * Constructor
 	 */
@@ -26,6 +26,11 @@ public class Statement {
 		public void setDescription(String description) {
 			this.description = description;
 		}
-
+		public void setId(int id){
+			this.id = id;
+		}
+		public int getId(){
+			return id;
+		}
 		
 }

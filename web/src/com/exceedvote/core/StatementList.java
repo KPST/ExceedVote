@@ -29,16 +29,17 @@ public class StatementList {
 		clearStatement();
 		ArrayList<Object[]> o = dm.getListFromDatabase(DatebaseManager.STATEMENT);
 		for(int i = 0 ; i < o.size() ; i++){
-		addStatement((String) o.get(i)[0]);
+		addStatement((Integer) o.get(i)[1],(String) o.get(i)[0]);
 		}
 	}
 	/**
 	 * add Statement into List
 	 * @param des
 	 */
-	public void addStatement(String des){
+	public void addStatement(int id , String des){
 		Statement st = new Statement();
 		st.setDescription(des);
+		st.setId(id);
 		statement.add(st); 
 	}
 	/**
@@ -46,9 +47,10 @@ public class StatementList {
 	 * @return Statement[] 
 	 */
 	public Statement[] getAllStatement(){
-		Statement[] state = new Statement[statement.size()];
+		Statement[] state = new Statement[statement.size()+1];
+		state[0] = new Statement();
 		for(int i = 0 ; i < statement.size() ; i ++){
-			state[i] = statement.get(i);
+			state[i+1] = statement.get(i);
 		}
 		return state;
 	}

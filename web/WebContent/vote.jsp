@@ -1,3 +1,8 @@
+<!-- 
+vote page collect the information and send it to voting page
+@author Kunat Pipatanakul
+@version 2012.11.07
+ -->
 <%@page import="com.exceedvote.core.Statement"%>
 <%@ page import="com.exceedvote.core.*"%>
 <%@ page import="com.exceedvote.web.UserInfo"%>
@@ -10,10 +15,14 @@
 <!-- get user id & question id -->
 <% Client c = (Client) session.getAttribute("Cl");
    Statement s  = (Statement) session.getAttribute("Statement");
-   int snum = (Integer) session.getAttribute("snum");
+   int snum = s.getId();
    int cs = c.choice.length;
    %>
-<% UserInfo useri = (UserInfo) session.getAttribute("user"); %>
+<!-- check if there is vote quota left ? if not sent to votef page -->
+<% UserInfo useri = (UserInfo) session.getAttribute("user");
+if(c.findBallot(useri.getUserid(),snum).length>=useri.getBallotCount())
+	response.sendRedirect("votef.jsp");
+%>
 <head>
 
 	<meta charset="utf-8">
@@ -69,9 +78,9 @@
 
 		<!-- MovingBoxes Slider -->
 		<ul id="slider1">
-			
-			<!-- 
-				<img src="demo/1.jpg" alt="picture">
+		<!-- 
+			<li>
+			<img src="demo/1.jpg" alt="picture">
 				<h2>Bolt Runner</h2>
 				<p>Add a short exerpt here... <a href="http://flickr.com/photos/justbcuz/112479862/">more</a></p>
 			</li>
@@ -100,17 +109,22 @@
 				<h2>News Heading</h2>
 				<p>Add a short exerpt here... <a href="http://www.flickr.com/photos/fensterbme/499006584/">more</a></p>
 			</li>
+            
             -->
             <%
+            
+            //vote choice edit here
 				for(int i = 0 ; i < cs ;i++){
-				out.println("<li><h2>News Heading</h2>");
-				//out.println(c.getChoice(i));
-				out.println("</li>");
-		      } %>
+				out.println("<li><p>");
+				out.println(c.getChoice(i).toString());
+				out.println("</p></li>");
+		     } %>
+		      
 		</ul><!-- end Slider #1 -->
 
 	</div><!-- end wrapper -->
 <input name = "Submit" type="button" value = "Button" onClick ="getVote()">
+<!-- getvote get number after # and send it to post function -->
 <script>
 function getVote()
 {
@@ -132,7 +146,7 @@ function getVote()
 
 </script>
 <script type="text/javascript">
-//Post to the provided URL with the specified parameters.
+//send post to voting
 function post(path, id , question , choice) {
     var form = $('<form></form>');
 

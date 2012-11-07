@@ -1,8 +1,11 @@
 package com.exceedvote.core;
+
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.ResourceBundle;
+
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.PreparedStatement;
@@ -15,6 +18,7 @@ import com.mysql.jdbc.PreparedStatement;
 public class DatebaseManager {
 	Connection c;
 	PreparedStatement preparedStatement = null;
+	private static DatebaseManager dm = new DatebaseManager();
 	public static final int STATEMENT = 1;
 	public static final int CHOICE = 2;
 	public static final int BALLOT = 3;
@@ -22,7 +26,7 @@ public class DatebaseManager {
 	 * Constructor
 	 * 
 	 */
-	public DatebaseManager() {
+	private DatebaseManager() {
 		// TODO Auto-generated constructor stub
 		init_Database();
 	
@@ -31,8 +35,13 @@ public class DatebaseManager {
 	 * Connect to Database.
 	 * @return {@link DatebaseManager} this.
 	 */
-	public DatebaseManager init_Database(){
+	private DatebaseManager init_Database(){
 		//get all statement from database
+			ResourceBundle rb = ResourceBundle.getBundle("com.exceedvote.core.prop.db");
+			String pass =  rb.getString("pass");
+			String user =  rb.getString("user");
+			String url = rb.getString("url");
+			System.out.println("DB PROP loaded.");
 		try {
 			  Class.forName("com.mysql.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
@@ -41,7 +50,7 @@ public class DatebaseManager {
 			e.printStackTrace();
 		}
 		try{
-   		 c = (Connection) DriverManager.getConnection("jdbc:mysql://localhost/exceedvote","root","unkink");
+   		 c = (Connection) DriverManager.getConnection(url,user,pass);
    		 //System.out.println("connect!");
    		 c.setAutoCommit(false);
    		}
@@ -77,7 +86,7 @@ public class DatebaseManager {
        	 while(true)
        	 if(resultSet.next()){
        		 if(flag == STATEMENT){
-       		 Object[] temp = {resultSet.getString("description")};
+       		 Object[] temp = {resultSet.getString("description"),resultSet.getInt("id")};
        		 arrayout.add(temp);
        		 }
        		 else if(flag == CHOICE){
@@ -113,8 +122,9 @@ public class DatebaseManager {
 	 */
 	public int[] findUser(String user,String pass){
 		try{
-				preparedStatement = (PreparedStatement) c.prepareStatement("SELECT * from auth where user='"+user+"'and pass='"+pass+"'");
-			
+				preparedStatement = (PreparedStatement) c.prepareStatement("SELECT * from auth where user=? and pass=?");
+				preparedStatement.setString(1, user);
+				preparedStatement.setString(2,pass);
 		
         ResultSet resultSet = preparedStatement.executeQuery();
         c.commit();
@@ -163,12 +173,40 @@ public class DatebaseManager {
 		ResultSet resultSet = preparedStatement.executeQuery();
 		c.commit();
 		while(resultSet.next()){
-			Ballot temp = new Ballot(user, question, resultSet.getInt("choice"));
+			Ballot temp = new Ballot(resultSet.getInt("id"),user, question, resultSet.getInt("choice"));
 			ab.add(temp);
 		}
 		}catch(Exception e){
 			System.out.println("Error when add find ballot "+e.getMessage());
 		}
 		return ab;
+	}
+	public Ballot findBallotById(int id){
+		Ballot temp = null;
+		try{
+			preparedStatement = (PreparedStatement) c.prepareStatement("SELECT * from ballot where id='"+id+"'");
+			ResultSet resultSet = preparedStatement.executeQuery();
+			c.commit();
+			while(resultSet.next()){
+				temp = new Ballot(id,resultSet.getInt("user"),resultSet.getInt("questionid"), resultSet.getInt("choice"));
+			}
+			}catch(Exception e){
+				System.out.println("Error when add find ballot "+e.getMessage());
+			}
+		return temp;
+	}
+	public void deleteBallotById(int id){
+		try {
+        	java.sql.Statement statement = c.createStatement();
+        	System.out.println(id);
+			((java.sql.Statement) statement).executeUpdate("DELETE FROM `ballot` WHERE `ballot`.`id` = "+id+" LIMIT 1");
+			c.commit();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("DELETE ERROR"+e.getMessage());
+		}
+	}
+	public static DatebaseManager getDatabaseManager(){
+		return dm;
 	}
 }

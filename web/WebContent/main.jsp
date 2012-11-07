@@ -1,3 +1,7 @@
+<!-- Main page user select vote question and go to editvote page here
+@author Kunat Pipatanakul
+@version 2012.11.07
+-->
 <%@page import="com.exceedvote.web.UserInfo"%>
 <%@page import="com.exceedvote.controller.*"%>
 <%@page import="com.exceedvote.core.*"%>
@@ -8,19 +12,28 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Main Page</title>
 </head>
 <body>
 <%
+//get client and userinfo from session
 Client c =(Client) session.getAttribute("Cl");
 UserInfo user = (UserInfo) session.getAttribute("user");
-//qnum = statement num. start at 0
-int qnum = 2;
+//TODO : how to select q num
+//qnum = statement num. start at 1
+int qnum = 1;
+//send statement to session
 Statement s = c.getStatement(qnum);
-session.setAttribute("Statement",s); 
-session.setAttribute("snum", qnum);%>
+session.setAttribute("Statement",s);
+%>
+<!-- not nessecery here -->
 <%= c %>
+<%= application.getRealPath("/") %>
+<!-- number of ballot user can vote -->
+<%=c.findBallot(user.getUserid(),2).length %>
+<!-- go to vote page -->
 <A HREF="vote.jsp">Continue</A>
+<!-- go to history page -->
 <A href="history.jsp">HIStory</A>
 </body>
 </html>	

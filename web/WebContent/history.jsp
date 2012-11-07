@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Vote History</title>
 </head>
 <body>
 <%
@@ -20,7 +20,9 @@ for(int i = 0 ; i < statementlength ;i++){
 	out.print(b.length);
 	out.print("\n");
 	for(int j = 0 ; j < b.length ;j++){
-		out.print("J = "+j+" "+b[j].getUserid()+" : "+b[j].getQuestion()+" : "+b[j].getChoice());
+		out.print("J = "+b[j].getId()+" "+b[j].getUserid()+" : "+b[j].getQuestion()+" : "+b[j].getChoice());
+		
+		out.print("<a href=\"delete.jsp?id="+b[j].getId()+"\">delete</a>");
 		out.print("\n");
 	}
 }

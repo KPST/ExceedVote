@@ -17,7 +17,6 @@ import com.exceedvote.core.StatementList;
 public class Client {
 	//built program with statement
 	StatementList sl;
-	Scanner sc;
 	public Choice[] choice;
 	ChoiceList cl;
     //int userid;
@@ -27,11 +26,7 @@ public class Client {
      * Constructor
      */
     public Client() {
-    	dm = new DatebaseManager();
-    	sc = new Scanner(System.in);
-    	//init_database();
-    	dm.init_Database();
-    	//
+    	dm = DatebaseManager.getDatabaseManager();
     	sl = new StatementList(dm);
     	cl = new ChoiceList(dm);
     	sl.getStatementFromDatabase();
@@ -54,8 +49,8 @@ public class Client {
     		sb.append(" Des : ");
     		sb.append(choice[num].getDescription());
     		
-    	//}
     	sb.append(" ");
+    	System.out.println(sb.toString());
     	return sb.toString();
     }
     /**
@@ -79,11 +74,31 @@ public class Client {
     	b.insertBallot();
 			
     }
+    /**
+     * findBallot from userid and number of question
+     * @param userid
+     * @param question
+     * @return Ballot[] that contain every ballot in the database
+     */
     public Ballot[] findBallot(int userid , int question){
     	ArrayList<Ballot> ab = dm.findmyBallot(userid, question);
     	Ballot[] g = new Ballot[ab.size()];
     	ab.toArray(g);
     	return g;
     }
-    
+    /**
+     * findBallot form id
+     * @param id
+     * @return Ballot
+     */
+    public Ballot findBallot(int id){
+    	return dm.findBallotById(id);	
+    }
+    /**
+     * DeleteBallot from id
+     * @param id
+     */
+    public void DeleteBallot(int id){
+    	dm.deleteBallotById(id);
+    }
 } 

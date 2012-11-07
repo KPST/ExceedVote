@@ -1,5 +1,9 @@
 package com.exceedvote.web;
-
+/**
+ * UserInfo is use for web indentify who login.
+ * @author Kunat Pipatanakul
+ * @version 2012.11.01
+ */
 public class UserInfo {
 	int userid;
 	int no_ballot;
