@@ -24,6 +24,7 @@ CREATE TABLE `auth` (
   `user` varchar(12) NOT NULL,
   `pass` varchar(12) NOT NULL,
   `priority` int(11) NOT NULL,
+  `no_ballot` tinyint(4) NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
@@ -31,8 +32,8 @@ CREATE TABLE `auth` (
 -- dump ตาราง `auth`
 -- 
 
-INSERT INTO `auth` VALUES (1, 'admin', 'admin', 0);
-INSERT INTO `auth` VALUES (2, 'user', 'pass', 1);
+INSERT INTO `auth` VALUES (1, 'admin', 'admin', 0, 5);
+INSERT INTO `auth` VALUES (2, 'user', 'pass', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -46,12 +47,25 @@ CREATE TABLE `ballot` (
   `questionid` int(10) NOT NULL,
   `choice` int(2) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=9 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=46 ;
 
 -- 
 -- dump ตาราง `ballot`
 -- 
 
+INSERT INTO `ballot` VALUES (27, 1, 3, 2);
+INSERT INTO `ballot` VALUES (24, 1, 3, 1);
+INSERT INTO `ballot` VALUES (45, 1, 2, 2);
+INSERT INTO `ballot` VALUES (21, 1, 3, 2);
+INSERT INTO `ballot` VALUES (17, 1, 2, 2);
+INSERT INTO `ballot` VALUES (18, 1, 2, 2);
+INSERT INTO `ballot` VALUES (44, 1, 1, 2);
+INSERT INTO `ballot` VALUES (29, 1, 3, 2);
+INSERT INTO `ballot` VALUES (32, 1, 2, 2);
+INSERT INTO `ballot` VALUES (42, 1, 1, 2);
+INSERT INTO `ballot` VALUES (41, 1, 1, 2);
+INSERT INTO `ballot` VALUES (37, 1, 1, 1);
+INSERT INTO `ballot` VALUES (38, 1, 1, 1);
 
 -- --------------------------------------------------------
 
