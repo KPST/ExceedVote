@@ -13,7 +13,25 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Main Page</title>
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"></link>
+  <style>
+    #loginrow{
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
+    input{
+
+    }
+    #lo{
+      color:#d71700;
+      font-size: 32px;
+    }
+    body{
+      background-color:#DDDDDD;
+    }
+  </style>
 </head>
+
 <body>
 <%
 //get client and userinfo from session
@@ -26,14 +44,30 @@ int qnum = 1;
 Statement s = c.getStatement(qnum);
 session.setAttribute("Statement",s);
 %>
-<!-- not nessecery here -->
-<%= c %>
-<%= application.getRealPath("/") %>
+<font id="lo">
+<br>
+Hi! 
+<%= user.getUserid() %>
+</font>
+<br>
+<br>
 <!-- number of ballot user can vote -->
-<%=c.findBallot(user.getUserid(),2).length %>
+Your remain ballot(s) is
+<%= user.getBallotCount() %>
 <!-- go to vote page -->
-<A HREF="vote.jsp">Continue</A>
-<!-- go to history page -->
-<A href="history.jsp">HIStory</A>
+<br>
+<br>
+<form method="POST" action="vote.jsp">
+    <input class="btn" type="submit" value="Go to Vote!">
+</form>
+
+<form method="POST" action="history.jsp">
+  <input class="btn" type="submit" value="History">
+</form>
+
+<form method="POST" action="logout.jsp">
+  <input class="btn" type="submit" value="LogOut">
+</form>
+
 </body>
 </html>	

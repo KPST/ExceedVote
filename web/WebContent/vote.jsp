@@ -19,7 +19,10 @@ vote page collect the information and send it to voting page
    int cs = c.choice.length;
    %>
 <!-- check if there is vote quota left ? if not sent to votef page -->
+
 <% UserInfo useri = (UserInfo) session.getAttribute("user");
+ //out.println(c.findBallot(useri.getUserid(), snum).length);
+//out.println(useri.getBallotCount());
 if(c.findBallot(useri.getUserid(),snum).length>=useri.getBallotCount())
 	response.sendRedirect("votef.jsp");
 %>
@@ -123,7 +126,12 @@ if(c.findBallot(useri.getUserid(),snum).length>=useri.getBallotCount())
 		</ul><!-- end Slider #1 -->
 
 	</div><!-- end wrapper -->
-<input name = "Submit" type="button" value = "Button" onClick ="getVote()">
+<center>
+<input name = "Submit" style="height: 50px; width: 100px" type="button" value = "Vote" onClick ="getVote()">
+<form method="POST" action="main.jsp">
+  <input class="btn"  style="height: 30px; width: 100px" type="submit" value="Back to Main">
+</form>
+</center>
 <!-- getvote get number after # and send it to post function -->
 <script>
 function getVote()
@@ -148,6 +156,8 @@ function getVote()
 <script type="text/javascript">
 //send post to voting
 function post(path, id , question , choice) {
+	if(confirm("Do you choose "+choice+" ?")){
+		
     var form = $('<form></form>');
 
     form.attr("method", "get");
@@ -173,6 +183,7 @@ function post(path, id , question , choice) {
         
     $(document.body).append(form);
     form.submit();
+	}
 }
 </script>
 </body>
