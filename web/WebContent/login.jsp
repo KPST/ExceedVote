@@ -5,11 +5,12 @@
  @version 2012.11.07
 -->
 
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="Core.BloatDAO"%>
 <%@ page import="com.exceedvote.controller.*" %>
-<%@ page import="com.exceedvote.core.*" %>
-<%@ page import="com.exceedvote.web.*" %>
+<%@ page import="com.exceedvote.jpa.Auth" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -18,20 +19,18 @@
 </head>
 <body>
   <%
-  //get DatabaseManager
-  DatebaseManager dm = DatebaseManager.getDatabaseManager();
   //get username & pass from user
   String name = request.getParameter("username");
   String pass = request.getParameter("password");
    //check login ok?
-    Authentication a = new Authentication();
+	BloatDAO b = new BloatDAO();
+    Authentication a = new Authentication(b);
   	if(a.login(name,pass)){
   		//login ok
-  		UserInfo usr = new UserInfo(a.getUserId(),a.getNoBallot());
-  		Client client = new Client();
+  		Auth usr = a.getAuth();
+  		Client client = new Client(b);
   		session.setAttribute("Cl", client);
   		session.setAttribute("user", usr);
-  		session.setAttribute("DB", dm);
   		response.sendRedirect("main.jsp");
   	}
   	//login not ok

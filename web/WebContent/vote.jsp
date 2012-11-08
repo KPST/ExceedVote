@@ -3,9 +3,9 @@ vote page collect the information and send it to voting page
 @author Kunat Pipatanakul
 @version 2012.11.07
  -->
-<%@page import="com.exceedvote.core.Statement"%>
+<%@page import="com.exceedvote.jpa.Auth"%>
+<%@ page import="com.exceedvote.jpa.Statement"%>
 <%@ page import="com.exceedvote.core.*"%>
-<%@ page import="com.exceedvote.web.UserInfo"%>
 <%@ page import="com.exceedvote.controller.*"%>
 <%@ page import="com.mysql.jdbc.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -16,14 +16,11 @@ vote page collect the information and send it to voting page
 <% Client c = (Client) session.getAttribute("Cl");
    Statement s  = (Statement) session.getAttribute("Statement");
    int snum = s.getId();
-   int cs = c.choice.length;
+   int cs = c.choices.length;
    %>
 <!-- check if there is vote quota left ? if not sent to votef page -->
-
-<% UserInfo useri = (UserInfo) session.getAttribute("user");
- //out.println(c.findBallot(useri.getUserid(), snum).length);
-//out.println(useri.getBallotCount());
-if(c.findBallot(useri.getUserid(),snum).length>=useri.getBallotCount())
+<% Auth useri = (Auth) session.getAttribute("user");
+if(c.findBallot(useri.getId(),snum).length>=useri.getNoBallot())
 	response.sendRedirect("votef.jsp");
 %>
 <head>
@@ -39,7 +36,7 @@ if(c.findBallot(useri.getUserid(),snum).length>=useri.getBallotCount())
 	<!--  <script src="http://code.jquery.com/jquery-1.8.0.min.js"></script> -->
 	<!-- <script src="http://code.jquery.com/jquery.min.js"></script> -->
 	<!--  <script src="js/jquery.movingboxes.min"></script>-->
-	<script src="js/jquery-1.8.2.js"></script>
+	<script src="js/jquery-1.8.2.min.js"></script>
 	<script src="js/jquery.movingboxes.js"></script>
 	<script type="text/javascript" src="jx.js"></script>
 	<!-- get No.question  -->
@@ -129,7 +126,7 @@ if(c.findBallot(useri.getUserid(),snum).length>=useri.getBallotCount())
 <center>
 <input name = "Submit" style="height: 50px; width: 100px" type="button" value = "Vote" onClick ="getVote()">
 <form method="POST" action="main.jsp">
-  <input class="btn"  style="height: 30px; width: 100px" type="submit" value="Back to Main">
+  <input class="btn" style="height: 30px; width: 100px" type="submit" value="Back to Main">
 </form>
 </center>
 <!-- getvote get number after # and send it to post function -->
@@ -144,11 +141,11 @@ function getVote()
 			window.alert("Hacked");
 		}
 		else{ 		
-			post("voting.jsp",'<%= useri.getUserid()%>','<%=snum %>',h[1]);
+			post("voting.jsp",'<%= useri.getId()%>','<%=snum %>',h[1]);
 		}
 	}
 	else{
-			post("voting.jsp",'<%= useri.getUserid()%>','<%=snum %>',1);
+			post("voting.jsp",'<%= useri.getId()%>','<%=snum %>',1);
 	}
 }
 
@@ -157,7 +154,6 @@ function getVote()
 //send post to voting
 function post(path, id , question , choice) {
 	if(confirm("Do you choose "+choice+" ?")){
-		
     var form = $('<form></form>');
 
     form.attr("method", "get");

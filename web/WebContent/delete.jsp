@@ -1,7 +1,7 @@
-<%@page import="com.exceedvote.core.Statement"%>
-<%@page import="com.exceedvote.core.Ballot"%>
+<%@page import="com.exceedvote.jpa.Statement"%>
+<%@page import="com.exceedvote.jpa.Ballot"%>
+<%@page import="com.exceedvote.jpa.Auth"%>
 <%@page import="com.exceedvote.controller.Client"%>
-<%@page import="com.exceedvote.web.UserInfo"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -14,12 +14,12 @@
 Delete<%=request.getParameter("id") %>
 <%
 int id = Integer.parseInt(request.getParameter("id"));
-UserInfo userinfo = (UserInfo)session.getAttribute("user");
+Auth userinfo = (Auth)session.getAttribute("user");
 Client cl = (Client)session.getAttribute("Cl");
 Ballot b = cl.findBallot(id);
-if(cl.findBallot(id).getUserid()==userinfo.getUserid()){
+if(cl.findBallot(id).getUser()==userinfo.getId()){
 	cl.DeleteBallot(id);
-	Statement st  = cl.getStatement(b.getQuestion());
+	Statement st  = cl.getStatement(b.getQuestionid());
 	session.setAttribute("Statement", st);
 	response.sendRedirect("vote.jsp");
 	System.out.println("OK");

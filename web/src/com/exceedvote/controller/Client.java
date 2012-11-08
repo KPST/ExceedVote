@@ -1,13 +1,12 @@
 package com.exceedvote.controller;
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.List;
 
-import com.exceedvote.core.Ballot;
-import com.exceedvote.core.Choice;
-import com.exceedvote.core.ChoiceList;
-import com.exceedvote.core.DatebaseManager;
-import com.exceedvote.core.Statement;
-import com.exceedvote.core.StatementList;
+import com.exceedvote.jpa.Ballot;
+import com.exceedvote.jpa.Choice;
+import com.exceedvote.jpa.Statement;
+
+import Core.BloatDAO;
+
 /**
  * Client is Controller that control statement or choice
  * @author Kunat Pipatanakul
@@ -15,40 +14,32 @@ import com.exceedvote.core.StatementList;
  *
  */
 public class Client {
-	//built program with statement
-	StatementList sl;
-	public Choice[] choice;
-	ChoiceList cl;
-    //int userid;
-    public Statement[] st;
-    DatebaseManager dm;
+	BloatDAO b;
+    public Statement[] statements;
+    public Choice[] choices;
     /**
      * Constructor
      */
-    public Client() {
-    	dm = DatebaseManager.getDatabaseManager();
-    	sl = new StatementList(dm);
-    	cl = new ChoiceList(dm);
-    	sl.getStatementFromDatabase();
-    	cl.getChoiceFromDatabase();
-    	st = sl.getAllStatement();
-    	choice = cl.getAllChoices();
+    public Client(BloatDAO b) {
+     this.b = b;
+     statements = b.getStatement();
+     choices = b.getChoice();
     }
     /**
      * Get Choice and Convert to String
      * @return String that contain 
      */
     public String getChoice(int num){
-    	
+    	Choice[] choice = b.getChoice();
     	StringBuilder sb = new StringBuilder();
-    	
+    	for(int i = 0 ; i < choice.length ;i++){
     		sb.append(" ID : ");
-    		sb.append(choice[num].getId());
+    		sb.append(choice[i].getId());
     		sb.append(" Name : ");
-    		sb.append(choice[num].getName());
+    		sb.append(choice[i].getName());
     		sb.append(" Des : ");
-    		sb.append(choice[num].getDescription());
-    		
+    		sb.append(choice[i].getDescription());
+    	}
     	sb.append(" ");
     	System.out.println(sb.toString());
     	return sb.toString();
@@ -60,7 +51,7 @@ public class Client {
      * @return Description of statement
      */
     public Statement getStatement(int num){
-    	return st[num];
+    	return statements[num];
     }
     /**
      * vote this Ballot
@@ -70,8 +61,7 @@ public class Client {
      */
     public void vote(int userid,int i,int g){
     	Ballot b = new Ballot(userid,i,g);
-		b.setDatabaseManager(dm);	
-    	b.insertBallot();
+		this.b.saveBallot(b);
 			
     }
     /**
@@ -81,7 +71,7 @@ public class Client {
      * @return Ballot[] that contain every ballot in the database
      */
     public Ballot[] findBallot(int userid , int question){
-    	ArrayList<Ballot> ab = dm.findmyBallot(userid, question);
+    	List<Ballot> ab = b.findBallots(userid, question);
     	Ballot[] g = new Ballot[ab.size()];
     	ab.toArray(g);
     	return g;
@@ -92,13 +82,13 @@ public class Client {
      * @return Ballot
      */
     public Ballot findBallot(int id){
-    	return dm.findBallotById(id);	
+    	return b.findBallot(id);	
     }
     /**
      * DeleteBallot from id
      * @param id
      */
     public void DeleteBallot(int id){
-    	dm.deleteBallotById(id);
+    	b.deleteBallot(id);
     }
 } 

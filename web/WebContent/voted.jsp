@@ -35,7 +35,7 @@ You have already voted.</font>
 <br>
 <br>
 <form method="POST" action="main.jsp">
-  <input class="btn"  style="height: 30px; width: 100px" type="submit" value="Back to Main">
+  <input class="btn" style="height: 30px; width: 100px" type="submit" value="Back to Main">
 </form>
 </center>
 </body>

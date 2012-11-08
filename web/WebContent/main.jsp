@@ -2,9 +2,9 @@
 @author Kunat Pipatanakul
 @version 2012.11.07
 -->
-<%@page import="com.exceedvote.web.UserInfo"%>
 <%@page import="com.exceedvote.controller.*"%>
 <%@page import="com.exceedvote.core.*"%>
+<%@page import="com.exceedvote.jpa.*" %>
 <%@page import="org.apache.catalina.Session"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -31,12 +31,11 @@
     }
   </style>
 </head>
-
 <body>
 <%
 //get client and userinfo from session
 Client c =(Client) session.getAttribute("Cl");
-UserInfo user = (UserInfo) session.getAttribute("user");
+Auth user = (Auth) session.getAttribute("user");
 //TODO : how to select q num
 //qnum = statement num. start at 1
 int qnum = 1;
@@ -46,14 +45,14 @@ session.setAttribute("Statement",s);
 %>
 <font id="lo">
 <br>
-Hi! 
-<%= user.getUserid() %>
+Hi!
+<%= user.getId() %>
 </font>
 <br>
 <br>
 <!-- number of ballot user can vote -->
 Your remain ballot(s) is
-<%= user.getBallotCount() %>
+<%= user.getNoBallot() %>
 <!-- go to vote page -->
 <br>
 <br>
@@ -68,6 +67,7 @@ Your remain ballot(s) is
 <form method="POST" action="logout.jsp">
   <input class="btn" type="submit" value="LogOut">
 </form>
+
 
 </body>
 </html>	
