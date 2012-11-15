@@ -28,8 +28,8 @@
   </style>
 </head>
 <body>
-<center>
 <br>
+<center>
 <font size = "7">
 You have already voted.</font>
 <br>
@@ -37,6 +37,28 @@ You have already voted.</font>
 <form method="POST" action="main.jsp">
   <input class="btn" style="height: 30px; width: 100px" type="submit" value="Back to Main">
 </form>
+<br>
+<br>
+<script language="JavaScript" type="text/javascript">  
+var count = 3 
+var redirect="main.jsp"  
+  
+function countDown(){  
+ if (count <=0){  
+  window.location = redirect;  
+ }else{  
+  count--;  
+  document.getElementById("timer").innerHTML = "This page will automaticly redirect in "+count+" seconds."  
+  setTimeout("countDown()", 1000)  
+ }  
+}  
+</script>   
+<span id="timer">  
+<script>  
+ countDown();  
+</script>  
+</span>  
+
 </center>
 </body>
 </html>
