@@ -1,11 +1,13 @@
 package com.exceedvote.controller;
 import java.util.List;
 
+import com.exceedvote.core.ExceedDAO;
+import com.exceedvote.core.JpaDAO;
+import com.exceedvote.jpa.Auth;
 import com.exceedvote.jpa.Ballot;
 import com.exceedvote.jpa.Choice;
 import com.exceedvote.jpa.Statement;
 
-import Core.BloatDAO;
 
 /**
  * Client is Controller that control statement or choice
@@ -14,36 +16,21 @@ import Core.BloatDAO;
  *
  */
 public class Client {
-	BloatDAO b;
+	ExceedDAO b;
     public Statement[] statements;
     public Choice[] choices;
     /**
      * Constructor
      */
-    public Client(BloatDAO b) {
+    public Client(ExceedDAO b) {
      this.b = b;
      statements = b.getStatement();
      choices = b.getChoice();
+     for (Statement s : statements) {
+		System.out.println(s.getId()+" "+s.getDescription());
+	}
     }
-    /**
-     * Get Choice and Convert to String
-     * @return String that contain 
-     */
-    public String getChoice(int num){
-    	Choice[] choice = b.getChoice();
-    	StringBuilder sb = new StringBuilder();
-    	for(int i = 0 ; i < choice.length ;i++){
-    		sb.append(" ID : ");
-    		sb.append(choice[i].getId());
-    		sb.append(" Name : ");
-    		sb.append(choice[i].getName());
-    		sb.append(" Des : ");
-    		sb.append(choice[i].getDescription());
-    	}
-    	sb.append(" ");
-    	System.out.println(sb.toString());
-    	return sb.toString();
-    }
+
     /**
      * getDescription of statement
      * @param st {@link Statement}[]
@@ -51,7 +38,11 @@ public class Client {
      * @return Description of statement
      */
     public Statement getStatement(int num){
-    	return statements[num];
+    	for (Statement s : statements) {
+			if(s.getId()==num)
+				return s;
+		}
+    	return null;
     }
     /**
      * vote this Ballot
@@ -71,7 +62,7 @@ public class Client {
      * @return Ballot[] that contain every ballot in the database
      */
     public Ballot[] findBallot(int userid , int question){
-    	List<Ballot> ab = b.findBallots(userid, question);
+    	List<Ballot> ab = b.findBallots(userid, question,JpaDAO.FLAG_USER);
     	Ballot[] g = new Ballot[ab.size()];
     	ab.toArray(g);
     	return g;
@@ -90,5 +81,65 @@ public class Client {
      */
     public void DeleteBallot(int id){
     	b.deleteBallot(id);
+    }
+    /**
+     * 
+     */
+    public void login(String user,String pass){
+       Auth g = b.findUser(user, pass);
+       System.out.println(g.getId()+" "+g.getBallot()+" "+g.getPriority());
+    }
+    /**
+     * 
+     * @return
+     */
+    public int[][] getResult(){
+    	int[][] temp = new int[statements.length][choices.length];
+    	for(int i = 0 ; i < statements.length ;i++){
+    		for(int j = 0 ; j < choices.length ; i++){
+    			temp[i][j] = b.findBallots(statements[i].getId(), choices[i].getId() , JpaDAO.FLAG_CHOICE).size();
+    		}
+    	}
+    	return temp;
+    }
+    public void addUser(String user,String pass,int ballot){
+    	if(b.findUser(user, pass)==null){
+    	Auth temp = new Auth();
+    	temp.setBallot(ballot);
+    	temp.setUser(user);
+    	temp.setPass(pass);
+    	b.saveUser(temp);
+    	}
+    	else{
+    		System.out.println("User already regis");
+    	}
+    }
+    public void deleteUser(int id){
+    	b.deleteUser(id);
+    }
+    public void addStatement(String des){
+    	Statement temp = new Statement();
+    	temp.setDescription(des);
+    	b.saveStatement(temp);
+    	statements = b.getStatement();
+    }
+    public void addChoice(String name,String des,String img){
+    	Choice temp = new Choice();
+    	temp.setName(name);
+    	temp.setDescription(des);
+    	temp.setImg(img);
+    	b.saveChoice(temp);
+    	choices = b.getChoice();
+    }
+    public void deleteStatement(int id){
+    	b.deleteStatement(id);
+    	statements = b.getStatement();
+    }
+    public void deleteChoice(int id){
+    	b.deleteChoice(id);
+    	choices = b.getChoice();
+    }
+    public Auth[] getUser(){
+    	return b.getAllUser();
     }
 } 

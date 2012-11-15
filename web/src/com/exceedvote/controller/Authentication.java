@@ -1,8 +1,8 @@
 package com.exceedvote.controller;
 
+import com.exceedvote.core.ExceedDAO;
+import com.exceedvote.core.JpaDAO;
 import com.exceedvote.jpa.Auth;
-
-import Core.BloatDAO;
 
 
 /**
@@ -11,12 +11,11 @@ import Core.BloatDAO;
  * @version 2012.10.23
  */
 public class Authentication {
-	BloatDAO b;
-	Auth a;
+	ExceedDAO b;
 	/**
 	 * Constructor
 	 */
-	public Authentication(BloatDAO b) {
+	public Authentication(ExceedDAO b) {
 	this.b = b;
 	}
 	/**
@@ -24,16 +23,13 @@ public class Authentication {
 	 * @param user,username that user have inputed.
 	 * @param pass,password that user have inputed.
 	 */
-	public boolean login(String user,String pass){
+	public Auth login(String user,String pass){
 		try{
-			this.a = b.findUser(user, pass);
-			return true;
+		return b.findUser(user, pass);
 		}catch(Exception e){
-			return false;
+			return null;
 		}
 	}
-	public Auth getAuth(){
-		return a;
-	}
+	
 	
 }

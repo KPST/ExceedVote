@@ -4,14 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Index</title>
+<title>Insert title here</title>
 </head>
 <body>
-<% if(session.getAttribute("user")!=null&&session.getAttribute("Cl")!=null){
-	response.sendRedirect("main.jsp");
-}
-else{
-	response.sendRedirect("login.html");
-}%>
+<a href="choice.jsp">Edit Choice</a>
+<br>
+<a href="statement.jsp">Edit Statement</a>
+<br>
+<a href="user.jsp">Edit User</a>
 </body>
 </html>

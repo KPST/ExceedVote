@@ -14,13 +14,13 @@ public class Choice implements Serializable {
 	private int id;
 	private String description;
 	private String name;
-
+	private String img;
     public Choice() {
     }
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int getId() {
 		return this.id;
 	}
@@ -46,5 +46,10 @@ public class Choice implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	public String getImg(){
+		return this.img;
+	}
+	public void setImg(String img){
+		this.img = img;
+	}
 }

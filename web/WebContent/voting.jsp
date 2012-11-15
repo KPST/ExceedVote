@@ -20,7 +20,7 @@ voting page get vote from vote page and run the client.vote()
    //get information about vote
     Auth useri = (Auth) session.getAttribute("user");
    	Statement s = (Statement) session.getAttribute("Statement");
-   if(c.findBallot(useri.getId(),s.getId()).length>=useri.getNoBallot())
+   if(c.findBallot(useri.getId(),s.getId()).length>=useri.getBallot())
 		response.sendRedirect("votef.jsp");
    else{
    int id = Integer.parseInt(request.getParameter("id"));

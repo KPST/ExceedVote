@@ -18,8 +18,9 @@ Auth userinfo = (Auth)session.getAttribute("user");
 Client cl = (Client)session.getAttribute("Cl");
 Ballot b = cl.findBallot(id);
 if(cl.findBallot(id).getUser()==userinfo.getId()){
+	int qid = b.getQuestionid();
 	cl.DeleteBallot(id);
-	Statement st  = cl.getStatement(b.getQuestionid());
+	Statement st  = cl.getStatement(qid);
 	session.setAttribute("Statement", st);
 	response.sendRedirect("vote.jsp");
 	System.out.println("OK");

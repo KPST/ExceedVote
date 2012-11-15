@@ -16,11 +16,12 @@ vote page collect the information and send it to voting page
 <% Client c = (Client) session.getAttribute("Cl");
    Statement s  = (Statement) session.getAttribute("Statement");
    int snum = s.getId();
+   out.print(snum);
    int cs = c.choices.length;
    %>
 <!-- check if there is vote quota left ? if not sent to votef page -->
 <% Auth useri = (Auth) session.getAttribute("user");
-if(c.findBallot(useri.getId(),snum).length>=useri.getNoBallot())
+if(c.findBallot(useri.getId(),snum).length>=useri.getBallot())
 	response.sendRedirect("votef.jsp");
 %>
 <head>
@@ -115,8 +116,12 @@ if(c.findBallot(useri.getId(),snum).length>=useri.getNoBallot())
             
             //vote choice edit here
 				for(int i = 0 ; i < cs ;i++){
-				out.println("<li><p>");
-				out.println(c.getChoice(i).toString());
+				out.println("<li>");
+				out.println("<img src="+c.choices[i].getImg()+">");
+				out.println("<p>");
+				out.println("id = "+c.choices[i].getId());
+				out.println("<br>name = "+c.choices[i].getName());
+				out.println("<br>des = "+c.choices[i].getDescription());
 				out.println("</p></li>");
 		     } %>
 		      

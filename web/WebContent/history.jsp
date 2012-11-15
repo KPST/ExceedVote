@@ -36,11 +36,12 @@ Client c = (Client)session.getAttribute("Cl");
 <%
 int statementlength = c.statements.length;	
 for(int i = 0 ; i < statementlength ;i++){
+	int sid = c.statements[i].getId();
 	%>
 	<font size="5" color="#d71700">
 	<%
-	out.println(c.getStatement(i).getDescription());
-	Ballot[] b = c.findBallot(user.getId(), i);
+	out.println(c.statements[i].getDescription());
+	Ballot[] b = c.findBallot(user.getId(), sid);
 	out.print("</font><br>");
 	for(int j = 0 ; j < b.length ;j++){
 		out.print(" - Your vote is "+b[j].getChoice()+" ");

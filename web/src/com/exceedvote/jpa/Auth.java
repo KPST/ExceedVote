@@ -12,17 +12,18 @@ import javax.persistence.*;
 public class Auth implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int id;
-	private byte noBallot;
+	private int ballot;
 	private String pass;
 	private int priority;
 	private String user;
 
     public Auth() {
+    	
     }
 
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int getId() {
 		return this.id;
 	}
@@ -31,16 +32,12 @@ public class Auth implements Serializable {
 		this.id = id;
 	}
 
-
-	@Column(name="no_ballot")
-	public byte getNoBallot() {
-		return this.noBallot;
+	public int getBallot(){
+		return ballot;
 	}
-
-	public void setNoBallot(byte noBallot) {
-		this.noBallot = noBallot;
+	public void setBallot(int ballot){
+		this.ballot = ballot;
 	}
-
 
 	public String getPass() {
 		return this.pass;
