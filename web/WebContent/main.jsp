@@ -14,20 +14,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Main Page</title>
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"></link>
+<link href="bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
   <style>
-    #loginrow{
-      margin-top: 50px;
-      margin-bottom: 20px;
-    }
-    input{
-
-    }
     #lo{
       color:#d71700;
       font-size: 32px;
     }
-    body{
-      background-color:#DDDDDD;
+    .row{
+    	margin-top: 15px;
     }
   </style>
 </head>
@@ -37,42 +31,53 @@
 Client c =(Client) session.getAttribute("Cl");
 Auth user = (Auth) session.getAttribute("user");
 %>
-<font id="lo">
-<br>
-Hi!
-<%= user.getId() %>
-</font>
-<br>
-<br>
-<!-- number of ballot user can vote -->
-Your remain ballot(s) is
-<%= user.getBallot() %>
-<!-- go to vote page -->
-<br>
-<br>
-<% for (int i = 0;i<c.statements.length;i++){
-	Statement sd = c.statements[i];
-%>
-<table border="1">
-<tr>
-<td>
-<%= sd.getDescription() %>
-</td>
-<td>
-<% out.print("<a href=\"checkVote.jsp?id="+sd.getId()+"\">Go to Vote!</a>"); %>
-</td>
-</tr>
-</table>
-<% }%>
-
-<form method="POST" action="history.jsp">
-  <input class="btn" type="submit" value="History">
-</form>
-
-<form method="POST" action="logout.jsp">
-  <input class="btn" type="submit" value="LogOut">
-</form>
-
-
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+			<h1><a href="#">Exceed<span>Vote</span></a></h1>
+			<p>Vote the projects in eXceed Camp .</p>
+		</div>
+	</div>
+	<!-- end #header -->
+	<div id="menu">
+		<ul>
+			<li class="current_page_item"><a>Main Menu</a></li>
+			<li><a href="history.jsp">History</a></li>
+			<li><a href="logout.jsp">Logout</a></li>
+		</ul>
+	</div>
+	<div id="welcome">
+		<font id="lo">
+			<br>
+			Hi!
+			<%= user.getId() %>
+		</font>
+		<br>
+		<br>
+		<!-- number of ballot user can vote -->
+		Your remain ballot(s) is
+		<%= user.getBallot() %>
+		<!-- go to vote page -->
+		<br>
+		<br>
+		<% for (int i = 0;i<c.statements.length;i++){
+			Statement sd = c.statements[i];
+		%>
+			<div class="row">
+			<div class="span2">
+				<%= sd.getDescription() %>
+			</div>
+			<div class="span3">
+			<div class="btn">
+			<% out.print("<a href=\"checkVote.jsp?id="+sd.getId()+"\">Go to Vote!</a>"); %>
+			</div>
+			</div>
+			</div>
+		<% }%>
+	</div>
+</div>
+<div id="footer">
+	<p>Copyright (c) 2012 Sitename.com. All rights reserved. Design by <a href="http://www.freecsstemplates.org">KSPT</a>. </p>
+</div>
 </body>
 </html>	
