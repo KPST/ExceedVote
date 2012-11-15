@@ -23,6 +23,9 @@
     .row{
     	margin-top: 15px;
     }
+    #welcome{
+    	min-height: 350px;
+    }
   </style>
 </head>
 <body>

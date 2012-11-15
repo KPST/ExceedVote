@@ -20,6 +20,9 @@
       color:#d71700;
       font-size: 32px;
     }
+    #welcome{
+    	min-height: 350px;
+    }
   </style>
 <body>
 <%
