@@ -20,6 +20,31 @@ Login failed.
 <a class="btn" href="index.jsp">
 	Go to login page.
 </a>
+<br>
+<br>
+<center>
+<script language="JavaScript" type="text/javascript">  
+var count = 3 
+var redirect="index.jsp"  
+  
+function countDown(){  
+ if (count <=0){  
+  window.location = redirect;  
+ }else{  
+  count--;  
+  document.getElementById("timer").innerHTML = "This page will automaticly redirect in "+count+" seconds."  
+  setTimeout("countDown()", 1000)  
+ }  
+}  
+</script>   
+  
+<span id="timer">  
+<script>  
+ countDown();  
+</script>  
+</span>  
+</center>
+
 </center>
 </body>
 </html>

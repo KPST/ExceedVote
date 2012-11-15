@@ -1,3 +1,7 @@
+<!-- CheckVote is the check the statement which is chosen from the main.jsp and send a redirection to vote.jsp
+@author Tanachot Teachajarupan 5410547624
+@version 2012.11.15
+-->
 <%@page import="com.exceedvote.jpa.Statement"%>
 <%@page import="com.exceedvote.jpa.Ballot"%>
 <%@page import="com.exceedvote.controller.*" %>
