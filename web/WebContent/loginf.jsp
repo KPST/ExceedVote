@@ -21,9 +21,5 @@ Login failed.
 	Go to login page.
 </a>
 </center>
-<script type="text/javascript">
-	function loginBtn () {
-	}
-</script>
 </body>
 </html>
