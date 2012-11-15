@@ -38,10 +38,11 @@ Client c =(Client) session.getAttribute("Cl");
 Auth user = (Auth) session.getAttribute("user");
 //TODO : how to select q num
 //qnum = statement num. start at 1
-int qnum = 1;
+//int qnum =  1;
 //send statement to session
-Statement s = c.getStatement(qnum);
-session.setAttribute("Statement",s);
+int size = c.statements.length;
+//Statement s = c.getStatement(qnum);
+//session.setAttribute("Statement",s);
 %>
 <font id="lo">
 <br>
@@ -56,9 +57,21 @@ Your remain ballot(s) is
 <!-- go to vote page -->
 <br>
 <br>
-<form method="POST" action="vote.jsp">
-    <input class="btn" type="submit" value="Go to Vote!">
-</form>
+<% for (int i = 0;i<size;i++){
+	Statement s = c.getStatement(i);
+	//session.setAttribute("Statement",s);
+%>
+<table border="1">
+<tr>
+<td>
+<%= s.getDescription() %>
+</td>
+<td>
+<% out.print("<a href=\"checkVote.jsp?id="+i+"\">Go to Vote!</a>"); %>
+</td>
+</tr>
+</table>
+<% }%>
 
 <form method="POST" action="history.jsp">
   <input class="btn" type="submit" value="History">
@@ -67,6 +80,9 @@ Your remain ballot(s) is
 <form method="POST" action="logout.jsp">
   <input class="btn" type="submit" value="LogOut">
 </form>
+
+
+
 
 
 </body>
