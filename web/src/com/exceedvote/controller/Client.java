@@ -90,7 +90,7 @@ public class Client {
        System.out.println(g.getId()+" "+g.getBallot()+" "+g.getPriority());
     }
     /**
-     * 
+     * getResult use for count the vote
      * @return
      */
     public int[][] getResult(){
@@ -102,6 +102,12 @@ public class Client {
     	}
     	return temp;
     }
+    /**
+     * addUser is register
+     * @param user username
+     * @param pass password
+     * @param ballot numberofballot
+     */
     public void addUser(String user,String pass,int ballot){
     	if(b.findUser(user, pass)==null){
     	Auth temp = new Auth();
@@ -114,15 +120,29 @@ public class Client {
     		System.out.println("User already regis");
     	}
     }
+    /**
+     * Delete that user
+     * @param id id of user
+     */
     public void deleteUser(int id){
     	b.deleteUser(id);
     }
+    /**
+     * add to Statement
+     * @param des description of statement
+     */
     public void addStatement(String des){
     	Statement temp = new Statement();
     	temp.setDescription(des);
     	b.saveStatement(temp);
     	statements = b.getStatement();
     }
+    /**
+     * add to Choice
+     * @param name String name of choice
+     * @param des String description of choice
+     * @param img String url to image
+     */
     public void addChoice(String name,String des,String img){
     	Choice temp = new Choice();
     	temp.setName(name);
@@ -131,14 +151,26 @@ public class Client {
     	b.saveChoice(temp);
     	choices = b.getChoice();
     }
+    /**
+     * Delete Statement
+     * @param id id of statement
+     */
     public void deleteStatement(int id){
     	b.deleteStatement(id);
     	statements = b.getStatement();
     }
+    /**
+     * Delete Choice
+     * @param id id of choice
+     */
     public void deleteChoice(int id){
     	b.deleteChoice(id);
     	choices = b.getChoice();
     }
+    /**
+     * GetAllUser
+     * @return Auth[] that contain all user
+     */
     public Auth[] getUser(){
     	return b.getAllUser();
     }

@@ -10,7 +10,11 @@ import com.exceedvote.jpa.Auth;
 import com.exceedvote.jpa.Ballot;
 import com.exceedvote.jpa.Choice;
 import com.exceedvote.jpa.Statement;
-
+/**
+ * JpaDAO
+ * @author Kunat Pipatanakul
+ * @version 2012.11.14
+ */
 public class JpaDAO implements ExceedDAO{
 	EntityManager em;
 	public static int FLAG_USER = 1;
@@ -42,13 +46,13 @@ public class JpaDAO implements ExceedDAO{
 				return null;
 				}
 		}
-		public List<Ballot> findBallots(int userid,int question,int flag){
+		public List<Ballot> findBallots(int id,int question,int flag){
 			Query q;
 			if(flag == FLAG_USER)
 			q = em.createQuery("SELECT b from Ballot b where b.user = :id and b.questionid = :question");
 			else
-			q = em.createQuery("SELECT b from Ballot b where b.questionid = :question and b.choice = :choice");
-			q.setParameter("id", userid);
+			q = em.createQuery("SELECT b from Ballot b where b.questionid = :question and b.choice = :id");
+			q.setParameter("id", id);
 			q.setParameter("question", question);
 			return q.getResultList();
 		}

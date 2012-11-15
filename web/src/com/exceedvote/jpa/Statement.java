@@ -6,7 +6,8 @@ import javax.persistence.*;
 
 /**
  * The persistent class for the statement database table.
- * 
+ * @author Kunat Pipatanakul
+ * @version 2012.11.11
  */
 @Entity
 public class Statement implements Serializable {

@@ -9,7 +9,11 @@ import org.junit.Test;
 import com.exceedvote.core.ExceedDAO;
 import com.exceedvote.core.ExceedJpaFactory;
 import com.exceedvote.core.JpaDAO;
-
+/**
+ * DAOTEST
+ * @author Kunat Pipatanakul
+ *
+ */
 public class UnitTest {
 	
 	@Test
