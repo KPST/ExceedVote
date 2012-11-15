@@ -9,6 +9,8 @@
 <title>User Edit</title>
 </head>
 <body>
+<b>User List</b>
+<br>
 <% Client c = (Client) session.getAttribute("Cl");
    Auth[] a = c.getUser();
    for(int i = 0 ; i < a.length ; i++){
@@ -17,5 +19,10 @@
 	   out.println("<br>");
    }
 %>
+<br>
+<form method="POST" action="index.jsp">
+  <input class="btn" style="height: 40px; width: 100px" type="submit" value="Back to Menu">
+</form>
+
 </body>
 </html>

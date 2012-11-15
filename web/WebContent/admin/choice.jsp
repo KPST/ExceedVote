@@ -8,6 +8,9 @@
 <title>Choice Edit</title>
 </head>
 <body>
+<br>
+<b>Choice List</b>
+<br>
 <% Client c = (Client)session.getAttribute("Cl");
 	for(int i = 0 ; i < c.choices.length ; i ++){
 		out.print(c.choices[i].getName()+" "+c.choices[i].getDescription()+" ");
@@ -16,23 +19,27 @@
 	}
 %>
 <form name="form1" method="get" action="add.jsp">
-  <center>
+  <!--center-->
   <div class="container">
-      <div class="row" id="loginrow"><font id="lo">add new Choice</font></div>
+      <div class="row" id="loginrow"><font id="lo">Add new Choice</font></div>
       <div class="row" id="userow">
         &nbsp;
-        Name <input name="name" type="text" id="name">
+        Name : <input name="name" type="text" id="name">
       </div>
       <div class="row">
         &nbsp;
-        Des <input name="des" type="text" id="des">
-        Img <input name="img" type="text" id="img">
+        Description : <input name="des" type="text" id="des">
+        Image URL : <input name="img" type="text" id="img">
         <input name="type" type="hidden" value="choice"> 
       </div>
   </div>
   <br>
   <input class="btn" type="submit" name="Submit" value="Add">
-</center>
+<!--/center-->
+</form>
+
+<form method="POST" action="index.jsp">
+  <input class="btn" style="height: 40px; width: 100px" type="submit" value="Back to Menu">
 </form>
 </body>
 </html>
