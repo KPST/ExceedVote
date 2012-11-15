@@ -8,10 +8,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"></link>
 <title>Login Failed</title>
 </head>
 <body>
+<center>
+<h1>
 Login failed.
-<a href="index.html" >Go to login page.</a>
+</h1>
+<br>
+<a class="btn" href="index.jsp">
+	Go to login page.
+</a>
+</center>
+<script type="text/javascript">
+	function loginBtn () {
+	}
+</script>
 </body>
 </html>
