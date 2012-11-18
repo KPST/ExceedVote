@@ -26,7 +26,8 @@
        //check login ok?
     	ExceedDAO b = new JpaDAO();
         Authentication a = new Authentication(b);
-      	Auth usr = a.login(name, pass);
+        String ip = request.getRemoteAddr();
+      	Auth usr = a.login(name, pass,ip);
         if(usr!=null){
       		//login ok
       		System.out.println(usr.getBallot());

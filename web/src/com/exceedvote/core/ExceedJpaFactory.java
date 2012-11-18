@@ -5,7 +5,9 @@ package com.exceedvote.core;
  * @author Kunat Pipatanakul
  * @version 2012.11.14
  */
+
 public class ExceedJpaFactory implements IFactory{
+	
 	private static ExceedJpaFactory ef = new ExceedJpaFactory();
 	private ExceedDAO ed;
 	private ExceedJpaFactory(){

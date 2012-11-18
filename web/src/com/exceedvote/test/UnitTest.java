@@ -2,8 +2,6 @@ package com.exceedvote.test;
 
 import static org.junit.Assert.*;
 
-import javax.swing.JPanel;
-
 import org.junit.Test;
 
 import com.exceedvote.core.ExceedDAO;
@@ -25,6 +23,7 @@ public class UnitTest {
 		
 		assertSame(ed.getChoice(),ed.getChoice());
 	}
+	@SuppressWarnings("deprecation")
 	@Test
 	public void getChoiceTest(){
 		ExceedDAO ed = ExceedJpaFactory.getInstance().getDAO();
@@ -38,6 +37,7 @@ public class UnitTest {
 		assertSame(ed.findBallot(91),ed.findBallot(91));
 		assertNull(ed.findBallot(-1));
 	}
+	@SuppressWarnings("deprecation")
 	@Test
 	public void getStatementTest(){
 		ExceedDAO ed = ExceedJpaFactory.getInstance().getDAO();

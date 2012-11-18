@@ -4,8 +4,6 @@ package com.exceedvote.core;
 import java.util.List;
 
 import javax.persistence.*;
-
-
 import com.exceedvote.jpa.Auth;
 import com.exceedvote.jpa.Ballot;
 import com.exceedvote.jpa.Choice;
@@ -16,6 +14,7 @@ import com.exceedvote.jpa.Statement;
  * @version 2012.11.14
  */
 public class JpaDAO implements ExceedDAO{
+	
 	EntityManager em;
 	public static int FLAG_USER = 1;
 	public static int FLAG_CHOICE = 2;
@@ -23,15 +22,20 @@ public class JpaDAO implements ExceedDAO{
 			EntityManagerFactory fac = Persistence.createEntityManagerFactory("ExceedVote");
 			em = fac.createEntityManager();
 		}
+		@SuppressWarnings("unchecked")
 		public Statement[] getStatement(){
 			Query q = em.createQuery("SELECT s from Statement s");
+			
+			@SuppressWarnings("rawtypes")
 			List temp =q.getResultList();
 			Statement[] g = new Statement[temp.size()];
 			temp.toArray(g);
 			return g;
 		}
+		@SuppressWarnings("unchecked")
 		public Choice[] getChoice(){
 			Query q = em.createQuery("SELECT c from Choice c");
+			@SuppressWarnings("rawtypes")
 			List temp = q.getResultList();
 			Choice[] g = new Choice[temp.size()];
 			temp.toArray(g);
@@ -46,6 +50,7 @@ public class JpaDAO implements ExceedDAO{
 				return null;
 				}
 		}
+		@SuppressWarnings("unchecked")
 		public List<Ballot> findBallots(int id,int question,int flag){
 			Query q;
 			if(flag == FLAG_USER)
@@ -77,6 +82,15 @@ public class JpaDAO implements ExceedDAO{
 			Query q = em.createQuery("SELECT a from Auth a where a.user = :user and a.pass = :pass");
 			q.setParameter("user", user);
 			q.setParameter("pass", pass);
+			try{
+			return (Auth) q.getResultList().get(0);
+			}catch (Exception e) {
+				return null;
+			}
+		}
+		public Auth findUser(String user){
+			Query q = em.createQuery("SELECT a from Auth a where a.user = :user");
+			q.setParameter("user", user);
 			try{
 			return (Auth) q.getResultList().get(0);
 			}catch (Exception e) {
@@ -131,6 +145,7 @@ public class JpaDAO implements ExceedDAO{
 			em.remove(b); 
 			tx.commit(); 
 		}
+		@SuppressWarnings({ "rawtypes", "unchecked" })
 		public Auth[] getAllUser() {
 			Query q = em.createQuery("SELECT a from Auth a");
 			List te = q.getResultList();

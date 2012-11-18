@@ -3,6 +3,7 @@ import java.util.List;
 
 import com.exceedvote.core.ExceedDAO;
 import com.exceedvote.core.JpaDAO;
+import com.exceedvote.core.Log;
 import com.exceedvote.jpa.Auth;
 import com.exceedvote.jpa.Ballot;
 import com.exceedvote.jpa.Choice;
@@ -16,19 +17,19 @@ import com.exceedvote.jpa.Statement;
  *
  */
 public class Client {
-	ExceedDAO b;
+	private ExceedDAO b;
+	private Log log;
     public Statement[] statements;
     public Choice[] choices;
+    
     /**
      * Constructor
      */
     public Client(ExceedDAO b) {
+     this.log = Log.getLog();
      this.b = b;
      statements = b.getStatement();
      choices = b.getChoice();
-     for (Statement s : statements) {
-		System.out.println(s.getId()+" "+s.getDescription());
-	}
     }
 
     /**
@@ -50,8 +51,9 @@ public class Client {
      * @param i = no.question
      * @param g = choice
      */
-    public void vote(int userid,int i,int g){
-    	Ballot b = new Ballot(userid,i,g);
+    public void vote(int userid,int question,int choice){
+    	Ballot b = new Ballot(userid,question,choice);
+    	log.voteLog(userid, choice, question, Log.BALLOT_SAVE);
 		this.b.saveBallot(b);
 			
     }
@@ -81,13 +83,7 @@ public class Client {
      */
     public void DeleteBallot(int id){
     	b.deleteBallot(id);
-    }
-    /**
-     * 
-     */
-    public void login(String user,String pass){
-       Auth g = b.findUser(user, pass);
-       System.out.println(g.getId()+" "+g.getBallot()+" "+g.getPriority());
+    	log.deleteVoteLog(id, Log.BALLOT_DELETE);
     }
     /**
      * getResult use for count the vote
@@ -102,24 +98,7 @@ public class Client {
     	}
     	return temp;
     }
-    /**
-     * addUser is register
-     * @param user username
-     * @param pass password
-     * @param ballot numberofballot
-     */
-    public void addUser(String user,String pass,int ballot){
-    	if(b.findUser(user, pass)==null){
-    	Auth temp = new Auth();
-    	temp.setBallot(ballot);
-    	temp.setUser(user);
-    	temp.setPass(pass);
-    	b.saveUser(temp);
-    	}
-    	else{
-    		System.out.println("User already regis");
-    	}
-    }
+    
     /**
      * Delete that user
      * @param id id of user

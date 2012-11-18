@@ -87,4 +87,5 @@ public interface ExceedDAO {
 	 * @return Auth[] object that contain all user in database.
 	 */
 	public Auth[] getAllUser();
+	public Auth findUser(String user);
 }
