@@ -39,7 +39,7 @@ public class Authentication {
      * @param pass password
      * @param ballot numberofballot
      */
-    public void addUser(String user,String pass,int ballot,String ip){
+    public boolean addUser(String user,String pass,int ballot,String ip){
     	if(b.findUser(user)==null){
     	Auth temp = new Auth();
     	temp.setBallot(ballot);
@@ -48,10 +48,12 @@ public class Authentication {
     	temp.setPriority(0);
     	b.saveUser(temp);
     	log.regisLog(user, ip, Log.REGIS_OK);
+    	return true;
     	}
     	else{
     		log.regisLog("", ip, Log.REGIS_FAIL);
     		System.out.println("User already regis");
+    		return false;
     	}
     }
 	
