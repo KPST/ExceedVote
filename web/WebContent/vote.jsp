@@ -16,7 +16,6 @@ vote page collect the information and send it to voting page
 <% Client c = (Client) session.getAttribute("Cl");
    Statement s  = (Statement) session.getAttribute("Statement");
    int snum = s.getId();
-   out.print(snum);
    int cs = c.choices.length;
    %>
 <!-- check if there is vote quota left ? if not sent to votef page -->
@@ -31,6 +30,8 @@ if(c.findBallot(useri.getId(),snum).length>=useri.getBallot())
 	<title>Exceed Vote</title>
 	
 	<!-- Required CSS -->
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"></link>
+	<link href="bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
 	<link href="css/movingboxes.css" rel="stylesheet">
 
 	<!-- Required script -->
@@ -47,8 +48,18 @@ if(c.findBallot(useri.getId(),snum).length>=useri.getBallot())
 
 	<style>
 		/* Dimensions set via css in MovingBoxes version 2.2.2+ */
-		#slider { width: 800px; }
+		#slider { width: 500px; }
 		#slider li { width: 300px; }
+		#wrapper2{
+			width: 800px;
+			margin:auto;
+		}
+		#welcome{
+    	min-height: 350px;
+    	}
+    	#fc{
+    		text-align: center;
+    	}
 	</style>
 
 	<script>
@@ -71,47 +82,25 @@ if(c.findBallot(useri.getId(),snum).length>=useri.getBallot())
 </head>
 
 <body>
-	<div id="wrapper">
-
-		<h1 class="demo-title">Exceed Vote</h1>
-
-	
-
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+			<h1><a href="#">Exceed<span>Vote</span></a></h1>
+			<p>Vote the projects in eXceed Camp .</p>
+		</div>
+	</div>
+	<!-- end #header -->
+	<div id="menu">
+		<ul>
+			<li><a href="main.jsp">Main Menu</a></li>
+			<li><a href="history.jsp">History</a></li>
+			<li><a href="logout.jsp">Logout</a></li>
+		</ul>
+	</div>
+	<div id="welcome">
+		<div id="wrapper2" >
 		<!-- MovingBoxes Slider -->
 		<ul id="slider1">
-		<!-- 
-			<li>
-			<img src="demo/1.jpg" alt="picture">
-				<h2>Bolt Runner</h2>
-				<p>Add a short exerpt here... <a href="http://flickr.com/photos/justbcuz/112479862/">more</a></p>
-			</li>
-
-			<li>
-				<img src="demo/2.jpg" alt="picture">
-				
-				<h2>News Heading</h2>
-				<p></p>
-			</li>
-
-			<li>
-				<img src="demo/3.jpg" alt="picture">
-				<h2>News Heading</h2>
-				<p>Add a short exerpt here... <a href="http://flickr.com/photos/ruudvanleeuwen/468309897/">more</a></p>
-			</li>
-
-			<li>
-				<img src="demo/4.jpg" alt="picture">
-				<h2>News Heading</h2>
-				<p>Add a short exerpt here... <a href="http://flickr.com/photos/emikohime/294092478/">more</a></p>
-			</li>
-
-			<li>
-				<img src="demo/5.jpg" alt="picture">
-				<h2>News Heading</h2>
-				<p>Add a short exerpt here... <a href="http://www.flickr.com/photos/fensterbme/499006584/">more</a></p>
-			</li>
-            
-            -->
             <%
             
             //vote choice edit here
@@ -126,14 +115,15 @@ if(c.findBallot(useri.getId(),snum).length>=useri.getBallot())
 		     } %>
 		      
 		</ul><!-- end Slider #1 -->
-
-	</div><!-- end wrapper -->
-<center>
-<input name = "Submit" style="height: 50px; width: 100px" type="button" value = "Vote" onClick ="getVote()">
-<form method="POST" action="main.jsp">
-  <input class="btn" style="height: 30px; width: 100px" type="submit" value="Back to Main">
-</form>
-</center>
+		</div><!-- end wrapper2 -->
+		<div id="fc">
+			<input class="btn" id="votebtn" name = "Submit" style="height: 50px; width: 100px" type="button" value = "Vote" onClick ="getVote()">
+		</div>
+	</div>
+</div>
+<div id="footer">
+	<p>Copyright (c) 2012 Sitename.com. All rights reserved. Design by <a href="http://www.freecsstemplates.org">KSPT</a>. </p>
+</div>
 <!-- getvote get number after # and send it to post function -->
 <script>
 function getVote()
@@ -160,11 +150,8 @@ function getVote()
 function post(path, id , question , choice) {
 	if(confirm("Do you choose "+choice+" ?")){
     var form = $('<form></form>');
-
     form.attr("method", "get");
     form.attr("action", path);
-       
-		
         	var field = $('<input></input>');
             field.attr("type", "hidden");
             field.attr("name", "id");

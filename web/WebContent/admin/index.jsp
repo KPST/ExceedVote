@@ -5,12 +5,31 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Insert title here</title>
+<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"></link>
+ <link href="/ExceedVote/bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
-<a href="choice.jsp">Edit Choice</a>
-<br>
-<a href="statement.jsp">Edit Statement</a>
-<br>
-<a href="user.jsp">Edit User</a>
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+			<h1><a href="#">Exceed<span>Vote</span></a></h1>
+			<p>Vote the projects in eXceed Camp .</p>
+		</div>
+	</div>
+	<!-- end #header -->
+	<div id="menu">
+		<ul>
+			<li><a href="choice.jsp">Edit Choice</a></li>
+			<li><a href="statement.jsp">Edit Statment</a></li>
+			<li><a href="user.jsp">Edit User</a></li>
+		</ul>
+	</div>
+	<div id="banner"><img src="/ExceedVote/images/headerpic.jpg" width="1200" height="400" alt="" /></div>
+	<div id="welcome">
+	</div>
+</div>
+<div id="footer">
+	<p>Copyright (c) 2012 Sitename.com. All rights reserved. Design by <a href="http://www.freecsstemplates.org">KSPT</a>. </p>
+</div>
 </body>
 </html>
