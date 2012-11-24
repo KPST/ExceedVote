@@ -23,7 +23,6 @@ if(cl.findBallot(id).getUser()==userinfo.getId()){
 	Statement st  = cl.getStatement(qid);
 	session.setAttribute("Statement", st);
 	response.sendRedirect("vote.jsp");
-	System.out.println("OK");
 }
 else
 out.print("NO");

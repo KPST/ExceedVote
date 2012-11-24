@@ -6,9 +6,11 @@
 -->
 
 
-<%@page import="com.exceedvote.core.ExceedDAO"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="com.exceedvote.factory.JpaFactory"%>
+<%@page import="com.exceedvote.factory.IFactory"%>
 <%@page import="com.exceedvote.core.*"%>
 <%@ page import="com.exceedvote.controller.*" %>
 <%@ page import="com.exceedvote.jpa.Auth" %>
@@ -24,7 +26,7 @@
       String name = request.getParameter("username");
       String pass = request.getParameter("password");
        //check login ok?
-    	ExceedDAO b = new JpaDAO();
+    	IFactory b = JpaFactory.getInstance();
         Authentication a = new Authentication(b);
         String ip = request.getRemoteAddr();
       	Auth usr = a.login(name, pass,ip);

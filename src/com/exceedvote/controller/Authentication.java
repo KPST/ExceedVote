@@ -1,7 +1,7 @@
 package com.exceedvote.controller;
 
-import com.exceedvote.core.ExceedDAO;
 import com.exceedvote.core.Log;
+import com.exceedvote.factory.IFactory;
 import com.exceedvote.jpa.Auth;
 
 
@@ -11,12 +11,12 @@ import com.exceedvote.jpa.Auth;
  * @version 2012.10.23
  */
 public class Authentication {
-	private ExceedDAO b;
+	private IFactory b;
 	private Log log;
 	/**
 	 * Constructor
 	 */
-	public Authentication(ExceedDAO b) {
+	public Authentication(IFactory b) {
 	this.b = b;
 	this.log = Log.getLog();
 	}
@@ -26,7 +26,7 @@ public class Authentication {
 	 * @param pass,password that user have inputed.
 	 */
 	public Auth login(String user,String pass,String ip){
-		Auth out = b.findUser(user, pass);
+		Auth out = b.getUserDAO().findUser(user, pass);
 		if(out != null)
 			log.loginLog(out.getUser(), ip, Log.LOGIN_OK);
 		else
@@ -40,13 +40,13 @@ public class Authentication {
      * @param ballot numberofballot
      */
     public boolean addUser(String user,String pass,int ballot,String ip){
-    	if(b.findUser(user)==null){
+    	if(b.getUserDAO().findUser(user)==null){
     	Auth temp = new Auth();
     	temp.setBallot(ballot);
     	temp.setUser(user);
     	temp.setPass(pass);
     	temp.setPriority(0);
-    	b.saveUser(temp);
+    	b.getUserDAO().saveUser(temp);
     	log.regisLog(user, ip, Log.REGIS_OK);
     	return true;
     	}

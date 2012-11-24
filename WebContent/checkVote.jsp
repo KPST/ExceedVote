@@ -25,7 +25,6 @@ Client cl = (Client)session.getAttribute("Cl");
 Statement st  = cl.getStatement(id);
 session.setAttribute("Statement", st);
 response.sendRedirect("vote.jsp");
-System.out.println("OK");
 
 %>
 

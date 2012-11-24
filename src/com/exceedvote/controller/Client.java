@@ -1,9 +1,9 @@
 package com.exceedvote.controller;
 import java.util.List;
 
-import com.exceedvote.core.ExceedDAO;
-import com.exceedvote.core.JpaDAO;
+import com.exceedvote.DAO.BallotJpaDAO;
 import com.exceedvote.core.Log;
+import com.exceedvote.factory.IFactory;
 import com.exceedvote.jpa.Auth;
 import com.exceedvote.jpa.Ballot;
 import com.exceedvote.jpa.Choice;
@@ -17,7 +17,7 @@ import com.exceedvote.jpa.Statement;
  *
  */
 public class Client {
-	private ExceedDAO b;
+	private IFactory b;
 	private Log log;
     public Statement[] statements;
     public Choice[] choices;
@@ -25,11 +25,11 @@ public class Client {
     /**
      * Constructor
      */
-    public Client(ExceedDAO b) {
+    public Client(IFactory b) {
      this.log = Log.getLog();
      this.b = b;
-     statements = b.getStatement();
-     choices = b.getChoice();
+     statements = b.getStatementDAO().getStatement();
+     choices = b.getChoiceDAO().getChoice();
     }
 
     /**
@@ -54,7 +54,7 @@ public class Client {
     public void vote(int userid,int question,int choice){
     	Ballot b = new Ballot(userid,question,choice);
     	log.voteLog(userid, choice, question, Log.BALLOT_SAVE);
-		this.b.saveBallot(b);
+		this.b.getBallotDAO().saveBallot(b);
 			
     }
     /**
@@ -64,7 +64,7 @@ public class Client {
      * @return Ballot[] that contain every ballot in the database
      */
     public Ballot[] findBallot(int userid , int question){
-    	List<Ballot> ab = b.findBallots(userid, question,JpaDAO.FLAG_USER);
+    	List<Ballot> ab = b.getBallotDAO().findBallots(userid, question,b.getBallotDAO().FLAG_USER);
     	Ballot[] g = new Ballot[ab.size()];
     	ab.toArray(g);
     	return g;
@@ -75,14 +75,14 @@ public class Client {
      * @return Ballot
      */
     public Ballot findBallot(int id){
-    	return b.findBallot(id);	
+    	return b.getBallotDAO().findBallot(id);	
     }
     /**
      * DeleteBallot from id
      * @param id
      */
     public void DeleteBallot(int id){
-    	b.deleteBallot(id);
+    	b.getBallotDAO().deleteBallot(id);
     	log.deleteVoteLog(id, Log.BALLOT_DELETE);
     }
     /**
@@ -93,7 +93,7 @@ public class Client {
     	int[][] temp = new int[statements.length][choices.length];
     	for(int i = 0 ; i < statements.length ;i++){
     		for(int j = 0 ; j < choices.length ; i++){
-    			temp[i][j] = b.findBallots(statements[i].getId(), choices[i].getId() , JpaDAO.FLAG_CHOICE).size();
+    			temp[i][j] = b.getBallotDAO().findBallots(statements[i].getId(), choices[i].getId() , b.getBallotDAO().FLAG_CHOICE).size();
     		}
     	}
     	return temp;
@@ -104,7 +104,7 @@ public class Client {
      * @param id id of user
      */
     public void deleteUser(int id){
-    	b.deleteUser(id);
+    	b.getUserDAO().deleteUser(id);
     }
     /**
      * add to Statement
@@ -113,8 +113,8 @@ public class Client {
     public void addStatement(String des){
     	Statement temp = new Statement();
     	temp.setDescription(des);
-    	b.saveStatement(temp);
-    	statements = b.getStatement();
+    	b.getStatementDAO().saveStatement(temp);
+    	statements = b.getStatementDAO().getStatement();
     }
     /**
      * add to Choice
@@ -127,30 +127,30 @@ public class Client {
     	temp.setName(name);
     	temp.setDescription(des);
     	temp.setImg(img);
-    	b.saveChoice(temp);
-    	choices = b.getChoice();
+    	b.getChoiceDAO().saveChoice(temp);
+    	choices = b.getChoiceDAO().getChoice();
     }
     /**
      * Delete Statement
      * @param id id of statement
      */
     public void deleteStatement(int id){
-    	b.deleteStatement(id);
-    	statements = b.getStatement();
+    	b.getStatementDAO().deleteStatement(id);
+    	statements = b.getStatementDAO().getStatement();
     }
     /**
      * Delete Choice
      * @param id id of choice
      */
     public void deleteChoice(int id){
-    	b.deleteChoice(id);
-    	choices = b.getChoice();
+    	b.getChoiceDAO().deleteChoice(id);
+    	choices = b.getChoiceDAO().getChoice();
     }
     /**
      * GetAllUser
      * @return Auth[] that contain all user
      */
     public Auth[] getUser(){
-    	return b.getAllUser();
+    	return b.getUserDAO().getAllUser();
     }
 } 
