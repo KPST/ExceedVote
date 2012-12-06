@@ -8,7 +8,7 @@
 <%@page import="org.apache.catalina.Session"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
@@ -32,7 +32,8 @@
 <%
 //get client and userinfo from session
 Client c =(Client) session.getAttribute("Cl");
-Auth user = (Auth) session.getAttribute("user");
+User user = (User) session.getAttribute("user");
+c.getDiffTime();
 %>
 <div id="wrapper">
 	<div id="header">
@@ -58,8 +59,7 @@ Auth user = (Auth) session.getAttribute("user");
 		<br>
 		<br>
 		<!-- number of ballot user can vote -->
-		Your remain ballot(s) is
-		<%= user.getBallot() %>
+		
 		<!-- go to vote page -->
 		<br>
 		<br>

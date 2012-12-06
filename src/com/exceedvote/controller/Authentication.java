@@ -1,8 +1,16 @@
 package com.exceedvote.controller;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
+
 import com.exceedvote.core.Log;
 import com.exceedvote.factory.IFactory;
-import com.exceedvote.jpa.Auth;
+import com.exceedvote.factory.JpaFactory;
+import com.exceedvote.jpa.Role;
+import com.exceedvote.jpa.User;
 
 
 /**
@@ -25,10 +33,15 @@ public class Authentication {
 	 * @param user,username that user have inputed.
 	 * @param pass,password that user have inputed.
 	 */
-	public Auth login(String user,String pass,String ip){
-		Auth out = b.getUserDAO().findUser(user, pass);
-		if(out != null)
+	public User login(String user,String pass,String ip){
+		User out = b.getUserDAO().findUser(user, pass);
+		if(out != null){
 			log.loginLog(out.getUser(), ip, Log.LOGIN_OK);
+			List<Role> rs = out.getRoles();
+			System.out.println(rs.size());
+			for(int i = 0 ; i < rs.size() ;i++)
+				System.out.println(rs.get(i));
+		}
 		else
 			log.loginLog("", ip, Log.LOGIN_FAIL);
 		return out;
@@ -41,11 +54,15 @@ public class Authentication {
      */
     public boolean addUser(String user,String pass,int ballot,String ip){
     	if(b.getUserDAO().findUser(user)==null){
-    	Auth temp = new Auth();
-    	temp.setBallot(ballot);
+    	User temp = new User();
     	temp.setUser(user);
+    	List<Role> roles = new ArrayList<Role>();
+    	//Role r = b.getRoleDAO().findRole("Admin");
+    	Role r2 = b.getRoleDAO().findRole("Student");
+    	//roles.add(r);
+    	roles.add(r2);
     	temp.setPass(pass);
-    	temp.setPriority(0);
+    	temp.setRoles(roles);
     	b.getUserDAO().saveUser(temp);
     	log.regisLog(user, ip, Log.REGIS_OK);
     	return true;

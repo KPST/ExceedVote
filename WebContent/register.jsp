@@ -1,4 +1,4 @@
-<%@page import="com.exceedvote.factory.ExceedJpaFactory"%>
+<%@page import="com.exceedvote.factory.JpaFactory"%>
 <%@page import="com.exceedvote.controller.Authentication"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
@@ -30,8 +30,7 @@
 		<%
 			String user = request.getParameter("username");
 			String pass = request.getParameter("password");
-			Authentication c = new Authentication(ExceedJpaFactory
-					.getInstance().getDAO());
+			Authentication c = new Authentication(JpaFactory.getInstance());
 			String ip = request.getRemoteAddr();
 			
 			//check and add username in DB

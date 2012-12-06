@@ -1,10 +1,12 @@
 package com.exceedvote.controller;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
-import com.exceedvote.DAO.BallotJpaDAO;
 import com.exceedvote.core.Log;
 import com.exceedvote.factory.IFactory;
-import com.exceedvote.jpa.Auth;
+import com.exceedvote.jpa.User;
 import com.exceedvote.jpa.Ballot;
 import com.exceedvote.jpa.Choice;
 import com.exceedvote.jpa.Statement;
@@ -55,8 +57,7 @@ public class Client {
     	Ballot b = new Ballot(userid,question,choice);
     	log.voteLog(userid, choice, question, Log.BALLOT_SAVE);
 		this.b.getBallotDAO().saveBallot(b);
-			
-    }
+	}
     /**
      * findBallot from userid and number of question
      * @param userid
@@ -150,7 +151,29 @@ public class Client {
      * GetAllUser
      * @return Auth[] that contain all user
      */
-    public Auth[] getUser(){
+    public User[] getUser(){
     	return b.getUserDAO().getAllUser();
+    }
+    public void getDiffTime(){
+    	Date ss = new Date(112, 12, 6);
+    	ss.setHours(13);
+    	ss.setMinutes(56);
+    	ss.setSeconds(0);
+    	Calendar n =new GregorianCalendar();
+    	n.set(Calendar.YEAR,2012);
+    	n.set(Calendar.MONTH,12-1);
+    	n.set(Calendar.DAY_OF_MONTH, 6);
+    	n.set(Calendar.HOUR_OF_DAY, 6);
+    	n.set(Calendar.MINUTE, 42);
+    	n.set(Calendar.SECOND, 0);
+    	n.set(Calendar.MILLISECOND,0);
+    	Calendar now = new GregorianCalendar();
+    	Calendar out = new GregorianCalendar();
+    	System.out.println(now);
+    	System.out.println(n);
+    	System.out.println(n.getTimeInMillis()-now.getTimeInMillis());
+    	//now.setTimeInMillis(System.currentTimeMillis());
+    	out.setTimeInMillis(n.getTimeInMillis()-now.getTimeInMillis());
+    	System.out.println(out.get(Calendar.DAY_OF_MONTH)+" "+out.get(Calendar.HOUR_OF_DAY)+" "+out.get(Calendar.MINUTE)+" "+out.get(Calendar.SECOND));
     }
 } 

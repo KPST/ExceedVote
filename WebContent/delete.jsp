@@ -1,6 +1,6 @@
 <%@page import="com.exceedvote.jpa.Statement"%>
 <%@page import="com.exceedvote.jpa.Ballot"%>
-<%@page import="com.exceedvote.jpa.Auth"%>
+<%@page import="com.exceedvote.jpa.User"%>
 <%@page import="com.exceedvote.controller.Client"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -14,7 +14,7 @@
 Delete<%=request.getParameter("id") %>
 <%
 int id = Integer.parseInt(request.getParameter("id"));
-Auth userinfo = (Auth)session.getAttribute("user");
+User userinfo = (User)session.getAttribute("user");
 Client cl = (Client)session.getAttribute("Cl");
 Ballot b = cl.findBallot(id);
 if(cl.findBallot(id).getUser()==userinfo.getId()){

@@ -1,4 +1,4 @@
-<%@page import="com.exceedvote.jpa.Auth"%>
+<%@page import="com.exceedvote.jpa.User"%>
 <%@page import="com.exceedvote.controller.Client"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -12,7 +12,7 @@
 <b>User List</b>
 <br>
 <% Client c = (Client) session.getAttribute("Cl");
-   Auth[] a = c.getUser();
+   User[] a = c.getUser();
    for(int i = 0 ; i < a.length ; i++){
 	   out.println("id "+a[i].getId()+" user "+a[i].getUser());
 	   out.println("<a href=\"delete.jsp?id="+a[i].getId()+"&type=user\">delete</a>");

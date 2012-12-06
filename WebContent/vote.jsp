@@ -3,7 +3,7 @@ vote page collect the information and send it to voting page
 @author Kunat Pipatanakul
 @version 2012.11.07
  -->
-<%@page import="com.exceedvote.jpa.Auth"%>
+<%@page import="com.exceedvote.jpa.User"%>
 <%@ page import="com.exceedvote.jpa.Statement"%>
 <%@ page import="com.exceedvote.core.*"%>
 <%@ page import="com.exceedvote.controller.*"%>
@@ -19,8 +19,8 @@ vote page collect the information and send it to voting page
    int cs = c.choices.length;
    %>
 <!-- check if there is vote quota left ? if not sent to votef page -->
-<% Auth useri = (Auth) session.getAttribute("user");
-if(c.findBallot(useri.getId(),snum).length>=useri.getBallot())
+<% User useri = (User) session.getAttribute("user");
+if(c.findBallot(useri.getId(),snum).length>=Math.floor(useri.getBallot())*s.getBallotMultiply())
 	response.sendRedirect("votef.jsp");
 %>
 <head>

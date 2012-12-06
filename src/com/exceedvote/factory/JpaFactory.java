@@ -7,8 +7,10 @@ import com.exceedvote.DAO.BallotJpaDAO;
 import com.exceedvote.DAO.ChoiceJpaDao;
 import com.exceedvote.DAO.IBallotDao;
 import com.exceedvote.DAO.IChoiceDao;
+import com.exceedvote.DAO.IRoleDao;
 import com.exceedvote.DAO.IStatementDao;
 import com.exceedvote.DAO.IUserDao;
+import com.exceedvote.DAO.RoleJpaDao;
 import com.exceedvote.DAO.StatementJpaDao;
 import com.exceedvote.DAO.UserJpaDao;
 
@@ -25,12 +27,14 @@ public class JpaFactory implements IFactory{
 	private ChoiceJpaDao cdao;
 	private StatementJpaDao sdao;
 	private UserJpaDao udao;
+	private RoleJpaDao rdao;
 	private JpaFactory(){
 		EntityManager em = Persistence.createEntityManagerFactory("ExceedVote").createEntityManager();
 		bdao = new BallotJpaDAO(em);
 		cdao = new ChoiceJpaDao(em);
 		sdao = new StatementJpaDao(em);
 		udao = new UserJpaDao(em);
+		rdao = new RoleJpaDao(em);
 	}
 	/**
 	 * Singleton
@@ -54,6 +58,10 @@ public class JpaFactory implements IFactory{
 	@Override
 	public IBallotDao getBallotDAO() {
 		return bdao;
+	}
+	@Override
+	public IRoleDao getRoleDAO() {
+		return rdao;
 	}
 
 

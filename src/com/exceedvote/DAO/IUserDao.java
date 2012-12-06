@@ -1,25 +1,25 @@
 package com.exceedvote.DAO;
 
-import com.exceedvote.jpa.Auth;
+import com.exceedvote.jpa.User;;
 
 public interface IUserDao {
 	/**
 	 * getAllUser
 	 * @return Auth[] object that contain all user in database.
 	 */
-	public Auth[] getAllUser();
+	public User[] getAllUser();
 	/**
 	 * findUser
 	 * @param user username:String
 	 * @param pass password:String
 	 * @return Auth object
 	 */
-	public Auth findUser(String user,String pass);
+	public User findUser(String user,String pass);
 	/**
 	 * saveUser
 	 * @param a Auth Object contain userinfo
 	 */
-	public void saveUser(Auth a);
+	public void saveUser(User a);
 	/**
 	 * DeleteUser
 	 * @param id id of user
@@ -30,5 +30,5 @@ public interface IUserDao {
 	 * @param user
 	 * @return Auth Object
 	 */
-	public Auth findUser(String user);
+	public User findUser(String user);
 }

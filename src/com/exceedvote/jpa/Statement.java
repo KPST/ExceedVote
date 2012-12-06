@@ -6,21 +6,27 @@ import javax.persistence.*;
 
 /**
  * The persistent class for the statement database table.
- * @author Kunat Pipatanakul
- * @version 2012.11.11
+ * 
  */
 @Entity
+@Table(name="statement")
 public class Statement implements Serializable {
 	private static final long serialVersionUID = 1L;
+
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(unique=true, nullable=false)
 	private int id;
+
+	@Column(name="ballot_multiply", nullable=false)
+	private int ballotMultiply;
+
+	@Column(nullable=false, length=50)
 	private String description;
 
     public Statement() {
     }
 
-
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int getId() {
 		return this.id;
 	}
@@ -29,6 +35,13 @@ public class Statement implements Serializable {
 		this.id = id;
 	}
 
+	public int getBallotMultiply() {
+		return this.ballotMultiply;
+	}
+
+	public void setBallotMultiply(int ballotMultiply) {
+		this.ballotMultiply = ballotMultiply;
+	}
 
 	public String getDescription() {
 		return this.description;

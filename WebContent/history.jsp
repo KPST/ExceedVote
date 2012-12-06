@@ -1,6 +1,6 @@
 <%@page import="com.exceedvote.jpa.Ballot"%>
 <%@page import="com.exceedvote.controller.*" %>
-<%@page import="com.exceedvote.jpa.Auth" %>
+<%@page import="com.exceedvote.jpa.User" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -8,7 +8,6 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Vote History</title>
-</head>
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"></link>
 <link href="bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
 <style>
@@ -24,9 +23,11 @@
     	min-height: 350px;
     }
   </style>
+</head>
+
 <body>
 <%
-Auth user = (Auth)session.getAttribute("user");
+User user = (User)session.getAttribute("user");
 Client c = (Client)session.getAttribute("Cl");
 %>
 <div id="wrapper">
