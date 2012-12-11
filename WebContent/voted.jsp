@@ -34,14 +34,14 @@
 You have already voted.</font>
 <br>
 <br>
-<form method="POST" action="main.jsp">
+<form method="GET" action="Main.do">
   <input class="btn" style="height: 30px; width: 100px" type="submit" value="Back to Main">
 </form>
 <br>
 <br>
 <script language="JavaScript" type="text/javascript">  
 var count = 3 
-var redirect="main.jsp"  
+var redirect="Main.do"  
   
 function countDown(){  
  if (count <=0){  

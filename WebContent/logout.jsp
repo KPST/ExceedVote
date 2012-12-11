@@ -13,10 +13,10 @@
 </head>
 <body>
 	<center>
-		<%session.invalidate();
+		<%
+		session.invalidate();
 		response.sendRedirect("index.jsp");
 		%>
-		
 	</center>
 
 

@@ -35,7 +35,7 @@
       <font size ="7" id="lo">You are Out of Ballot!</font>
 <br>
 <br>
-<form method="POST" action="main.jsp">
+<form method="GET" action="Main.do">
   <input class="btn" type="submit" value="Back">
 </form>
 <br>
@@ -43,7 +43,7 @@
 <center>
 <script language="JavaScript" type="text/javascript">  
 var count = 3 
-var redirect="main.jsp"  
+var redirect="Main.do"  
   
 function countDown(){  
  if (count <=0){  

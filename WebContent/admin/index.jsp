@@ -19,9 +19,11 @@
 	<!-- end #header -->
 	<div id="menu">
 		<ul>
-			<li><a href="choice.jsp">Edit Choice</a></li>
-			<li><a href="statement.jsp">Edit Statment</a></li>
-			<li><a href="user.jsp">Edit User</a></li>
+			<li><a href="Admin.do?type=choice">Edit Choice</a></li>
+			<li><a href="Admin.do?type=statement">Edit Statement</a></li>
+			<li><a href="Admin.do?type=user">Edit User</a></li>
+			<li><a href="Admin.do?type=role">Edit Role</a></li>
+			<li><a href="Admin.do?type=rank">Show Score</a></li>
 		</ul>
 	</div>
 	<div id="banner"><img src="/ExceedVote/images/headerpic.jpg" width="1200" height="400" alt="" /></div>

@@ -2,9 +2,8 @@
 @author Kunat Pipatanakul
 @version 2012.11.07
 -->
-<%@page import="com.exceedvote.controller.*"%>
-<%@page import="com.exceedvote.core.*"%>
-<%@page import="com.exceedvote.jpa.*" %>
+<%@page import="com.exceedvote.model.*"%>
+<%@page import="com.exceedvote.entity.*" %>
 <%@page import="org.apache.catalina.Session"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -30,10 +29,10 @@
 </head>
 <body>
 <%
-//get client and userinfo from session
-Client c =(Client) session.getAttribute("Cl");
+	//get client and userinfo from session
+//ContentController c = ContentController.getInstance();
+
 User user = (User) session.getAttribute("user");
-c.getDiffTime();
 %>
 <div id="wrapper">
 	<div id="header">
@@ -46,7 +45,7 @@ c.getDiffTime();
 	<div id="menu">
 		<ul>
 			<li class="current_page_item"><a>Main Menu</a></li>
-			<li><a href="history.jsp">History</a></li>
+			<li><a href="History.do">History</a></li>
 			<li><a href="logout.jsp">Logout</a></li>
 		</ul>
 	</div>
@@ -54,7 +53,7 @@ c.getDiffTime();
 		<font id="lo">
 			<br>
 			Hi!
-			<%= user.getId() %>
+			<%= user.getUser() %>
 		</font>
 		<br>
 		<br>
@@ -63,16 +62,20 @@ c.getDiffTime();
 		<!-- go to vote page -->
 		<br>
 		<br>
-		<% for (int i = 0;i<c.statements.length;i++){
-			Statement sd = c.statements[i];
+		<%
+		Statement[] sts = (Statement[])request.getAttribute("statement");
+		int[][] ballotinfo = (int[][]) request.getAttribute("ballotinfo");
+		//Statement[] sts = c.getStatement();
+		for (int i = 0;i < sts.length;i++){
 		%>
 			<div class="row">
 			<div class="span2">
-				<%= sd.getDescription() %>
+			<% out.print(sts[i].getDescription()); %>
+			<% out.print("   "+ballotinfo[i][0]+"/"+ballotinfo[i][1]+" "); %>
 			</div>
 			<div class="span3">
 			<div class="btn">
-			<% out.print("<a href=\"checkVote.jsp?id="+sd.getId()+"\">Go to Vote!</a>"); %>
+			<% out.print("<a href=\"goVote.do?id="+sts[i].getId()+"\">Go to Vote!</a>"); %>
 			</div>
 			</div>
 			</div>

@@ -1,6 +1,6 @@
 package com.exceedvote.DAO;
 
-import com.exceedvote.jpa.Choice;
+import com.exceedvote.entity.Choice;
 
 public interface IChoiceDao {
 	/**

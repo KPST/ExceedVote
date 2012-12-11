@@ -1,6 +1,6 @@
 package com.exceedvote.DAO;
 
-import com.exceedvote.jpa.Statement;
+import com.exceedvote.entity.Statement;
 
 public interface IStatementDao {
 	/**
@@ -8,6 +8,7 @@ public interface IStatementDao {
 	 * @return Statement[]
 	 */
 	public Statement[] getStatement();
+	public Statement getStatementById(int id);
 	/**
 	 * saveStatement
 	 * @param s Statement that want to save

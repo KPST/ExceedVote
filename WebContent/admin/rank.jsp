@@ -1,12 +1,16 @@
-
-<%@page import="com.exceedvote.entity.User" %>
+<%@page import="com.exceedvote.entity.Choice" %>
+<%@page import="com.exceedvote.entity.Statement" %>
+<%@page import="java.util.Map" %>
+<%@page import="java.util.List" %>
+<%@page import="java.util.Set" %>
+<%@page import="java.util.Iterator" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Choice Edit</title>
+<title>Show Score</title>
 <link rel="stylesheet" href="/ExceedVote/bootstrap/css/bootstrap.min.css"></link>
 <link href="/ExceedVote/bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
 </head>
@@ -23,31 +27,31 @@
 		<ul>
 			<li><a href="Admin.do?type=choice">Edit Choice</a></li>
 			<li><a href="Admin.do?type=statement">Edit Statement</a></li>
-			<li class="current_page_item"><a href="Admin.do?type=user">Edit User</a></li>
+			<li><a href="Admin.do?type=user">Edit User</a></li>
 			<li><a href="Admin.do?type=role">Edit Role</a></li>
-			<li><a href="Admin.do?type=rank">Show Score</a></li>
+			<li class="current_page_item"><a href="Admin.do?type=rank">Show Score</a></li>
 		</ul>
 	</div>
 	<div id="banner"></div>
 	<div id="welcome">
-		<b>Statement List</b>
+		<b>Score List</b>
 		<br>
-<%
-   User[] users = (User[]) request.getAttribute("usr");
-   for(int i = 0 ; i < users.length ; i++){
-	   	out.print("<form name=\"form1\" method=\"post\" action=\"Delete.do\">");
-	   	out.print("id "+users[i].getId()+" user "+users[i].getUser()+" Role :");
-	   	for(int j = 0 ; j < users[i].getRoles().size();j++){
-	   		out.print(users[i].getRoles().get(j).getName()+":");
-	   	}
-		out.print("<input type=\"hidden\" name=\"id\" value="+users[i].getId()+">");
-		out.print("<input type=\"hidden\" name=\"type\" value=user>");
-		out.print(" <input class=\"btn\" type=\"submit\" value=Delete >");	
-		out.print("</form>");
-		out.print("<br>");
-   }
-%>
-		
+		<%
+	@SuppressWarnings("unchecked")
+	List<Map<Choice,Integer>> maps = (List<Map<Choice,Integer>>) request.getAttribute("map");
+	Statement[] st = (Statement[]) request.getAttribute("st");
+		for(int i = 0 ; i < st.length ; i++){
+			Set<Choice> key = maps.get(i).keySet();
+			out.print("Statement : "+st[i].getDescription());
+			Iterator<Choice> it = key.iterator();
+			out.print("<br>");
+			while(it.hasNext()){
+				Choice temp = it.next();
+				out.print("Choice :"+temp.getName()+" value :"+maps.get(i).get(temp) );
+				out.print("<br>");
+			}
+		}
+	%>
 	</div>
 </div>
 <div id="footer">

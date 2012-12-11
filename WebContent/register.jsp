@@ -1,51 +1,63 @@
-<%@page import="com.exceedvote.factory.JpaFactory"%>
-<%@page import="com.exceedvote.controller.Authentication"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+    pageEncoding="ISO-8859-1"%>
+<%@page import="com.exceedvote.entity.Role"%>
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<script language="JavaScript" type="text/javascript">
-	var count = 4
-	var redirect = "index.jsp"
-
-	function countDown() {
-		if (count <= 0) {
-			window.location = redirect;
-		} else {
-			count--;
-			document.getElementById("timer").innerHTML = "This page will automaticly redirect in "
-					+ count + " seconds."
-			setTimeout("countDown()", 1000)
-		}
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>eXceed Vote Register</title>
+ 
+  <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"></link>
+  <link href="bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
+  <style>
+    #ttt{
+		color: black;
 	}
-</script>
-
+	#ddd{
+		margin-left: 30px;
+		margin-right: 10px;
+	}
+  </style>
+</head>
 <body>
-	<center>
-		<br>
-		<%
-			String user = request.getParameter("username");
-			String pass = request.getParameter("password");
-			Authentication c = new Authentication(JpaFactory.getInstance());
-			String ip = request.getRemoteAddr();
-			
-			//check and add username in DB
-			if (c.addUser(user, pass, 1, ip)) {
-				out.println("Registration Complete!");
-			} else {
-				out.println("FAIL for Registration! Please try again.");
-			}
-			session.invalidate();
-		%>
-		<br>
-		<br> <span id="timer"> <script>
-			countDown();
-		</script>
-		</span>
-	</center>
+<form name="form1" method="post" action="RegisterAction.do">
+<div id="wrapper">
+	<div id="header">
+		<div id="logo">
+			<h1><a href="#">Exceed<span>Vote</span></a></h1>
+			<p>Vote the projects in eXceed Camp .</p>
+		</div>
+	</div>
+	<!-- end #header -->
+	<div id="menu">
+		<ul>
+			<li><a href=login.jsp>Login</a></li>
+			<li class="current_page_item"><a>Register</a></li>
+		</ul>
+	</div>
+	<div id="banner"><img src="images/headerpic.jpg" width="1200" height="400" alt="" /></div>
+	<div id="welcome">
+		<h2 class="title"><a href="#">Registration</a></h2>
+		<div class="content">
+				&nbsp;
+				<input name="username" placeholder="username" type="text" id="username">
+				<br>
+				&nbsp;
+				<input name="password" placeholder="password" type="password" id="password">
+				<br>
+				<% Role[] roles = (Role[]) request.getAttribute("role");
+				for(int i = 0 ; i < roles.length ; i++){
+					out.print("<input type=\"checkbox\" name=\"role\" value="+roles[i].getId()+">"+roles[i].getName()+"<br>");
+				} %>
+				<div class="row">
+					<input class="btn" type="submit" name="Submit" value="Register" id="ddd" >
+				</div>
+		</div>
+	</div>
+</div>
+<div id="footer">
+	<p>Copyright (c) 2012 Sitename.com. All rights reserved. Design by <a href="http://www.freecsstemplates.org">KSPT</a>. </p>
+</div>
+</form>
 </body>
 </html>

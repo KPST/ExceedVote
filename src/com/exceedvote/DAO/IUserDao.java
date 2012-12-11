@@ -1,6 +1,6 @@
 package com.exceedvote.DAO;
 
-import com.exceedvote.jpa.User;;
+import com.exceedvote.entity.User;
 
 public interface IUserDao {
 	/**
@@ -31,4 +31,6 @@ public interface IUserDao {
 	 * @return Auth Object
 	 */
 	public User findUser(String user);
+	public void deleteAll();
+	
 }

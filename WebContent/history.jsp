@@ -1,6 +1,7 @@
-<%@page import="com.exceedvote.jpa.Ballot"%>
-<%@page import="com.exceedvote.controller.*" %>
-<%@page import="com.exceedvote.jpa.User" %>
+<%@page import="com.exceedvote.entity.Statement"%>
+<%@page import="com.exceedvote.entity.Ballot"%>
+<%@page import="java.util.List" %>
+<%@page import="com.exceedvote.entity.User" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -28,7 +29,6 @@
 <body>
 <%
 User user = (User)session.getAttribute("user");
-Client c = (Client)session.getAttribute("Cl");
 %>
 <div id="wrapper">
 	<div id="header">
@@ -40,7 +40,7 @@ Client c = (Client)session.getAttribute("Cl");
 	<!-- end #header -->
 	<div id="menu">
 		<ul>
-			<li><a href="main.jsp">Main Menu</a></li>
+			<li><a href="Main.do">Main Menu</a></li>
 			<li class="current_page_item"><a>History</a></li>
 			<li><a href="logout.jsp">Logout</a></li>
 		</ul>
@@ -48,31 +48,31 @@ Client c = (Client)session.getAttribute("Cl");
 	<div id="welcome">
 		<font size="3">
 <%
-	int statementlength = c.statements.length;	
-	for(int i = 0 ; i < statementlength ;i++){
-	int sid = c.statements[i].getId();
-	%>
-	<font size="5" color="#d71700">
-	<%
-	out.println(c.statements[i].getDescription());
-	Ballot[] b = c.findBallot(user.getId(), sid);
-	out.print("</font><br>");
-	for(int j = 0 ; j < b.length ;j++){
-		%><div class="row"><%
-			out.print(" - Your vote is "+b[j].getChoice()+" ");
-			%><div class="btn"><%
-			out.print("<a href=\"delete.jsp?id="+b[j].getId()+"\">edit</a>");
-			%></div>
-		</div><%
-		out.print("<br>");
+	
+	Statement[] statements = (Statement[]) request.getAttribute("statement");
+	@SuppressWarnings("unchecked")
+	List<List<Ballot>> ballots = (List<List<Ballot>>) request.getAttribute("ballot");
+	for(int i = 0 ; i < statements.length ;i++){
+	int sid = statements[i].getId();
+	out.println(statements[i].getDescription());
+	out.print("<br>");
+	out.print("<br>");
+	for(int j = 0 ; j < ballots.get(i).size() ;j++){
+			out.print("<form name=\"form1\" method=\"post\" action=\"DeleteVote\">");
+			out.print(" - Your vote is "+ballots.get(i).get(j).getChoice().getName()+" ");
+			out.print("<input type=\"hidden\" name=\"id\" value="+ballots.get(i).get(j).getId()+">");
+			out.print(" <input class=\"btn\" type=\"submit\" value=Delete >");	
+			out.print("</form>");
+			out.print("<br>");
 		
 	}
+	
 	out.print("<br>");
 }
-%>		
-	</div>
-</div>
+%>	
 </font>
+</div>
+</div>
 <div id="footer">
 	<p>Copyright (c) 2012 Sitename.com. All rights reserved. Design by <a href="http://www.freecsstemplates.org">KSPT</a>. </p>
 </div>

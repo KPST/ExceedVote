@@ -7,11 +7,11 @@
 <title>Index</title>
 </head>
 <body>
-<% if(session.getAttribute("user")!=null&&session.getAttribute("Cl")!=null){
-	response.sendRedirect("main.jsp");
+<% if(session.getAttribute("user")!=null){
+	response.sendRedirect("Main.do");
 }
 else{
-	response.sendRedirect("login.html");
+	response.sendRedirect("Login.do");
 }%>
 </body>
 </html>

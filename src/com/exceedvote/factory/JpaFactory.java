@@ -3,16 +3,16 @@ package com.exceedvote.factory;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
-import com.exceedvote.DAO.BallotJpaDAO;
-import com.exceedvote.DAO.ChoiceJpaDao;
 import com.exceedvote.DAO.IBallotDao;
 import com.exceedvote.DAO.IChoiceDao;
 import com.exceedvote.DAO.IRoleDao;
 import com.exceedvote.DAO.IStatementDao;
 import com.exceedvote.DAO.IUserDao;
-import com.exceedvote.DAO.RoleJpaDao;
-import com.exceedvote.DAO.StatementJpaDao;
-import com.exceedvote.DAO.UserJpaDao;
+import com.exceedvote.DAO.JPA.JpaBallotDAO;
+import com.exceedvote.DAO.JPA.JpaChoiceDao;
+import com.exceedvote.DAO.JPA.JpaRoleDao;
+import com.exceedvote.DAO.JPA.JpaStatementDao;
+import com.exceedvote.DAO.JPA.JpaUserDao;
 
 /**
  * JpaFactory is create JPA DAO.
@@ -23,18 +23,18 @@ import com.exceedvote.DAO.UserJpaDao;
 public class JpaFactory implements IFactory{
 	
 	private static JpaFactory ef = new JpaFactory();
-	private BallotJpaDAO bdao;
-	private ChoiceJpaDao cdao;
-	private StatementJpaDao sdao;
-	private UserJpaDao udao;
-	private RoleJpaDao rdao;
+	private JpaBallotDAO bdao;
+	private JpaChoiceDao cdao;
+	private JpaStatementDao sdao;
+	private JpaUserDao udao;
+	private JpaRoleDao rdao;
 	private JpaFactory(){
 		EntityManager em = Persistence.createEntityManagerFactory("ExceedVote").createEntityManager();
-		bdao = new BallotJpaDAO(em);
-		cdao = new ChoiceJpaDao(em);
-		sdao = new StatementJpaDao(em);
-		udao = new UserJpaDao(em);
-		rdao = new RoleJpaDao(em);
+		bdao = new JpaBallotDAO(em);
+		cdao = new JpaChoiceDao(em);
+		sdao = new JpaStatementDao(em);
+		udao = new JpaUserDao(em);
+		rdao = new JpaRoleDao(em);
 	}
 	/**
 	 * Singleton
