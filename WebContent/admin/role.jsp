@@ -18,6 +18,9 @@
 		margin-top: 20px;
 		margin-bottom: 20px;
 	}
+	#special{
+		color: #cd0000;
+	}
 	#spacc{
 		width: 60px;
 	}
@@ -60,7 +63,7 @@
 					out.print("</td></tr></form>");
 				}
 				out.print("</table>");
-				out.print("<div>Note : when you delete role all user will be delete.</div> ");
+				out.print("<div id =\"special\"><b>Note</b>: when you delete role all user will be delete.</div> ");
 		%>
 		<form name="form1" method="post" action="Add.do">
   			<!--center-->
@@ -70,8 +73,8 @@
       		<td>Ballot Multiply : </td><td><input name="ballot" type="text" id="ballot"></td><tr>
         		<input name="type" type="hidden" value="role"> 
 			<!--/center-->
-			</table>
-			Note: Ballot Multiply = 0 mean Special Role that not on register page.<br>
+			</table><div id="special">
+			<b>Note</b>: Ballot Multiply = 0 mean Special Role that not on register page.<br><br></div>
 			<input class="btn" type="submit" name="Submit" value="Add">
 		</form>
 	</div>

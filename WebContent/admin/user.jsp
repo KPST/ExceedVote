@@ -19,6 +19,9 @@
 	#spacc{
 		width: 60px;
 	}
+	#special{
+		color: #cd0000;
+	}
 </style>
 </head>
 <body>
@@ -41,16 +44,16 @@
 	</div>
 	<div id="banner"></div>
 	<div id="welcome">
-		<div id="test">Statement List</div>
+		<div id="test">User List</div>
 		<br>
 	<table id="table1">
 <%
    User[] users = (User[]) request.getAttribute("usr");
    for(int i = 0 ; i < users.length ; i++){
 	   	out.print("<form name=\"form1\" method=\"post\" action=\"Delete.do\"><tr><td>");
-	   	out.print("id "+users[i].getId()+" user "+users[i].getUser()+" Role :");
+	   	out.print("Id "+users[i].getId()+". User: "+users[i].getUser()+" Role :");
 	   	for(int j = 0 ; j < users[i].getRoles().size();j++){
-	   		out.print(users[i].getRoles().get(j).getName()+":");
+	   		out.print(users[i].getRoles().get(j).getName()+":</div>");
 	   	}
 		out.print("<input type=\"hidden\" name=\"id\" value="+users[i].getId()+">");
 		out.print("<input type=\"hidden\" name=\"type\" value=user></td>");

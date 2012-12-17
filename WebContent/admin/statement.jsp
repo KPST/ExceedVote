@@ -62,7 +62,7 @@
 %>
 		<form name="form1" method="post" action="Add.do">			
   			<!--center-->
-  			<div id="test2">Add new Statement</div><br>
+  			<div id="test2">Add new Statement</div>
   			<table id="table2">
   				<tr><td>
         		Description :</td><td><input name="des" type="text" id="des"></td></tr>

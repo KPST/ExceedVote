@@ -14,6 +14,24 @@
 <title>Show Score</title>
 <link rel="stylesheet" href="/ExceedVote/bootstrap/css/bootstrap.min.css"></link>
 <link href="/ExceedVote/bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
+<style type="text/css">
+	#test{
+		font-size: 32px;
+	}
+	#topic{
+		font-size: 20px;
+		color: #cd0000;
+	}
+	#general{
+		font-size: 16px;
+	}
+	#table1{
+		margin-top: 20px;
+	}
+	#spacc{
+		width: 60px;
+	}
+</style>
 </head>
 <body>
 <div id="wrapper">
@@ -35,24 +53,30 @@
 	</div>
 	<div id="banner"></div>
 	<div id="welcome">
-		<b>Score List</b>
+		<div id="test">Score List<br></div>
 		<br>
 		<%
 	@SuppressWarnings("unchecked")
 	List<Collection<Object[]>> cols = (List<Collection<Object[]>>) request.getAttribute("rank");
 	Statement[] st = (Statement[]) request.getAttribute("st");
-		for(int i = 0 ; i < st.length ; i++){
-			out.print("Statement : "+st[i].getDescription());
-			Iterator<Object[]> it = cols.get(i).iterator();
+		for(int i = 0 ; i < st.length ; i++){%>
+			<div id="topic"><b>
+			<%out.print("Statement : "+st[i].getDescription());%>
+			</div></b>
+			<%Iterator<Object[]> it = cols.get(i).iterator();
 			out.print("<br>");
 			int count = 1;
 			while(it.hasNext()){
 				Object[] temp = it.next();
 				Choice choice = (Choice) temp[0];
-				out.print(count+++". Choice :"+choice.getName());
+			%><div id="general">
+			<% 
+				out.print(count+++". Choice : "+choice.getName());
 				for(int j = 1 ; j < temp.length ; j++){
 				out.print(" value :"+temp[j] );
 				}
+			%></div>
+			<%
 				out.print("<br>");
 			}
 		}
