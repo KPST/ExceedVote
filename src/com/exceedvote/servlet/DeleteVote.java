@@ -1,6 +1,8 @@
 package com.exceedvote.servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +13,7 @@ import com.exceedvote.entity.Ballot;
 import com.exceedvote.entity.User;
 import com.exceedvote.factory.IFactory;
 import com.exceedvote.factory.JpaFactory;
+import com.exceedvote.model.Timer;
 
 /**
  * Servlet implementation class Delete
@@ -38,6 +41,8 @@ public class DeleteVote extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Timer timer = Timer.getTimer();
+		if(timer.getDiffTime()>0){
 		int id = Integer.parseInt(request.getParameter("id"));
 		IFactory factory = JpaFactory.getInstance();
 		HttpSession session = request.getSession();
@@ -47,6 +52,12 @@ public class DeleteVote extends HttpServlet {
 			int qid = b.getQuestionid().getId();
 			factory.getBallotDAO().deleteBallot(id);
 			response.sendRedirect("goVote.do?id="+qid);
+			return;
+		}
+		}
+		else{
+			RequestDispatcher view = request.getRequestDispatcher("timeout.jsp");
+			view.forward(request, response);
 			return;
 		}
 	}

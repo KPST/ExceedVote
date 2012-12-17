@@ -17,6 +17,7 @@ import com.exceedvote.entity.User;
 import com.exceedvote.factory.IFactory;
 import com.exceedvote.factory.JpaFactory;
 import com.exceedvote.model.Log;
+import com.exceedvote.model.Timer;
 
 /**
  * Servlet implementation class vote
@@ -45,8 +46,10 @@ public class VoteAction extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			Timer timer = Timer.getTimer();
 			IFactory i = JpaFactory.getInstance();
 			Log log = Log.getLog();
+			if(timer.getDiffTime()>0){
 			HttpSession session = request.getSession();
 			Choice[] choices = i.getChoiceDAO().getChoice();
 			//get information about vote
@@ -68,7 +71,13 @@ public class VoteAction extends HttpServlet {
 		   }
 		   	RequestDispatcher view = request.getRequestDispatcher("voted.jsp");
 			view.forward(request, response);
-		   return;
+		    return;
+			}
+			else{
+				RequestDispatcher view = request.getRequestDispatcher("timeout.jsp");
+				view.forward(request, response);
+				return;
+			}
 	}
 
 }

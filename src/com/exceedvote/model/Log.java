@@ -47,7 +47,7 @@ public class Log {
 		}
 	}
 	public void adminLog(String user,String type,String ip,String info){
-		logger.info("Admin :"+user+" have edit "+type+" by "+info+" on ip:"+ip);
+		logger.info(user+" do "+type+" by "+info+" on ip:"+ip);
 	}
 	public static Log getLog(){
 		return log;

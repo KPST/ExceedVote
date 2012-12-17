@@ -17,6 +17,7 @@ import com.exceedvote.entity.User;
 import com.exceedvote.entity.Ballot;
 import com.exceedvote.factory.IFactory;
 import com.exceedvote.factory.JpaFactory;
+import com.exceedvote.model.Timer;
 
 /**
  * Servlet implementation class History
@@ -37,22 +38,30 @@ public class History extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession();
-		User usr = (User) session.getAttribute("user");
-		IFactory factory = JpaFactory.getInstance();
-		Statement[] statement = factory.getStatementDAO().getStatement();
-		List<List<Ballot>> ballots = new ArrayList<List<Ballot>>();
-		
-		for(int i = 0 ; i < statement.length ; i++){
-			List<Ballot> b = factory.getBallotDAO().findBallots(usr, statement[i]);
-			ballots.add(b);
+		Timer timer = Timer.getTimer();
+		if(timer.getDiffTime()>0){
+			HttpSession session = request.getSession();
+			User usr = (User) session.getAttribute("user");
+			IFactory factory = JpaFactory.getInstance();
+			Statement[] statement = factory.getStatementDAO().getStatement();
+			List<List<Ballot>> ballots = new ArrayList<List<Ballot>>();
+		    for(int i = 0 ; i < statement.length ; i++){
+				List<Ballot> b = factory.getBallotDAO().findBallots(usr, statement[i]);
+				ballots.add(b);
+			}
+		    request.setAttribute("timer", timer.getDiffTime());
+			request.setAttribute("ballot", ballots);
+			request.setAttribute("choice", ballots);
+			request.setAttribute("statement", statement);
+			RequestDispatcher view = request.getRequestDispatcher("history.jsp");
+			view.forward(request, response);
+			return;
 		}
-		request.setAttribute("ballot", ballots);
-		request.setAttribute("choice", ballots);
-		request.setAttribute("statement", statement);
-		RequestDispatcher view = request.getRequestDispatcher("history.jsp");
-		view.forward(request, response);
-		return;
+		else{
+			RequestDispatcher view = request.getRequestDispatcher("timeout.jsp");
+			view.forward(request, response);
+			return;
+		}
 	}
 
 	/**

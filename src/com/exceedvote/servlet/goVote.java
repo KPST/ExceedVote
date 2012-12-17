@@ -14,6 +14,7 @@ import com.exceedvote.entity.Statement;
 import com.exceedvote.entity.User;
 import com.exceedvote.factory.IFactory;
 import com.exceedvote.factory.JpaFactory;
+import com.exceedvote.model.Timer;
 
 /**
  * Servlet implementation class goVote
@@ -35,6 +36,8 @@ public class goVote extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
+		Timer timer = Timer.getTimer();
+		if(timer.getDiffTime()>0){
 		HttpSession session = request.getSession();
 		IFactory factory = JpaFactory.getInstance();
 		Statement st  = factory.getStatementDAO().getStatementById(id);
@@ -49,7 +52,12 @@ public class goVote extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher("vote.jsp");
 		view.forward(request, response);
 		return;
-		
+		}
+		else{
+			RequestDispatcher view  = request.getRequestDispatcher("timeout.jsp");
+			view.forward(request, response);
+			return;
+		}
 	}
 
 	/**

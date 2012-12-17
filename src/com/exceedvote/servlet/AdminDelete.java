@@ -47,21 +47,21 @@ public class AdminDelete extends HttpServlet {
 		int id = Integer.parseInt(request.getParameter("id"));
 		String type = request.getParameter("type");
 		if(type.equals("choice")){
-			log.adminLog(usr.getUser(), "Role" , request.getRemoteAddr() , "Delete Choice id:"+id);
+			log.adminLog(usr.getUser(), "Choice" , request.getRemoteAddr() , "Delete Choice id:"+id);
 			factory.getChoiceDAO().deleteChoice(id);
 			DatabaseGarbageCollector.getInstance().cleanUpBallot();
 			response.sendRedirect("Admin.do?type=choice");
 			return;
 		}
 		else if(type.equals("statement")){
-			log.adminLog(usr.getUser(), "Role" , request.getRemoteAddr() , "Delete Statement id:"+id);
+			log.adminLog(usr.getUser(), "Statement" , request.getRemoteAddr() , "Delete Statement id:"+id);
 			factory.getStatementDAO().deleteStatement(id);
 			DatabaseGarbageCollector.getInstance().cleanUpBallot();
 			response.sendRedirect("Admin.do?type=statement");
 			return;
 		}
 		else if(type.equals("user")){
-			log.adminLog(usr.getUser(), "Role" , request.getRemoteAddr() , "Delete User id:"+id);
+			log.adminLog(usr.getUser(), "User" , request.getRemoteAddr() , "Delete User id:"+id);
 			factory.getUserDAO().deleteUser(id);
 			response.sendRedirect("Admin.do?type=user");
 			return;

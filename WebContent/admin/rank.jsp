@@ -1,3 +1,4 @@
+<%@page import="java.util.Collection"%>
 <%@page import="com.exceedvote.entity.Choice" %>
 <%@page import="com.exceedvote.entity.Statement" %>
 <%@page import="java.util.Map" %>
@@ -38,16 +39,20 @@
 		<br>
 		<%
 	@SuppressWarnings("unchecked")
-	List<Map<Choice,Integer>> maps = (List<Map<Choice,Integer>>) request.getAttribute("map");
+	List<Collection<Object[]>> cols = (List<Collection<Object[]>>) request.getAttribute("rank");
 	Statement[] st = (Statement[]) request.getAttribute("st");
 		for(int i = 0 ; i < st.length ; i++){
-			Set<Choice> key = maps.get(i).keySet();
 			out.print("Statement : "+st[i].getDescription());
-			Iterator<Choice> it = key.iterator();
+			Iterator<Object[]> it = cols.get(i).iterator();
 			out.print("<br>");
+			int count = 1;
 			while(it.hasNext()){
-				Choice temp = it.next();
-				out.print("Choice :"+temp.getName()+" value :"+maps.get(i).get(temp) );
+				Object[] temp = it.next();
+				Choice choice = (Choice) temp[0];
+				out.print(count+++". Choice :"+choice.getName());
+				for(int j = 1 ; j < temp.length ; j++){
+				out.print(" value :"+temp[j] );
+				}
 				out.print("<br>");
 			}
 		}

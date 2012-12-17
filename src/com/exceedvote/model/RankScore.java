@@ -1,17 +1,25 @@
 package com.exceedvote.model;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
 import com.exceedvote.entity.Ballot;
 import com.exceedvote.entity.Choice;
 
-public class Rank implements RankStategy{
+/**
+ * Admin class contain Rank logic
+ * @author Kunat Pipatanakul
+ * @version 2012.11.15
+ */
+public class RankScore implements RankStategy{
+	public RankScore() {
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public Collection<Object[]> computeRank(List<Ballot> ballots,Choice[] choices) {
@@ -49,14 +57,7 @@ public class Rank implements RankStategy{
 				}
 			}
 		});
-		List<Object[]> col = new ArrayList<Object[]>();
-		for(int i = 0 ; i < choices.length ; i++){
-			System.out.println(((Choice)cols.get(i)[0]).getName()+" "+cols.get(i)[1]);
-			Object[] ob = new Object[1];
-			ob[0] = cols.get(i)[0];
-			col.add(ob);
-		}
-		return col;
+		return cols;
 	}
-
+	
 }
