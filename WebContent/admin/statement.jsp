@@ -9,6 +9,21 @@
 <title>Choice Edit</title>
 <link rel="stylesheet" href="/ExceedVote/bootstrap/css/bootstrap.min.css"></link>
 <link href="/ExceedVote/bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
+<style type="text/css">
+	#test{
+		font-size: 32px;
+	}
+	#test2{
+		font-size: 32px;
+		margin-bottom: 20px;
+	}
+	#table1{
+		margin-bottom: 20px;
+	}
+	#spacc{
+		width: 60px;
+	}
+</style>
 </head>
 <body>
 <div id="wrapper">
@@ -30,38 +45,33 @@
 	</div>
 	<div id="banner"></div>
 	<div id="welcome">
-		<b>Statement List</b>
+		<div id="test">Statement List</div>
 		<br>
 		<%
 	Statement[] statements = (Statement[]) request.getAttribute("statement");
+	out.print("<table id=\"table1\">");
 	for(int i = 0 ; i < statements.length ; i ++){
-		out.print("<form name=\"form1\" method=\"post\" action=\"Delete.do\">");
+		out.print("<form name=\"form1\" method=\"post\" action=\"Delete.do\"><tr><td>");
 		out.print(statements[i].getDescription());
 		out.print("<input type=\"hidden\" name=\"id\" value="+statements[i].getId()+">");
-		out.print("<input type=\"hidden\" name=\"type\" value=statement>");
+		out.print("<input type=\"hidden\" name=\"type\" value=statement></td><td id=\"spacc\"></td><td>");
 		out.print(" <input class=\"btn\" type=\"submit\" value=Delete>");	
-		out.print("</form>");
-		out.print("<br>");
+		out.print("</td></tr></form>");
 	}
+	out.print("</table>");
 %>
-		<form name="form1" method="post" action="Add.do">
+		<form name="form1" method="post" action="Add.do">			
   			<!--center-->
-  			<div class="container">
-      		<div class="row" id="loginrow"><font id="lo">Add new Statement</font></div>
-      		<div class="row" id="userow">
-        		
-      		</div>
-      		<div class="row">
-        		&nbsp;
-        		Description : <input name="des" type="text" id="des">
-       			BallotMultiply : <input name="multiply" type="text" id="multiply">
-        		<input name="type" type="hidden" value="statement"> 
-      		</div>
-  			</div>
-  			<br>
-  			<input class="btn" type="submit" name="Submit" value="Add">
+  			<div id="test2">Add new Statement</div><br>
+  			<table id="table2">
+  				<tr><td>
+        		Description :</td><td><input name="des" type="text" id="des"></td></tr>
+       			<tr><td>BallotMultiply :</td><td><input name="multiply" type="text" id="multiply"></td>
+        		<td><input name="type" type="hidden" value="statement"></td></tr>
 			<!--/center-->
 		</form>
+	</table>
+	<input class="btn" type="submit" name="Submit" value="Add">
 	</div>
 </div>
 <div id="footer">
