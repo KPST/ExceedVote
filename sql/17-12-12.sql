@@ -25,12 +25,16 @@ CREATE TABLE `ballot` (
   `questionid` int(10) NOT NULL,
   `choice` int(2) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=73 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=85 ;
 
 -- 
 -- dump ตาราง `ballot`
 -- 
 
+INSERT INTO `ballot` VALUES (84, 3, 16, 15);
+INSERT INTO `ballot` VALUES (80, 2, 16, 14);
+INSERT INTO `ballot` VALUES (79, 2, 16, 15);
+INSERT INTO `ballot` VALUES (73, 2, 15, 15);
 
 -- --------------------------------------------------------
 
@@ -44,7 +48,7 @@ CREATE TABLE `choice` (
   `description` varchar(50) NOT NULL,
   `img` varchar(1024) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=17 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=18 ;
 
 -- 
 -- dump ตาราง `choice`
@@ -105,7 +109,7 @@ CREATE TABLE `user` (
   `pass` varchar(255) NOT NULL,
   PRIMARY KEY  (`id`),
   UNIQUE KEY `user` (`user`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 -- 
 -- dump ตาราง `user`
@@ -113,6 +117,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` VALUES (1, 'admin', 'admin');
 INSERT INTO `user` VALUES (2, 'user', 'pass');
+INSERT INTO `user` VALUES (3, 'test', 'test');
 
 -- --------------------------------------------------------
 
@@ -125,7 +130,7 @@ CREATE TABLE `user_type` (
   `role` int(255) NOT NULL,
   `user` int(255) NOT NULL,
   PRIMARY KEY  (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 -- 
 -- dump ตาราง `user_type`
@@ -133,3 +138,5 @@ CREATE TABLE `user_type` (
 
 INSERT INTO `user_type` VALUES (1, 16, 1);
 INSERT INTO `user_type` VALUES (2, 21, 2);
+INSERT INTO `user_type` VALUES (3, 21, 3);
+INSERT INTO `user_type` VALUES (4, 16, 3);
