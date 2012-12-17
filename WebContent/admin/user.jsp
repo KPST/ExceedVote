@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Choice Edit</title>
+<title>User Edit</title>
 <link rel="stylesheet" href="/ExceedVote/bootstrap/css/bootstrap.min.css"></link>
 <link href="/ExceedVote/bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
 <style type="text/css">
@@ -63,7 +63,7 @@
 	</div>
 </div>
 <div id="footer">
-	<p>Copyright (c) 2012 Sitename.com. All rights reserved. Design by <a href="http://www.freecsstemplates.org">KSPT</a>. </p>
+	<p>Copyright (c) 2012 KPST. All rights reserved.Design by <a href="http://www.freecsstemplates.org">freecsstemplates.org</a>. </p>
 </div>
 
 </body>

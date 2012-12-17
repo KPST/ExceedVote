@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>Exceed vote admin</title>
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"></link>
  <link href="/ExceedVote/bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
 </head>
@@ -31,7 +31,7 @@
 	</div>
 </div>
 <div id="footer">
-	<p>Copyright (c) 2012 Sitename.com. All rights reserved. Design by <a href="http://www.freecsstemplates.org">KSPT</a>. </p>
-</div>
+	<p>Copyright (c) 2012 KPST. All rights reserved.Design by <a href="http://www.freecsstemplates.org">freecsstemplates.org</a>. </p>
+	</div>
 </body>
 </html>

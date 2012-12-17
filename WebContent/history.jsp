@@ -127,7 +127,7 @@ User user = (User)session.getAttribute("user");
 <br>
 </div>
 <div id="footer">
-	<p>Copyright (c) 2012 Sitename.com. All rights reserved. Design by <a href="http://www.freecsstemplates.org">KSPT</a>. </p>
+<p>Copyright (c) 2012 KPST. All rights reserved.Design by <a href="http://www.freecsstemplates.org">freecsstemplates.org</a>. </p>
 </div>
 </body>
 </html>

@@ -118,8 +118,8 @@ vote page collect the information and send it to voting page
 	</div>
 </div>
 <div id="footer">
-	<p>Copyright (c) 2012 Sitename.com. All rights reserved. Design by <a href="http://www.freecsstemplates.org">KSPT</a>. </p>
-</div>
+	<p>Copyright (c) 2012 KPST. All rights reserved.Design by <a href="http://www.freecsstemplates.org">freecsstemplates.org</a>. </p>
+	</div>
 <!-- getvote get number after # and send it to post function -->
 <script>
 function getVote()
