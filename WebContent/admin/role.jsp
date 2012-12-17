@@ -9,6 +9,22 @@
 <title>Role Edit</title>
 <link rel="stylesheet" href="/ExceedVote/bootstrap/css/bootstrap.min.css"></link>
 <link href="/ExceedVote/bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
+<style type="text/css">
+	#test{
+		font-size: 32px;
+	}
+	#test2{
+		font-size: 32px;
+		margin-top: 20px;
+		margin-bottom: 20px;
+	}
+	#spacc{
+		width: 60px;
+	}
+	#table1{
+		margin-bottom: 20px;
+	}
+</style>
 </head>
 <body>
 <div id="wrapper">
@@ -30,37 +46,33 @@
 	</div>
 	<div id="banner"></div>
 	<div id="welcome">
-		<b>Role List</b>
+		<div id="test">Role List</div>
 		<br>
 		<%
+				out.print("<table id=\"table1\">");
 				Role[] roles = (Role[]) request.getAttribute("role");
 				for(int i = 0 ; i < roles.length ; i ++){
-					out.print("<form name=\"form1\" method=\"post\" action=\"Delete.do\">");
+					out.print("<form name=\"form1\" method=\"post\" action=\"Delete.do\"><tr><td>");
 					out.print(roles[i].getName()+" ");
 					out.print("<input type=\"hidden\" name=\"id\" value="+roles[i].getId()+">");
-					out.print("<input type=\"hidden\" name=\"type\" value=role>");
+					out.print("<input type=\"hidden\" name=\"type\" value=role></td><td id=\"spacc\"></td><td>");
 					out.print(" <input class=\"btn\" type=\"submit\" value=Delete>");
-					out.print("</form>");
+					out.print("</td></tr></form>");
 				}
-				out.print("Note : when you delete role all user will be delete.<br><br><br> ");
+				out.print("</table>");
+				out.print("<div>Note : when you delete role all user will be delete.</div> ");
 		%>
 		<form name="form1" method="post" action="Add.do">
   			<!--center-->
-  			<div class="container">
-      		<div class="row" id="loginrow"><font id="lo">Add new Role</font></div>
-      		<div class="row" id="userow">
-        		&nbsp;
-        		Name : <input name="name" type="text" id="name">
-      		</div>
-      		<div class="row">
-        		&nbsp;
-        		Ballot Multiply : <input name="ballot" type="text" id="ballot"> Note: Ballot Multiply = 0 mean Special Role that not on register page.
+  			<div id="test2">Add new Role</div>
+  			<table id="table2"><tr><td>
+        		Name : </td><td><input name="name" type="text" id="name"></td></tr><tr>
+      		<td>Ballot Multiply : </td><td><input name="ballot" type="text" id="ballot"></td><tr>
         		<input name="type" type="hidden" value="role"> 
-      		</div>
-  			</div>
-  			<br>
-  			<input class="btn" type="submit" name="Submit" value="Add">
 			<!--/center-->
+			</table>
+			Note: Ballot Multiply = 0 mean Special Role that not on register page.<br>
+			<input class="btn" type="submit" name="Submit" value="Add">
 		</form>
 	</div>
 </div>
