@@ -22,17 +22,15 @@
       color:#d71700;
       font-size: 32px;
     }
-    body{
-      background-color:#DDDDDD;
-    }
   </style>
 </head>
 <body>
 <br>
 <center>
-<font size = "7">
+<div class="container" border="1">
+<font size = "7" id = "lo"><br>
 You have already voted.</font>
-<br>
+<br></div>
 <br>
 <form method="GET" action="Main.do">
   <input class="btn" style="height: 30px; width: 100px" type="submit" value="Back to Main">

@@ -9,13 +9,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"></link>
+<style>
+    #loginrow{
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
+    input{
+
+    }
+    #lo{
+      color:#d71700;
+      font-size: 32px;
+    }
+  </style>
 <title>Login Failed</title>
 </head>
 <body>
 <center>
-<h1>
+<div id = "lo">
+<br>
 Login failed.
-</h1>
+</div>
+<br>
 <br>
 <a class="btn" href="index.jsp">
 	Go to login page.

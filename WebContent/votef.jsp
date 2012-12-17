@@ -22,9 +22,6 @@
       color:#d71700;
       font-size: 32px;
     }
-    body{
-      background-color:#000011;
-    }
   </style>
 </head>
 <body>
