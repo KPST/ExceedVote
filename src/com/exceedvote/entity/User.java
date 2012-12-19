@@ -18,7 +18,7 @@ public class User implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(unique=true, nullable=false)
 	private int id;
-	
+
 	@Column(nullable=false, length=255)
 	private String pass;
 
@@ -26,53 +26,87 @@ public class User implements Serializable {
 	private String user;
 
 	//bi-directional many-to-many association to Role
-    @ManyToMany(cascade=CascadeType.PERSIST)
+	@ManyToMany(cascade=CascadeType.PERSIST)
 	@JoinTable(
-		name="user_type"
-		, joinColumns={
-			@JoinColumn(name="user", nullable=false)
+			name="user_type"
+			, joinColumns={
+					@JoinColumn(name="user", nullable=false)
 			}
-		, inverseJoinColumns={
-			@JoinColumn(name="role", nullable=false)
+			, inverseJoinColumns={
+					@JoinColumn(name="role", nullable=false)
 			}
-		)
+			)
 	private List<Role> roles;
 
-    public User() {
-    }
-
+	/**
+	 * Constructor
+	 */
+	public User() {
+	}
+	/**
+	 * getId
+	 * @return id
+	 */
 	public int getId() {
 		return this.id;
 	}
-
+	/**
+	 * setId
+	 * @param id id of user.
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
+	/**
+	 * getPass
+	 * @return pass password
+	 */
 	public String getPass() {
 		return this.pass;
 	}
-
+	/**
+	 * setPass
+	 * @param pass password
+	 */
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-
+	/**
+	 * getUser
+	 * @return user username
+	 */
 	public String getUser() {
 		return this.user;
 	}
 
+	/**
+	 * setUser
+	 * @param user username
+	 */
 	public void setUser(String user) {
 		this.user = user;
 	}
 
+	/**
+	 * getRoles
+	 * @return all of Role this User are in.
+	 */
 	public List<Role> getRoles() {
 		return this.roles;
 	}
-	
+	/**
+	 * setRole
+	 * @param roles List<Role> that user are.
+	 */
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
-	
+	/**
+	 * hasRoles
+	 * @param name name of Role
+	 * @return true if user contain this role,false if not.
+	 */
 	public boolean hasRoles(String name){
 		for(int i = 0 ; i < roles.size() ; i++){
 			if(roles.get(i).getName().equalsIgnoreCase(name))
@@ -80,6 +114,10 @@ public class User implements Serializable {
 		}
 		return false;
 	}
+	/**
+	 * getBallot
+	 * @return all ballot_multiply that user have on the role.
+	 */
 	public float getBallot(){
 		float count = 0;
 		for(int i = 0 ; i < roles.size() ;i++){

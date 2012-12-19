@@ -17,6 +17,7 @@ import com.exceedvote.model.Timer;
 
 /**
  * Servlet implementation class Delete
+ * @author Kunat Pipatanakul
  */
 @WebServlet("/DeleteVote")
 public class DeleteVote extends HttpServlet {
@@ -56,7 +57,7 @@ public class DeleteVote extends HttpServlet {
 		}
 		}
 		else{
-			RequestDispatcher view = request.getRequestDispatcher("timeout.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("Timeout.do");
 			view.forward(request, response);
 			return;
 		}

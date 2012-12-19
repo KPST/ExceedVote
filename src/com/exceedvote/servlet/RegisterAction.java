@@ -18,6 +18,7 @@ import com.exceedvote.model.Authentication;
 
 /**
  * Servlet implementation class RegisterAction
+ * @author Kunat Pipatanakul
  */
 @WebServlet("/RegisterAction.do")
 public class RegisterAction extends HttpServlet {

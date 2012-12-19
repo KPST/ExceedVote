@@ -28,38 +28,64 @@ public class Role implements Serializable {
 	//bi-directional many-to-many association to User
 	@ManyToMany(mappedBy="roles",cascade=CascadeType.PERSIST)
 	private List<User> users;
-
+	/**
+	 * Constructor
+	 */
     public Role() {
     }
-
+    /**
+     * getId
+     * @return id of the role
+     */
 	public int getId() {
 		return this.id;
 	}
-
+	/**
+	 * setId
+	 * @param id id of the role
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	/**
+	 * getBallotMultiply 
+	 * @return float ballotMultiply of this role.
+	 */
 	public float getBallotMultiply() {
 		return this.ballotMultiply;
 	}
-
+	/**
+	 * setBallotMultiply
+	 * @param ballotMultiply ballotMultiply of this role.
+	 */
 	public void setBallotMultiply(float ballotMultiply) {
 		this.ballotMultiply = ballotMultiply;
 	}
-
+	/**
+	 * getName
+	 * @return name of the role.
+	 */
 	public String getName() {
 		return this.name;
 	}
-
+	/**
+	 * setName
+	 * @param name name of the role.
+	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-
+	/**
+	 * getUsers
+	 * @return getAllUser in this Role
+	 */
 	public List<User> getUsers() {
 		return this.users;
 	}
-
+	/**
+	 * setUsers
+	 * @param users List<User> that are in this role.
+	 */
 	public void setUsers(List<User> users) {
 		this.users = users;
 	}

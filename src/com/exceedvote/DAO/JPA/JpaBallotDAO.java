@@ -12,10 +12,19 @@ import com.exceedvote.entity.Choice;
 import com.exceedvote.entity.Statement;
 import com.exceedvote.entity.User;
 
+/**
+ * JpaBallotDAO is the DAO that do the Ballot action in type of JPA.
+ * @author Kunat Pipatanakul
+ * @version 2012.12.10
+ */
 public class JpaBallotDAO implements IBallotDao{
 
 	private EntityManager em;
 
+	/**
+	 * Constructor
+	 * @param em EntityManager
+	 */
 	public JpaBallotDAO(EntityManager em) {
 	this.em = em;
 	}

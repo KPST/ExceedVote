@@ -7,6 +7,11 @@ import com.exceedvote.entity.Choice;
 import com.exceedvote.entity.Statement;
 import com.exceedvote.entity.User;
 
+/**
+ * IBallotDAO is a Interface the contain all method Ballot DAO have to implements.
+ * @author Kunat Pipatanakul
+ * @version 2012.12.10
+ */
 public interface IBallotDao {
 	/**
 	 * findBallot from id
@@ -20,12 +25,33 @@ public interface IBallotDao {
 	 */
 	public void deleteBallot(int id);
 	/**
-	 * saveBallot to database
-	 * @param b Ballot item
+	 * findBallots that belong to User user Statement question
+	 * @param user user that vote on ballot.
+	 * @param question Statement of the ballot. 
+	 * @return List<Ballot> that are in specific case.
 	 */
 	public List<Ballot> findBallots(User user,Statement question);
+	/**
+	 * findBallots that belong to Choice choice Statement question
+	 * @param choice choice of that ballot.
+	 * @param question Statement of that ballot.
+	 * @return List<Ballot> that are in specific case.
+	 */
 	public List<Ballot> findBallots(Choice choice,Statement question);
+	/**
+	 * saveBallot
+	 * @param b ballot
+	 */
 	public void saveBallot(Ballot b);
+	/**
+	 * findBallotsByStatement
+	 * @param question Statement the ballot belong to.
+	 * @return List<Ballot> that are in specific case.
+	 */
 	public List<Ballot> findBallotsByStatement(Statement question);
+	/**
+	 * findAllBallot
+	 * @return List<Ballot> all of ballot in database.
+	 */
 	public List<Ballot> findAllBallot();
 }

@@ -8,9 +8,17 @@ import javax.persistence.Query;
 
 import com.exceedvote.DAO.IStatementDao;
 import com.exceedvote.entity.Statement;
-
+/**
+ * JpaStatementDAO is the DAO the do all action about Statement in type of JPA.
+ * @author Kunat Pipatanakul
+ * @version 2012.12.10
+ */
 public class JpaStatementDao implements IStatementDao{
 	EntityManager em;
+	/**
+	 * Constructor
+	 * @param em EntityManager
+	 */
 	public JpaStatementDao(EntityManager em) {
 	this.em = em;
 	}

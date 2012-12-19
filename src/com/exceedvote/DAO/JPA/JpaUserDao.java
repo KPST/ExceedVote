@@ -9,8 +9,17 @@ import javax.persistence.Query;
 import com.exceedvote.DAO.IUserDao;
 import com.exceedvote.entity.User;
 
+/**
+ * JpaUserDAO is the DAO that do all the User action in type of JPA.
+ * @author Kunat Pipatanakul
+ * @version 2012.12.10
+ */
 public class JpaUserDao implements IUserDao{
 	EntityManager em;
+	/**
+	 * Constructor
+	 * @param em EntityManager
+	 */
 	public JpaUserDao(EntityManager em) {
 	this.em = em;
 	}
@@ -60,6 +69,7 @@ public class JpaUserDao implements IUserDao{
 	public void deleteAll() {
 		EntityTransaction tx = em.getTransaction( ); 
 		Query q = em.createQuery("SELECT a from User a");
+		@SuppressWarnings("unchecked")
 		List<User> users = q.getResultList();
 		tx.begin();
 		for(int i = 0 ; i < users.size() ; i++){

@@ -44,17 +44,14 @@
 	<!-- end #header -->
 	<div id="menu">
 		<ul>
-			<li><a href="Admin.do?type=choice">Edit Choice</a></li>
-			<li><a href="Admin.do?type=statement">Edit Statement</a></li>
-			<li><a href="Admin.do?type=user">Edit User</a></li>
-			<li><a href="Admin.do?type=role">Edit Role</a></li>
-			<li><a href="Admin.do?type=time">Edit Time</a></li>
-			<li class="current_page_item"><a href="Admin.do?type=rank">Show Score</a></li>
+			<li><a href="Main.do">Main Menu</a></li>
+			<li><a href="History.do">History</a></li>
+			<li><a href="logout.jsp">Logout</a></li>
 		</ul>
 	</div>
 	<div id="banner"></div>
 	<div id="welcome">
-		<div id="test">Score List<br></div>
+		<div id="test">Vote Timeout.<br></div>
 		<br>
 		<%
 	@SuppressWarnings("unchecked")

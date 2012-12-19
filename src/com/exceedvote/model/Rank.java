@@ -10,7 +10,11 @@ import java.util.Map;
 
 import com.exceedvote.entity.Ballot;
 import com.exceedvote.entity.Choice;
-
+/**
+ * Rank strategy that not include score.
+ * @author Kunat Pipatanakul
+ *
+ */
 public class Rank implements RankStategy{
 
 	@Override
@@ -51,7 +55,6 @@ public class Rank implements RankStategy{
 		});
 		List<Object[]> col = new ArrayList<Object[]>();
 		for(int i = 0 ; i < choices.length ; i++){
-			System.out.println(((Choice)cols.get(i)[0]).getName()+" "+cols.get(i)[1]);
 			Object[] ob = new Object[1];
 			ob[0] = cols.get(i)[0];
 			col.add(ob);

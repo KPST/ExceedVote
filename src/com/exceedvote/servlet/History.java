@@ -21,6 +21,7 @@ import com.exceedvote.model.Timer;
 
 /**
  * Servlet implementation class History
+ * @author Kunat Pipatanakul
  */
 @WebServlet("/History.do")
 public class History extends HttpServlet {
@@ -58,7 +59,7 @@ public class History extends HttpServlet {
 			return;
 		}
 		else{
-			RequestDispatcher view = request.getRequestDispatcher("timeout.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("Timeout.do");
 			view.forward(request, response);
 			return;
 		}

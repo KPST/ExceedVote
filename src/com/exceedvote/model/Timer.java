@@ -2,19 +2,54 @@ package com.exceedvote.model;
 
 import java.util.Date;
 
+import com.exceedvote.DAO.ITimeDAO;
+import com.exceedvote.entity.Time;
+import com.exceedvote.factory.JpaFactory;
+
+/**
+ * Timer is a class for check time vote end and now.
+ * @author Kunat Pipatanakul
+ * @version 2012.12.19
+ */
 public class Timer {
 	 private static Timer timer = new Timer();
-	 public static long yr = 2012;
-	 public static long m = 12;
-	 public static long d =  20;
-	 public static long hr = 17;
-	 public static long min = 4;
-	 public static long tz = +7;
-	 public static String [] montharray= {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+	 /**
+	  * Default time.
+	  */
+	 private int yr = 2012;
+	 private int m = 12;
+	 private int d = 21;
+	 private int hr = 10;
+	 private int min = 0;
+	 private int tz = 7;
+	 /**
+	 * montharray.
+	 */
+	public final String [] montharray= {"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
+	/**
+	 * Constructor
+	 */
+	public Timer() {
+		loadDate();
+	}
+	 /**
+	  * loadDatefrom Properties.
+	  */
 	 public void loadDate(){
-		 //TODO
+	 ITimeDAO dao = JpaFactory.getInstance().getTimeDAO();
+	 Time time = dao.getTimer().get(0);
+	 yr = time.getYear();
+	 m = time.getMonth();
+	 d = time.getDay();
+	 hr = time.getHour();
+	 min = time.getMin();
+	 tz = time.getTimezone();
 	 }
-	 @SuppressWarnings("deprecation")
+	 /**
+	  * getDiffTime from now to end of the vote in second.
+	  * @return Different value of time in second.
+	  */
+	@SuppressWarnings("deprecation")
 	 public long getDiffTime(){
 	        Date Dtoday = new Date();
 	        long todayy = Dtoday.getYear();
@@ -34,7 +69,17 @@ public class Timer {
 	        }else
 	        	return diff/1000;
 	 }
+	 /**
+	  * getTimer object.
+	  * @return Timer object
+	  */
 	 public static Timer getTimer(){
 		 return timer;
+	 }
+	 /**
+	 * resetTimer object.
+	 */
+	public static void resetTimer(){
+		 timer = new Timer();
 	 }
 }

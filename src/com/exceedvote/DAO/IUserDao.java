@@ -1,7 +1,11 @@
 package com.exceedvote.DAO;
 
 import com.exceedvote.entity.User;
-
+/**
+ * IUserDAO is a Interface the contain all method DAO have to implements.
+ * @author Kunat Pipatanakul
+ * @version 2012.12.10
+ */
 public interface IUserDao {
 	/**
 	 * getAllUser
@@ -31,6 +35,9 @@ public interface IUserDao {
 	 * @return Auth Object
 	 */
 	public User findUser(String user);
+	/**
+	 * deleteAll User in database.
+	 */
 	public void deleteAll();
 	
 }

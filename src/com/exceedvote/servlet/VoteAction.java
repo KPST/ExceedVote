@@ -21,6 +21,7 @@ import com.exceedvote.model.Timer;
 
 /**
  * Servlet implementation class vote
+ * @author Kunat Pipatanakul
  */
 @WebServlet(
 		urlPatterns = { "/Vote.do" })
@@ -74,7 +75,7 @@ public class VoteAction extends HttpServlet {
 		    return;
 			}
 			else{
-				RequestDispatcher view = request.getRequestDispatcher("timeout.jsp");
+				RequestDispatcher view = request.getRequestDispatcher("Timeout.do");
 				view.forward(request, response);
 				return;
 			}

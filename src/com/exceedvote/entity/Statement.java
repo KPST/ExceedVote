@@ -23,30 +23,50 @@ public class Statement implements Serializable {
 
 	@Column(nullable=false, length=50)
 	private String description;
-
+	/**
+	 * Constructor
+	 */
     public Statement() {
     }
-
+    /**
+     * getId
+     * @return id of statement
+     */
 	public int getId() {
 		return this.id;
 	}
-
+	/**
+	 * setId
+	 * @param id id of statement
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
-
+	/**
+	 * getBallotMultiply of this statement.
+	 * @return
+	 */
 	public int getBallotMultiply() {
 		return this.ballotMultiply;
 	}
-
+	/**
+	 * setBallotMultyply
+	 * @param ballotMultiply ballotMultiply of this statement.
+	 */
 	public void setBallotMultiply(int ballotMultiply) {
 		this.ballotMultiply = ballotMultiply;
 	}
-
+	/**
+	 * getDescription
+	 * @return description of the statement
+	 */
 	public String getDescription() {
 		return this.description;
 	}
-
+	/**
+	 * setDescription
+	 * @param description of the statement.
+	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}

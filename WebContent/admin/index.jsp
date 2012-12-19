@@ -23,6 +23,7 @@
 			<li><a href="Admin.do?type=statement">Edit Statement</a></li>
 			<li><a href="Admin.do?type=user">Edit User</a></li>
 			<li><a href="Admin.do?type=role">Edit Role</a></li>
+			<li><a href="Admin.do?type=time">Edit Time</a></li>
 			<li><a href="Admin.do?type=rank">Show Score</a></li>
 		</ul>
 	</div>

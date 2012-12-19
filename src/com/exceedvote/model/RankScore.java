@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -12,13 +11,17 @@ import com.exceedvote.entity.Ballot;
 import com.exceedvote.entity.Choice;
 
 /**
- * Admin class contain Rank logic
+ * Rank strategy that include the score.
  * @author Kunat Pipatanakul
  * @version 2012.11.15
  */
 public class RankScore implements RankStategy{
+	
+	/**
+	 * Constructor
+	 */
 	public RankScore() {
-		// TODO Auto-generated constructor stub
+	
 	}
 
 	@Override

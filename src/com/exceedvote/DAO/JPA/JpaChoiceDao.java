@@ -9,8 +9,17 @@ import javax.persistence.Query;
 import com.exceedvote.DAO.IChoiceDao;
 import com.exceedvote.entity.Choice;
 
+/**
+ * JpaChoiceDAO is the DAO that do all the Choice action in type of JPA.
+ * @author Kunat Pipatanakul
+ * @version 2012.12.10
+ */
 public class JpaChoiceDao implements IChoiceDao{
 	EntityManager em;
+	/**
+	 * Constructor
+	 * @param em EntityManager
+	 */
 	public JpaChoiceDao(EntityManager em) {
 		this.em = em;
 	}

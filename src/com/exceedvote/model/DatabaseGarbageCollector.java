@@ -3,22 +3,31 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import com.exceedvote.DAO.IBallotDao;
+import com.exceedvote.DAO.ITimeDAO;
 import com.exceedvote.entity.Ballot;
 import com.exceedvote.entity.Choice;
 import com.exceedvote.entity.Role;
 import com.exceedvote.entity.Statement;
+import com.exceedvote.entity.Time;
 import com.exceedvote.entity.User;
 import com.exceedvote.factory.IFactory;
 import com.exceedvote.factory.JpaFactory;
-
+/**
+ * DatabaseGarbageCollector is a class that contain database cleanup algorithm. 
+ * @author Kunat Pipatanakul
+ *
+ */
 public class DatabaseGarbageCollector {
 	private static DatabaseGarbageCollector dgc;
 	private IFactory factory;
 	private DatabaseGarbageCollector(){
 		factory = JpaFactory.getInstance();
 	}
+	/**
+	 * cleanUp user database.
+	 */
 	public void cleanUpUser(){
-		System.out.println("Clean up");
 		factory.getUserDAO().deleteAll();
 		cleanUpBallot();
 		User admin = new User();
@@ -29,8 +38,10 @@ public class DatabaseGarbageCollector {
 		admin.setRoles(roles);
 		factory.getUserDAO().saveUser(admin);
 	}
+	/**
+	 * cleanUp ballot database.
+	 */
 	public void cleanUpBallot(){
-		System.out.println("Clean ballot");
 		List<Statement> lists = Arrays.asList(factory.getStatementDAO().getStatement());
 		List<Choice> listc = Arrays.asList(factory.getChoiceDAO().getChoice());
 		List<User> listu = Arrays.asList(factory.getUserDAO().getAllUser());
@@ -42,6 +53,30 @@ public class DatabaseGarbageCollector {
 			}
 		}
 	}
+	/**
+	 * cleanUp Time database.
+	 */
+	public void cleanUpTime(){
+		ITimeDAO tdao = factory.getTimeDAO();
+		List<Time> times = tdao.getTimer();
+		for(int i = 1 ; i < times.size() ; i++){
+			tdao.delete(times.get(i).getId());
+		}
+	}
+	/**
+	 * 
+	 */
+	public void clearAllBallot(){
+		IBallotDao bdao = factory.getBallotDAO();
+		List<Ballot> ballots = bdao.findAllBallot();
+		for(int i = 0 ; i < ballots.size(); i++){
+			bdao.deleteBallot(ballots.get(i).getId());
+		}
+	}
+	/**
+	 * Singleton
+	 * @return DatabaseGarbageCollector object.
+	 */
 	public static DatabaseGarbageCollector getInstance(){
 		if(dgc==null)
 			dgc = new DatabaseGarbageCollector();

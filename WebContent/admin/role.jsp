@@ -44,6 +44,7 @@
 			<li><a href="Admin.do?type=statement">Edit Statement</a></li>
 			<li><a href="Admin.do?type=user">Edit User</a></li>
 			<li class="current_page_item"><a href="Admin.do?type=role">Edit Role</a></li>
+			<li><a href="Admin.do?type=time">Edit Time</a></li>
 			<li><a href="Admin.do?type=rank">Show Score</a></li>
 		</ul>
 	</div>
@@ -63,8 +64,9 @@
 					out.print("</td></tr></form>");
 				}
 				out.print("</table>");
-				out.print("<div id =\"special\"><b>Note</b>: when you delete role all user will be delete.</div> ");
+				out.print("<div id =\"special\"><b>Note</b>: when you delete role all user will be delete.<br><b>Note2</b>: don't remove Admin or you will lose all control to Admin section.</div> ");
 		%>
+		
 		<form name="form1" method="post" action="Add.do">
   			<!--center-->
   			<div id="test2">Add new Role</div>

@@ -16,6 +16,7 @@ import com.exceedvote.factory.JpaFactory;
 
 /**
  * Servlet implementation class Register
+ * @author Kunat Pipatanakul
  */
 @WebServlet("/Register.do")
 public class Register extends HttpServlet {
@@ -39,7 +40,7 @@ public class Register extends HttpServlet {
       	IFactory factory = JpaFactory.getInstance();
 		if(session != null)
     	  session.invalidate();
-      	Role[] role = factory.getRoleDAO().findAll();
+      	Role[] role = factory.getRoleDAO().findNormalRole();
       	request.setAttribute("role", role);
       	RequestDispatcher view = request.getRequestDispatcher("register.jsp");
 		view.forward(request, response);

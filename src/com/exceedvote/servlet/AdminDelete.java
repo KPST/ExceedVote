@@ -15,6 +15,7 @@ import com.exceedvote.model.Log;
 
 /**
  * Servlet implementation class AdminDelete
+ * @author Kunat Pipatanakul
  */
 @WebServlet("/admin/Delete.do")
 public class AdminDelete extends HttpServlet {

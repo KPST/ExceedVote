@@ -7,11 +7,13 @@ import com.exceedvote.DAO.IBallotDao;
 import com.exceedvote.DAO.IChoiceDao;
 import com.exceedvote.DAO.IRoleDao;
 import com.exceedvote.DAO.IStatementDao;
+import com.exceedvote.DAO.ITimeDAO;
 import com.exceedvote.DAO.IUserDao;
 import com.exceedvote.DAO.JPA.JpaBallotDAO;
 import com.exceedvote.DAO.JPA.JpaChoiceDao;
 import com.exceedvote.DAO.JPA.JpaRoleDao;
 import com.exceedvote.DAO.JPA.JpaStatementDao;
+import com.exceedvote.DAO.JPA.JpaTimeDAO;
 import com.exceedvote.DAO.JPA.JpaUserDao;
 
 /**
@@ -28,6 +30,10 @@ public class JpaFactory implements IFactory{
 	private JpaStatementDao sdao;
 	private JpaUserDao udao;
 	private JpaRoleDao rdao;
+	private JpaTimeDAO tdao;
+	/**
+	 * Constructor
+	 */
 	private JpaFactory(){
 		EntityManager em = Persistence.createEntityManagerFactory("ExceedVote").createEntityManager();
 		bdao = new JpaBallotDAO(em);
@@ -35,6 +41,7 @@ public class JpaFactory implements IFactory{
 		sdao = new JpaStatementDao(em);
 		udao = new JpaUserDao(em);
 		rdao = new JpaRoleDao(em);
+		tdao = new JpaTimeDAO(em);
 	}
 	/**
 	 * Singleton
@@ -62,6 +69,10 @@ public class JpaFactory implements IFactory{
 	@Override
 	public IRoleDao getRoleDAO() {
 		return rdao;
+	}
+	@Override
+	public ITimeDAO getTimeDAO() {
+		return tdao;
 	}
 
 

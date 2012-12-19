@@ -11,13 +11,17 @@ import javax.servlet.http.HttpSession;
 import com.exceedvote.entity.Choice;
 import com.exceedvote.entity.Role;
 import com.exceedvote.entity.Statement;
+import com.exceedvote.entity.Time;
 import com.exceedvote.entity.User;
 import com.exceedvote.factory.IFactory;
 import com.exceedvote.factory.JpaFactory;
+import com.exceedvote.model.DatabaseGarbageCollector;
 import com.exceedvote.model.Log;
+import com.exceedvote.model.Timer;
 
 /**
  * Servlet implementation class AdminAdd
+ * @author Kunat Pipatanakul
  */
 @WebServlet("/admin/Add.do")
 public class AdminAdd extends HttpServlet {
@@ -81,6 +85,28 @@ public class AdminAdd extends HttpServlet {
 			r.setBallotMultiply(Float.parseFloat(ballot));
 			factory.getRoleDAO().save(r);
 			response.sendRedirect("Admin.do?type=role");
+			return;
+		}
+		else if(type.equals("time")){
+			String year = request.getParameter("year");
+			String month = request.getParameter("month");
+			String day = request.getParameter("day");
+			String hour = request.getParameter("hour");
+			String min = request.getParameter("min");
+			String tz = request.getParameter("timezone");
+			log.adminLog(usr.getUser(), "Time" , request.getRemoteAddr(), "Change Time to "+year+"/"+month+"/"+day+" "+hour+":"+min+" Timezone:"+tz);
+			Time time = new Time();
+			time.setYear(Integer.parseInt(year));
+			time.setMonth(Integer.parseInt(month));
+			time.setDay(Integer.parseInt(day));
+			time.setHour(Integer.parseInt(hour));
+			time.setMin(Integer.parseInt(min));
+			time.setTimezone(Integer.parseInt(tz));
+			factory.getTimeDAO().setTimer(time);
+			DatabaseGarbageCollector.getInstance().cleanUpTime();
+			DatabaseGarbageCollector.getInstance().clearAllBallot();
+			Timer.resetTimer();
+			response.sendRedirect("Admin.do?type=time");
 			return;
 		}
 		else{

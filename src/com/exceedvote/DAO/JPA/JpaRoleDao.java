@@ -8,9 +8,17 @@ import javax.persistence.Query;
 
 import com.exceedvote.DAO.IRoleDao;
 import com.exceedvote.entity.Role;
-
+/**
+ * JpaRoleDAO is the DAO class that do all action about Role in type of JPA.
+ * @author Kunat Pipatanakul
+ * @version 2012.12.10
+ */
 public class JpaRoleDao implements IRoleDao{
 	EntityManager em;
+	/**
+	 * Constructor
+	 * @param em EntityManager
+	 */
 	public JpaRoleDao(EntityManager em) {
 		this.em = em;
 	}
@@ -58,6 +66,7 @@ public class JpaRoleDao implements IRoleDao{
 	public Role[] findNormalRole() {
 		Query q = em.createQuery("SELECT b FROM Role b WHERE b.ballotMultiply != :id");
 		q.setParameter("id", 0);
+		@SuppressWarnings("unchecked")
 		List<Role> roles = q.getResultList();
 		Role[] temp = new Role[roles.size()];
 		roles.toArray(temp);

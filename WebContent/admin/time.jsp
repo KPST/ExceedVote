@@ -1,12 +1,13 @@
 
-<%@page import="com.exceedvote.entity.Statement" %>
+<%@page import="com.exceedvote.entity.Time" %>
+<%@page import="java.util.List" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Statement Edit</title>
+<title>Time Edit</title>
 <link rel="stylesheet" href="/ExceedVote/bootstrap/css/bootstrap.min.css"></link>
 <link href="/ExceedVote/bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
 <style type="text/css">
@@ -37,38 +38,40 @@
 	<div id="menu">
 		<ul>
 			<li><a href="Admin.do?type=choice">Edit Choice</a></li>
-			<li class="current_page_item"><a href="Admin.do?type=statement">Edit Statement</a></li>
+			<li><a href="Admin.do?type=statement">Edit Statement</a></li>
 			<li><a href="Admin.do?type=user">Edit User</a></li>
 			<li><a href="Admin.do?type=role">Edit Role</a></li>
-			<li><a href="Admin.do?type=time">Edit Time</a></li>
+			<li class="current_page_item"><a href="Admin.do?type=time">Edit Time</a></li>
 			<li><a href="Admin.do?type=rank">Show Score</a></li>
 		</ul>
 	</div>
 	<div id="banner"></div>
 	<div id="welcome">
-		<div id="test">Statement List</div>
+		<div id="test">Time</div>
 		<br>
 		<%
-	Statement[] statements = (Statement[]) request.getAttribute("statement");
+	List<Time> times = (List<Time>) request.getAttribute("time");
+	for(int i = 0 ; i < times.size(); i ++){
 	out.print("<table id=\"table1\">");
-	for(int i = 0 ; i < statements.length ; i ++){
-		out.print("<form name=\"form1\" method=\"post\" action=\"Delete.do\"><tr><td>");
-		out.print(statements[i].getDescription());
-		out.print("<input type=\"hidden\" name=\"id\" value="+statements[i].getId()+">");
-		out.print("<input type=\"hidden\" name=\"type\" value=statement></td><td id=\"spacc\"></td><td>");
-		out.print(" <input class=\"btn\" type=\"submit\" value=Delete>");	
-		out.print("</td></tr></form>");
+	out.print("<form name=\"form1\" method=\"post\"><tr><td>");
+	out.print(times.get(i).getYear()+"/"+times.get(i).getMonth()+"/"+times.get(i).getDay()+" "+times.get(i).getHour()+":"+times.get(i).getMin()+" Timezone :"+times.get(i).getTimezone());
+	out.print("");	
+	out.print("</td></tr></form>");
 	}
 	out.print("</table>");
 %>
 		<form name="form1" method="post" action="Add.do">			
   			<!--center-->
-  			<div id="test2">Add new Statement</div>
+  			<div id="test2">Edit Time</div>
   			<table id="table2">
   				<tr><td>
-        		Description :</td><td><input name="des" type="text" id="des"></td></tr>
-       			<tr><td>BallotMultiply :</td><td><input name="multiply" type="text" id="multiply"></td>
-        		<td><input name="type" type="hidden" value="statement"></td></tr>
+        		Year :</td><td><input name="year" type="text" id="year"></td></tr>
+       			<tr><td>Month :</td><td><input name="month" type="text" id="month"></td>
+       			<tr><td>Day :</td><td><input name="day" type="text" id="day"></td>
+       			<tr><td>Hour :</td><td><input name="hour" type="text" id="hour"> in 24 format</td>
+       			<tr><td>Min :</td><td><input name="min" type="text" id="min"></td>
+       			<tr><td>Timezone :</td><td><input name="timezone" type="text" id="timezone"> Bangkok is +7</td>
+        		<td><input name="type" type="hidden" value="time"></td></tr>
 			<!--/center-->
 		</form>
 	</table>

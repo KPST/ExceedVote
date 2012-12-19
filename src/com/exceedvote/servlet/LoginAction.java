@@ -15,6 +15,7 @@ import com.exceedvote.model.Authentication;
 
 /**
  * Servlet implementation class Login
+ * @author Kunat Pipatanakul
  */
 @WebServlet("/goLogin.do")
 public class LoginAction extends HttpServlet {

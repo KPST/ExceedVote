@@ -18,6 +18,7 @@ import com.exceedvote.model.Timer;
 
 /**
  * Servlet implementation class goVote
+ * @author Kunat Pipatanakul
  */
 @WebServlet("/goVote.do")
 public class goVote extends HttpServlet {
@@ -54,7 +55,7 @@ public class goVote extends HttpServlet {
 		return;
 		}
 		else{
-			RequestDispatcher view  = request.getRequestDispatcher("timeout.jsp");
+			RequestDispatcher view  = request.getRequestDispatcher("Timeout.do");
 			view.forward(request, response);
 			return;
 		}

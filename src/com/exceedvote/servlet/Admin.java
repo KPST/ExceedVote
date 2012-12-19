@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -18,6 +17,7 @@ import com.exceedvote.entity.Ballot;
 import com.exceedvote.entity.Choice;
 import com.exceedvote.entity.Role;
 import com.exceedvote.entity.Statement;
+import com.exceedvote.entity.Time;
 import com.exceedvote.entity.User;
 import com.exceedvote.factory.IFactory;
 import com.exceedvote.factory.JpaFactory;
@@ -28,7 +28,10 @@ import com.exceedvote.model.RankStategy;
 
 /**
  * Servlet implementation class Admin
+ * @author Kunat Pipatanakul
+ * 
  */
+@SuppressWarnings("unused")
 @WebServlet("/admin/Admin.do")
 public class Admin extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -38,7 +41,6 @@ public class Admin extends HttpServlet {
      */
     public Admin() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -88,7 +90,7 @@ public class Admin extends HttpServlet {
 				List<Collection<Object[]>> lists = new ArrayList<Collection<Object[]>>();
 				for(int i = 0 ; i < st.length ; i++){
 				List<Ballot> ballots = b.getBallotDAO().findBallotsByStatement(st[i]);
-				RankStategy rank = new Rank();
+				RankStategy rank = new RankScore();
 				Choice[] choices = b.getChoiceDAO().getChoice();
 				Collection<Object[]> list = rank.computeRank(ballots, choices);
 				lists.add(list);
@@ -96,6 +98,13 @@ public class Admin extends HttpServlet {
 				request.setAttribute("rank", lists);
 				request.setAttribute("st", st);
 				RequestDispatcher view = request.getRequestDispatcher("rank.jsp");
+				view.forward(request, response);
+				return;
+			}
+			else if(type.equals("time")){
+				List<Time> time = b.getTimeDAO().getTimer();
+				request.setAttribute("time", time);
+				RequestDispatcher view = request.getRequestDispatcher("time.jsp");
 				view.forward(request, response);
 				return;
 			}
@@ -113,7 +122,6 @@ public class Admin extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	}
 
 }
