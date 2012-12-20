@@ -16,69 +16,70 @@ public class Choice implements Serializable {
 	private String description;
 	private String name;
 	private String img;
+    /**
+     * Constructor
+     */
     public Choice() {
     }
 
-    /**
-     * This is a getId method that returns id from entity
-	 * @return id
+
+	/**
+	 * getId
+	 * @return id of choice
 	 */
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int getId() {
 		return this.id;
 	}
-	
+
 	/**
-     * This is a setId method that sets id to entity
-	 * @param id
+	 * setId
+	 * @param id id of choice
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
+
 	/**
-     * This is a getDescription method that returns description from entity
-	 * @return description
+	 * getDescription
+	 * @return description of the choice
 	 */
 	public String getDescription() {
 		return this.description;
 	}
 
 	/**
-     * This is a setDescription method that sets description to entity
-	 * @param description
+	 * setDescription
+	 * @param description of the choice
 	 */
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
+
 	/**
-     * This is a getName method that returns name from entity
+	 * getName
 	 * @return name
 	 */
 	public String getName() {
 		return this.name;
 	}
-	
+
 	/**
-     * This is a setName method that sets name to entity
 	 * @param name
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 	/**
-     * This is a getImg method that returns imageURL from entity
-	 * @return img
+	 * @return
 	 */
 	public String getImg(){
 		return this.img;
 	}
-	
 	/**
-     * This is a setImg method that sets imageURL to entity
 	 * @param img
 	 */
 	public void setImg(String img){

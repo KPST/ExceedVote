@@ -24,6 +24,10 @@
 	#spacc{
 		width: 60px;
 	}
+	#time{
+	    color: #cd0000;
+	    font-size: 20px;
+	}
 </style>
 </head>
 <body>
@@ -53,10 +57,10 @@
 	List<Time> times = (List<Time>) request.getAttribute("time");
 	for(int i = 0 ; i < times.size(); i ++){
 	out.print("<table id=\"table1\">");
-	out.print("<form name=\"form1\" method=\"post\"><tr><td>");
+	out.print("<form name=\"form1\" method=\"post\"><tr><td><div id =\"time\">");
 	out.print(times.get(i).getYear()+"/"+times.get(i).getMonth()+"/"+times.get(i).getDay()+" "+times.get(i).getHour()+":"+times.get(i).getMin()+" Timezone :"+times.get(i).getTimezone());
 	out.print("");	
-	out.print("</td></tr></form>");
+	out.print("</div></td></tr></form>");
 	}
 	out.print("</table>");
 %>

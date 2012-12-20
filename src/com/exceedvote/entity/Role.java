@@ -28,68 +28,63 @@ public class Role implements Serializable {
 	//bi-directional many-to-many association to User
 	@ManyToMany(mappedBy="roles",cascade=CascadeType.PERSIST)
 	private List<User> users;
-
+	/**
+	 * Constructor
+	 */
     public Role() {
     }
-    
     /**
-     * This is a getId method that returns id from entity
-	 * @return id
-	 */
+     * getId
+     * @return id of the role
+     */
 	public int getId() {
 		return this.id;
 	}
 	/**
-     * This is a setId method that sets id to entity
-	 * @param id
+	 * setId
+	 * @param id id of the role
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
-	
 	/**
-     * This is a getBallotMultiply method that returns ballotMultiply from entity
-	 * @return ballotMultiply
+	 * getBallotMultiply 
+	 * @return float ballotMultiply of this role.
 	 */
 	public float getBallotMultiply() {
 		return this.ballotMultiply;
 	}
-
 	/**
-     * This is a setBallotMultiply method that sets ballotMultiply to entity
-	 * @param ballotMultiply
+	 * setBallotMultiply
+	 * @param ballotMultiply ballotMultiply of this role.
 	 */
 	public void setBallotMultiply(float ballotMultiply) {
 		this.ballotMultiply = ballotMultiply;
 	}
-	
 	/**
-     * This is a getName method that returns name from entity
-	 * @return name
+	 * getName
+	 * @return name of the role.
 	 */
 	public String getName() {
 		return this.name;
 	}
-
 	/**
-     * This is a setName method that sets name to entity
-	 * @param name
+	 * setName
+	 * @param name name of the role.
 	 */
 	public void setName(String name) {
 		this.name = name;
 	}
-	
 	/**
-     * This is a getUsers method that returns users from entity
-	 * @return users
+	 * getUsers
+	 * @return getAllUser in this Role
 	 */
 	public List<User> getUsers() {
 		return this.users;
 	}
-
 	/**
-     * This is a setUsers method that sets users to entity
-	 * @param users
+	 * setUsers
+	 * @param users List<User> that are in this role.
 	 */
 	public void setUsers(List<User> users) {
 		this.users = users;

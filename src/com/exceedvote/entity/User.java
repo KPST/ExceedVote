@@ -18,7 +18,7 @@ public class User implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(unique=true, nullable=false)
 	private int id;
-	
+
 	@Column(nullable=false, length=255)
 	private String pass;
 
@@ -26,88 +26,86 @@ public class User implements Serializable {
 	private String user;
 
 	//bi-directional many-to-many association to Role
-    @ManyToMany(cascade=CascadeType.PERSIST)
+	@ManyToMany(cascade=CascadeType.PERSIST)
 	@JoinTable(
-		name="user_type"
-		, joinColumns={
-			@JoinColumn(name="user", nullable=false)
+			name="user_type"
+			, joinColumns={
+					@JoinColumn(name="user", nullable=false)
 			}
-		, inverseJoinColumns={
-			@JoinColumn(name="role", nullable=false)
+			, inverseJoinColumns={
+					@JoinColumn(name="role", nullable=false)
 			}
-		)
+			)
 	private List<Role> roles;
 
-    public User() {
-    }
-    
-    /**
-     * This is a getId method that returns id from entity
+	/**
+	 * Constructor
+	 */
+	public User() {
+	}
+	/**
+	 * getId
 	 * @return id
 	 */
 	public int getId() {
 		return this.id;
 	}
-
 	/**
-     * This is a setId method that sets id to entity
-	 * @param id
+	 * setId
+	 * @param id id of user.
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
 	/**
-     * This is a getPass method that returns password from entity
-	 * @return pass
+	 * getPass
+	 * @return pass password
 	 */
 	public String getPass() {
 		return this.pass;
 	}
-
 	/**
-     * This is a setPass method that sets password to entity
-	 * @param pass
+	 * setPass
+	 * @param pass password
 	 */
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
-
 	/**
-     * This is a getUser method that returns user from entity
-	 * @return user
+	 * getUser
+	 * @return user username
 	 */
 	public String getUser() {
 		return this.user;
 	}
 
 	/**
-     * This is a setUser method that sets user to entity
-	 * @param user
+	 * setUser
+	 * @param user username
 	 */
 	public void setUser(String user) {
 		this.user = user;
 	}
 
 	/**
-     * This is a getRoles method that returns roles from entity
-	 * @return roles
+	 * getRoles
+	 * @return all of Role this User are in.
 	 */
 	public List<Role> getRoles() {
 		return this.roles;
 	}
 	/**
-     * This is a setRoles method that returns id from entity
-	 * @param id
+	 * setRole
+	 * @param roles List<Role> that user are.
 	 */
 	public void setRoles(List<Role> roles) {
 		this.roles = roles;
 	}
 	/**
-     * This is a hasRole method that returns true or false by condition from entity
-     * @param name
-	 * @return ture if matching,
-	 * 		   false
+	 * hasRoles
+	 * @param name name of Role
+	 * @return true if user contain this role,false if not.
 	 */
 	public boolean hasRoles(String name){
 		for(int i = 0 ; i < roles.size() ; i++){
@@ -117,8 +115,8 @@ public class User implements Serializable {
 		return false;
 	}
 	/**
-     * This is a getBallot method that returns count of vote from entity
-	 * @return count
+	 * getBallot
+	 * @return all ballot_multiply that user have on the role.
 	 */
 	public float getBallot(){
 		float count = 0;

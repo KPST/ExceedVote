@@ -25,74 +25,87 @@ public class Ballot implements Serializable {
 	@JoinColumn(name="user")
 	private User user;
 
+    /**
+     * Constructor
+     */
     public Ballot() {
     }
     /**
-	 * Initialize User, Statement, Choice
-	 */
+     * Constructor with user question choice object.
+     * @param user User that vote this.
+     * @param question Statement this vote are on.
+     * @param choice Choice that voter choose.
+     */
     public Ballot(User user,Statement question,Choice choice){
     	this.choice= choice;
     	this.questionid = question;
     	this.user = user;
     }
 
-    /**
-     * This is a getId method that returns id from entity
-	 * @return id
+	/**
+	 * getId
+	 * @return id of the ballot
 	 */
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int getId() {
 		return this.id;
 	}
+
 	/**
-     * This is a setId method that sets id for entity
-     * @param id
+	 * setId 
+	 * @param id of the ballot
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
+
 	/**
-     * This is a getChoice method that returns choice from entity
-	 * @return choice
+	 * getChoice 
+	 * @return choice of this ballot.
 	 */
 	public Choice getChoice() {
 		return this.choice;
 	}
+
 	/**
-     * This is a setChoice method that sets choice to entity
-	 * @param choice
+	 * setChoice
+	 * @param choice Choice of this ballot
 	 */
 	public void setChoice(Choice choice) {
 		this.choice = choice;
 	}
 
+
 	/**
-     * This is a getQuestionid method that returns question from entity
-	 * @return questionid
+	 * getQuestionid
+	 * @return Statement this ballot are in.
 	 */
 	public Statement getQuestionid() {
 		return this.questionid;
 	}
 
 	/**
-     * This is a setQuestionid method that sets question to entity
-	 * @oaram questionid
+	 * setQuestionid
+	 * @param questionid Statement of this ballot.
 	 */
 	public void setQuestionid(Statement questionid) {
 		this.questionid = questionid;
 	}
-	
+
+
 	/**
-     * This is a getUser method that returns id from entity
-	 * @return user
+	 * getUser
+	 * @return user that vote this ballot
 	 */
 	public User getUser() {
 		return this.user;
 	}
 
 	/**
-     * This is a setUser method that sets user from entity
-	 * @param user
+	 * setUser
+	 * @param user User who vote this ballot.
 	 */
 	public void setUser(User user) {
 		this.user = user;

@@ -23,53 +23,49 @@ public class Statement implements Serializable {
 
 	@Column(nullable=false, length=50)
 	private String description;
-
+	/**
+	 * Constructor
+	 */
     public Statement() {
     }
-    
     /**
-     * This is a getId method that returns id from entity
-	 * @return id
-	 */
+     * getId
+     * @return id of statement
+     */
 	public int getId() {
 		return this.id;
 	}
-	
 	/**
-     * This is a setId method that sets id to entity
-	 * @param id
+	 * setId
+	 * @param id id of statement
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
-
 	/**
-     * This is a getBallotMultiply method that returns bollotMultiply from entity
-	 * @return ballotMultiply
+	 * getBallotMultiply of this statement.
+	 * @return
 	 */
 	public int getBallotMultiply() {
 		return this.ballotMultiply;
 	}
-
 	/**
-     * This is a setBallotMultiply method that sets ballotMultiply to entity
-	 * @param ballotMultiply
+	 * setBallotMultyply
+	 * @param ballotMultiply ballotMultiply of this statement.
 	 */
 	public void setBallotMultiply(int ballotMultiply) {
 		this.ballotMultiply = ballotMultiply;
 	}
-
 	/**
-     * This is a getDescription method that returns description from entity
-	 * @return description
+	 * getDescription
+	 * @return description of the statement
 	 */
 	public String getDescription() {
 		return this.description;
 	}
-	
 	/**
-     * This is a setDescription method that sets description to entity
-	 * @param description
+	 * setDescription
+	 * @param description of the statement.
 	 */
 	public void setDescription(String description) {
 		this.description = description;
