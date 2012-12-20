@@ -49,9 +49,11 @@
 				for(int i = 0 ; i < roles.length ; i++){
 					out.print("<input type=\"checkbox\" name=\"role\" value="+roles[i].getId()+">"+roles[i].getName()+"<br>");
 				} %>
+				<br>
 				<div class="row">
-					<input class="btn" type="submit" name="Submit" value="Register" id="ddd" >
+				  	<input class="btn" type="submit" name="Submit" value="Register" id="ddd" >
 				</div>
+				<br>
 		</div>
 	</div>
 </div>

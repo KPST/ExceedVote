@@ -26,6 +26,9 @@
     #welcome{
     	min-height: 350px;
     }
+    #show{
+        color:#d71700;
+    }
   </style>
   <style type="text/css">
 .numbers {
@@ -100,9 +103,9 @@ User user = (User) session.getAttribute("user");
 		for (int i = 0;i < sts.length;i++){
 		%>
 			<div class="row">
-			<div class="span2">
+			<div class="span4">
 			<% out.print(sts[i].getDescription()); %>
-			<% out.print("   "+ballotinfo[i][0]+"/"+ballotinfo[i][1]+" "); %>
+			<% out.print("<div id = \"show\"> used/total  : "+ballotinfo[i][0]+"/"+ballotinfo[i][1]+" </div>"); %>
 			</div>
 			<div class="span3">
 			<div class="btn">

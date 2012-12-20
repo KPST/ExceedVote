@@ -104,9 +104,8 @@ vote page collect the information and send it to voting page
 				out.println("<li>");
 				out.println("<img src="+choices[i].getImg()+">");
 				out.println("<p>");
-				out.println("id = "+choices[i].getId());
-				out.println("<br>name = "+choices[i].getName());
-				out.println("<br>des = "+choices[i].getDescription());
+				out.println("<br>"+choices[i].getName());
+				out.println("<br>Description : "+choices[i].getDescription());
 				out.println("</p></li>");
 		     } %>
 		      

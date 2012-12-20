@@ -46,8 +46,6 @@ public class Ballot implements Serializable {
 	 * getId
 	 * @return id of the ballot
 	 */
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	public int getId() {
 		return this.id;
 	}
