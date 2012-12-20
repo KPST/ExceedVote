@@ -27,45 +27,73 @@ public class Ballot implements Serializable {
 
     public Ballot() {
     }
+    /**
+	 * Initialize User, Statement, Choice
+	 */
     public Ballot(User user,Statement question,Choice choice){
     	this.choice= choice;
     	this.questionid = question;
     	this.user = user;
     }
 
-	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+    /**
+     * This is a getId method that returns id from entity
+	 * @return id
+	 */
 	public int getId() {
 		return this.id;
 	}
-
+	/**
+     * This is a setId method that sets id for entity
+     * @param id
+	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 
-
+	/**
+     * This is a getChoice method that returns choice from entity
+	 * @return choice
+	 */
 	public Choice getChoice() {
 		return this.choice;
 	}
-
+	/**
+     * This is a setChoice method that sets choice to entity
+	 * @param choice
+	 */
 	public void setChoice(Choice choice) {
 		this.choice = choice;
 	}
 
-
+	/**
+     * This is a getQuestionid method that returns question from entity
+	 * @return questionid
+	 */
 	public Statement getQuestionid() {
 		return this.questionid;
 	}
 
+	/**
+     * This is a setQuestionid method that sets question to entity
+	 * @oaram questionid
+	 */
 	public void setQuestionid(Statement questionid) {
 		this.questionid = questionid;
 	}
-
-
+	
+	/**
+     * This is a getUser method that returns id from entity
+	 * @return user
+	 */
 	public User getUser() {
 		return this.user;
 	}
 
+	/**
+     * This is a setUser method that sets user from entity
+	 * @param user
+	 */
 	public void setUser(User user) {
 		this.user = user;
 	}
