@@ -97,19 +97,18 @@ User user = (User) session.getAttribute("user");
 		<br>
 		<br>
 		<%
-		Statement[] sts = (Statement[])request.getAttribute("statement");
-		int[][] ballotinfo = (int[][]) request.getAttribute("ballotinfo");
-		//Statement[] sts = c.getStatement();
-		for (int i = 0;i < sts.length;i++){
+			Criteria[] criterias = (Criteria[])request.getAttribute("criteria");
+				int[][] ballotinfo = (int[][]) request.getAttribute("ballotinfo");
+				for (int i = 0;i < criterias.length;i++){
 		%>
 			<div class="row">
 			<div class="span4">
-			<% out.print(sts[i].getDescription()); %>
+			<% out.print(criterias[i].getDescription()); %>
 			<% out.print("<div id = \"show\"> used/total  : "+ballotinfo[i][0]+"/"+ballotinfo[i][1]+" </div>"); %>
 			</div>
 			<div class="span3">
 			<div class="btn">
-			<% out.print("<a href=\"goVote.do?id="+sts[i].getId()+"\">Go to Vote!</a>"); %>
+			<% out.print("<a href=\"goVote.do?id="+criterias[i].getId()+"\">Go to Vote!</a>"); %>
 			</div>
 			</div>
 			</div>

@@ -4,15 +4,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
 
 import com.exceedvote.DAO.IBallotDao;
-import com.exceedvote.DAO.IChoiceDao;
+import com.exceedvote.DAO.IProjectDao;
 import com.exceedvote.DAO.IRoleDao;
-import com.exceedvote.DAO.IStatementDao;
+import com.exceedvote.DAO.ICriteriaDao;
 import com.exceedvote.DAO.ITimeDAO;
 import com.exceedvote.DAO.IUserDao;
 import com.exceedvote.DAO.JPA.JpaBallotDAO;
-import com.exceedvote.DAO.JPA.JpaChoiceDao;
+import com.exceedvote.DAO.JPA.JpaProjectDao;
 import com.exceedvote.DAO.JPA.JpaRoleDao;
-import com.exceedvote.DAO.JPA.JpaStatementDao;
+import com.exceedvote.DAO.JPA.JpaCriteriaDao;
 import com.exceedvote.DAO.JPA.JpaTimeDAO;
 import com.exceedvote.DAO.JPA.JpaUserDao;
 
@@ -26,8 +26,8 @@ public class JpaFactory implements IFactory{
 	
 	private static JpaFactory ef = new JpaFactory();
 	private JpaBallotDAO bdao;
-	private JpaChoiceDao cdao;
-	private JpaStatementDao sdao;
+	private JpaProjectDao cdao;
+	private JpaCriteriaDao sdao;
 	private JpaUserDao udao;
 	private JpaRoleDao rdao;
 	private JpaTimeDAO tdao;
@@ -37,8 +37,8 @@ public class JpaFactory implements IFactory{
 	private JpaFactory(){
 		EntityManager em = Persistence.createEntityManagerFactory("ExceedVote").createEntityManager();
 		bdao = new JpaBallotDAO(em);
-		cdao = new JpaChoiceDao(em);
-		sdao = new JpaStatementDao(em);
+		cdao = new JpaProjectDao(em);
+		sdao = new JpaCriteriaDao(em);
 		udao = new JpaUserDao(em);
 		rdao = new JpaRoleDao(em);
 		tdao = new JpaTimeDAO(em);
@@ -51,11 +51,11 @@ public class JpaFactory implements IFactory{
 		return ef;
 	}
 	@Override
-	public IChoiceDao getChoiceDAO() {
+	public IProjectDao getProjectDAO() {
 		return cdao;
 	}
 	@Override
-	public IStatementDao getStatementDAO() {
+	public ICriteriaDao getCriteriaDAO() {
 		return sdao;
 	}
 	@Override

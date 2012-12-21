@@ -6,9 +6,9 @@ import java.util.List;
 import com.exceedvote.DAO.IBallotDao;
 import com.exceedvote.DAO.ITimeDAO;
 import com.exceedvote.entity.Ballot;
-import com.exceedvote.entity.Choice;
+import com.exceedvote.entity.Project;
 import com.exceedvote.entity.Role;
-import com.exceedvote.entity.Statement;
+import com.exceedvote.entity.Criteria;
 import com.exceedvote.entity.Time;
 import com.exceedvote.entity.User;
 import com.exceedvote.factory.IFactory;
@@ -42,13 +42,13 @@ public class DatabaseGarbageCollector {
 	 * cleanUp ballot database.
 	 */
 	public void cleanUpBallot(){
-		List<Statement> lists = Arrays.asList(factory.getStatementDAO().getStatement());
-		List<Choice> listc = Arrays.asList(factory.getChoiceDAO().getChoice());
+		List<Criteria> lists = Arrays.asList(factory.getCriteriaDAO().getCriteria());
+		List<Project> listc = Arrays.asList(factory.getProjectDAO().getProject());
 		List<User> listu = Arrays.asList(factory.getUserDAO().getAllUser());
 		List<Ballot> ballots = factory.getBallotDAO().findAllBallot();
 		for(int i = 0 ; i < ballots.size() ;i++){
 			Ballot temp = ballots.get(i);
-			if(!listu.contains(temp.getUser())||!listc.contains(temp.getChoice())||!lists.contains(temp.getQuestionid())){
+			if(!listu.contains(temp.getUser())||!listc.contains(temp.getProject())||!lists.contains(temp.getQuestionid())){
 				factory.getBallotDAO().deleteBallot(temp.getId());
 			}
 		}

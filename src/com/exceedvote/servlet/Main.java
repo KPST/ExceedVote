@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.exceedvote.entity.Statement;
+import com.exceedvote.entity.Criteria;
 import com.exceedvote.entity.User;
 import com.exceedvote.factory.IFactory;
 import com.exceedvote.factory.JpaFactory;
@@ -43,15 +43,15 @@ public class Main extends HttpServlet {
 		response.setHeader("Pragma", "no-cache");
 		IFactory b = JpaFactory.getInstance();
 		User user = (User) session.getAttribute("user");
-		Statement[] statements = b.getStatementDAO().getStatement();
-		int[][] ballotcount = new int[statements.length][2];
-		for(int i = 0 ; i < statements.length ; i++){
-			ballotcount[i][0] = b.getBallotDAO().findBallots(user,statements[i]).size();
-			ballotcount[i][1] = (int) Math.floor(user.getBallot()*statements[i].getBallotMultiply());
+		Criteria[] criterias = b.getCriteriaDAO().getCriteria();
+		int[][] ballotcount = new int[criterias.length][2];
+		for(int i = 0 ; i < criterias.length ; i++){
+			ballotcount[i][0] = b.getBallotDAO().findBallots(user,criterias[i]).size();
+			ballotcount[i][1] = (int) Math.floor(user.getBallot()*criterias[i].getBallotMultiply());
 		}
 		request.setAttribute("timer", timer.getDiffTime());
 		request.setAttribute("ballotinfo", ballotcount);
-		request.setAttribute("statement", statements);
+		request.setAttribute("criteria", criterias);
 		RequestDispatcher view = request.getRequestDispatcher("main.jsp");
 		view.forward(request, response);
 		}

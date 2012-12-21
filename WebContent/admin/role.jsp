@@ -7,8 +7,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Role Edit</title>
-<link rel="stylesheet" href="/ExceedVote/bootstrap/css/bootstrap.min.css"></link>
-<link href="/ExceedVote/bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"></link>
+<link href="../bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
 <style type="text/css">
 	#test{
 		font-size: 32px;
@@ -40,8 +40,8 @@
 	<!-- end #header -->
 	<div id="menu">
 		<ul>
-			<li><a href="Admin.do?type=statement">Edit Choice</a></li>
-			<li><a href="Admin.do?type=statement">Edit Statement</a></li>
+			<li><a href="Admin.do?type=project">Edit Project</a></li>
+			<li><a href="Admin.do?type=criteria">Edit Criteria</a></li>
 			<li><a href="Admin.do?type=user">Edit User</a></li>
 			<li class="current_page_item"><a href="Admin.do?type=role">Edit Role</a></li>
 			<li><a href="Admin.do?type=time">Edit Time</a></li>
@@ -75,8 +75,7 @@
       		<td>Ballot Multiply : </td><td><input name="ballot" type="text" id="ballot"></td><tr>
         		<input name="type" type="hidden" value="role"> 
 			<!--/center-->
-			</table><div id="special">
-			<b>Note</b>: Ballot Multiply = 0 mean Special Role that not on register page.<br><br></div>
+			</table>
 			<input class="btn" type="submit" name="Submit" value="Add">
 		</form>
 	</div>

@@ -1,31 +1,31 @@
 package com.exceedvote.DAO;
 
-import com.exceedvote.entity.Statement;
+import com.exceedvote.entity.Criteria;
 /**
  * IStatementDAO is a Interface the contain all method Statement DAO have to implements.
  * @author Kunat Pipatanakul
  * @version 2012.12.10
  */
-public interface IStatementDao {
+public interface ICriteriaDao {
 	/**
 	 * getStatement from database
 	 * @return Statement[]
 	 */
-	public Statement[] getStatement();
+	public Criteria[] getCriteria();
 	/**
 	 * getStatement by id of that Statement
 	 * @param id id of statement
 	 * @return Statement object.
 	 */
-	public Statement getStatementById(int id);
+	public Criteria getCriteriaById(int id);
 	/**
 	 * saveStatement
 	 * @param s Statement that want to save
 	 */
-	public void saveStatement(Statement s);
+	public void saveCriteria(Criteria s);
 	/**
 	 * DeleteStatement
 	 * @param id id of statement
 	 */
-	public void deleteStatement(int id);
+	public void deleteCriteria(int id);
 }

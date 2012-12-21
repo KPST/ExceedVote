@@ -17,10 +17,10 @@ public class Ballot implements Serializable {
 	private int id;
 	@ManyToOne
 	@JoinColumn(name="choice")
-	private Choice choice;
+	private Project project;
 	@ManyToOne
 	@JoinColumn(name="questionid")
-	private Statement questionid;
+	private Criteria questionid;
 	@ManyToOne
 	@JoinColumn(name="user")
 	private User user;
@@ -31,13 +31,13 @@ public class Ballot implements Serializable {
     public Ballot() {
     }
     /**
-     * Constructor with user question choice object.
+     * Constructor with user question project object.
      * @param user User that vote this.
-     * @param question Statement this vote are on.
-     * @param choice Choice that voter choose.
+     * @param question criteria this vote are on.
+     * @param project project that voter choose.
      */
-    public Ballot(User user,Statement question,Choice choice){
-    	this.choice= choice;
+    public Ballot(User user,Criteria question,Project project){
+    	this.project = project;
     	this.questionid = question;
     	this.user = user;
     }
@@ -60,35 +60,35 @@ public class Ballot implements Serializable {
 
 
 	/**
-	 * getChoice 
-	 * @return choice of this ballot.
+	 * getproject 
+	 * @return project of this ballot.
 	 */
-	public Choice getChoice() {
-		return this.choice;
+	public Project getProject() {
+		return this.project;
 	}
 
 	/**
-	 * setChoice
-	 * @param choice Choice of this ballot
+	 * setproject
+	 * @param project project of this ballot
 	 */
-	public void setChoice(Choice choice) {
-		this.choice = choice;
+	public void setProject(Project project) {
+		this.project = project;
 	}
 
 
 	/**
 	 * getQuestionid
-	 * @return Statement this ballot are in.
+	 * @return criteria this ballot are in.
 	 */
-	public Statement getQuestionid() {
+	public Criteria getQuestionid() {
 		return this.questionid;
 	}
 
 	/**
 	 * setQuestionid
-	 * @param questionid Statement of this ballot.
+	 * @param questionid criteria of this ballot.
 	 */
-	public void setQuestionid(Statement questionid) {
+	public void setQuestionid(Criteria questionid) {
 		this.questionid = questionid;
 	}
 

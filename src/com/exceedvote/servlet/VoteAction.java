@@ -11,8 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.exceedvote.entity.Ballot;
-import com.exceedvote.entity.Choice;
-import com.exceedvote.entity.Statement;
+import com.exceedvote.entity.Project;
+import com.exceedvote.entity.Criteria;
 import com.exceedvote.entity.User;
 import com.exceedvote.factory.IFactory;
 import com.exceedvote.factory.JpaFactory;
@@ -52,10 +52,10 @@ public class VoteAction extends HttpServlet {
 			Log log = Log.getLog();
 			if(timer.getDiffTime()>0){
 			HttpSession session = request.getSession();
-			Choice[] choices = i.getChoiceDAO().getChoice();
+			Project[] projects = i.getProjectDAO().getProject();
 			//get information about vote
 		    User useri = (User) session.getAttribute("user");
-		   	Statement s = (Statement) session.getAttribute("Statement");
+		   	Criteria s = (Criteria) session.getAttribute("criteria");
 		   	if(i.getBallotDAO().findBallots(useri,s).size()>=Math.floor(useri.getBallot())*s.getBallotMultiply()){
 		   		RequestDispatcher view = request.getRequestDispatcher("votef.jsp");
 				view.forward(request, response);
@@ -64,10 +64,10 @@ public class VoteAction extends HttpServlet {
 		   	else{
 		   		int id = Integer.parseInt(request.getParameter("id"));
 		   		int question = Integer.parseInt(request.getParameter("question"));
-		   		int choice = Integer.parseInt(request.getParameter("choice"));
+		   		int project = Integer.parseInt(request.getParameter("project"));
 		   		//vote
-		   		Ballot b = new Ballot(useri, s, choices[choice-1]);
-		   		log.voteLog(id, choice, question, Log.BALLOT_SAVE);
+		   		Ballot b = new Ballot(useri, s, projects[project-1]);
+		   		log.voteLog(id, project, question, Log.BALLOT_SAVE);
 		   		i.getBallotDAO().saveBallot(b);
 		   }
 		   	RequestDispatcher view = request.getRequestDispatcher("voted.jsp");

@@ -1,5 +1,6 @@
 
 <%@page import="com.exceedvote.entity.User" %>
+<%@page import="com.exceedvote.entity.Role" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -7,8 +8,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>User Edit</title>
-<link rel="stylesheet" href="/ExceedVote/bootstrap/css/bootstrap.min.css"></link>
-<link href="/ExceedVote/bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"></link>
+<link href="../bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
 <style type="text/css">
 	#test{
 		font-size: 32px;
@@ -35,8 +36,8 @@
 	<!-- end #header -->
 	<div id="menu">
 		<ul>
-			<li><a href="Admin.do?type=choice">Edit Choice</a></li>
-			<li><a href="Admin.do?type=statement">Edit Statement</a></li>
+			<li><a href="Admin.do?type=project">Edit Project</a></li>
+			<li><a href="Admin.do?type=criteria">Edit Criteria</a></li>
 			<li class="current_page_item"><a href="Admin.do?type=user">Edit User</a></li>
 			<li><a href="Admin.do?type=role">Edit Role</a></li>
 			<li><a href="Admin.do?type=time">Edit Time</a></li>
@@ -46,7 +47,6 @@
 	<div id="banner"></div>
 	<div id="welcome">
 		<div id="test">User List</div>
-		<br>
 	<table id="table1">
 <%
    User[] users = (User[]) request.getAttribute("usr");
@@ -63,6 +63,27 @@
 		out.print("</form>");
    }
 %>
+	</table>
+	<br>
+	<div id="test">Add User</div>
+	<br>
+	<table id="table2">
+	<form name="form1" method="post" action="RegisterAction.do">
+  		<div class="content">
+				Username : <input name="username"type="text" id="username">
+				<br>
+				Password : <input name="password" type="password" id="password">
+				<br>
+				<% Role[] roles = (Role[]) request.getAttribute("role");
+				for(int i = 0 ; i < roles.length ; i++){
+					out.print("<input type=\"checkbox\" name=\"role\" value="+roles[i].getId()+">"+roles[i].getName()+"<br>");
+				} %>
+				<br>
+				<input class="btn" type="submit" name="Submit" value="Register" id="ddd" >
+				
+				<br>
+		</div>
+		</form>
 	</table>
 	</div>
 </div>

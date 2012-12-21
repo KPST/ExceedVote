@@ -47,13 +47,13 @@ public class Log {
 	/**
 	 * Log vote.
 	 * @param user userid
-	 * @param choice choiceid
+	 * @param project projectid
 	 * @param question questionid
 	 * @param flag BALLOT_FLAG
 	 */
-	public void voteLog(int user,int choice,int question,int flag){
+	public void voteLog(int user,int project,int question,int flag){
 		if(flag == BALLOT_SAVE){
-			logger.info("user :"+user+" vote "+choice+" in question "+question);
+			logger.info("user :"+user+" vote "+project+" in question "+question);
 		}
 	}
 	/**

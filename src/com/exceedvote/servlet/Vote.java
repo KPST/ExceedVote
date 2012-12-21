@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.exceedvote.entity.Statement;
+import com.exceedvote.entity.Criteria;
 import com.exceedvote.entity.User;
 import com.exceedvote.factory.IFactory;
 import com.exceedvote.factory.JpaFactory;
@@ -21,13 +21,13 @@ import com.exceedvote.model.Timer;
  * @author Kunat Pipatanakul
  */
 @WebServlet("/goVote.do")
-public class goVote extends HttpServlet {
+public class Vote extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public goVote() {
+    public Vote() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,15 +41,15 @@ public class goVote extends HttpServlet {
 		if(timer.getDiffTime()>0){
 		HttpSession session = request.getSession();
 		IFactory factory = JpaFactory.getInstance();
-		Statement st  = factory.getStatementDAO().getStatementById(id);
+		Criteria st  = factory.getCriteriaDAO().getCriteriaById(id);
 		User useri = (User) session.getAttribute("user");
 		if(factory.getBallotDAO().findBallots(useri, st).size() >= Math.floor(useri.getBallot())*st.getBallotMultiply()){
 			RequestDispatcher view = request.getRequestDispatcher("votef.jsp");
 			view.forward(request, response);
 			return;
 		}
-		request.setAttribute("choices", factory.getChoiceDAO().getChoice());
-		session.setAttribute("Statement", st);
+		request.setAttribute("projects", factory.getProjectDAO().getProject());
+		session.setAttribute("criteria", st);
 		RequestDispatcher view = request.getRequestDispatcher("vote.jsp");
 		view.forward(request, response);
 		return;

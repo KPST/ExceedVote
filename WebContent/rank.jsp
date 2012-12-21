@@ -1,6 +1,6 @@
 <%@page import="java.util.Collection"%>
-<%@page import="com.exceedvote.entity.Choice" %>
-<%@page import="com.exceedvote.entity.Statement" %>
+<%@page import="com.exceedvote.entity.Project" %>
+<%@page import="com.exceedvote.entity.Criteria" %>
 <%@page import="java.util.Map" %>
 <%@page import="java.util.List" %>
 <%@page import="java.util.Set" %>
@@ -54,19 +54,23 @@
 		<div id="test">Vote Timeout.<br></div>
 		<br>
 		<%
-	@SuppressWarnings("unchecked")
-	List<Collection<Object[]>> cols = (List<Collection<Object[]>>) request.getAttribute("rank");
-	Statement[] st = (Statement[]) request.getAttribute("st");
-		for(int i = 0 ; i < st.length ; i++){%>
+			@SuppressWarnings("unchecked")
+			List<Collection<Object[]>> cols = (List<Collection<Object[]>>) request.getAttribute("rank");
+			Criteria[] st = (Criteria[]) request.getAttribute("st");
+				for(int i = 0 ; i < st.length ; i++){
+		%>
 			<div id="topic"><b>
-			<%out.print("Statement : "+st[i].getDescription());%>
+			<%
+				out.print("Criteria : "+st[i].getDescription());
+			%>
 			</div></b>
-			<%Iterator<Object[]> it = cols.get(i).iterator();
-			out.print("<br>");
-			int count = 1;
-			while(it.hasNext()){
-				Object[] temp = it.next();
-				Choice choice = (Choice) temp[0];
+			<%
+				Iterator<Object[]> it = cols.get(i).iterator();
+				out.print("<br>");
+				int count = 1;
+				while(it.hasNext()){
+					Object[] temp = it.next();
+					Project choice = (Project) temp[0];
 			%><div id="general">
 			<% 
 				out.print(count+++" . "+choice.getName());

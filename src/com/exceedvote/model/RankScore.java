@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.exceedvote.entity.Ballot;
-import com.exceedvote.entity.Choice;
+import com.exceedvote.entity.Project;
 
 /**
  * Rank strategy that include the score.
@@ -25,24 +25,24 @@ public class RankScore implements RankStategy{
 	}
 
 	@Override
-	public Collection<Object[]> computeRank(List<Ballot> ballots,Choice[] choices) {
-		Map<Choice, Integer> map = new HashMap<Choice, Integer>();
-		for(int i = 0 ; i < choices.length ; i++){
-			map.put(choices[i], 0);
+	public Collection<Object[]> computeRank(List<Ballot> ballots,Project[] projects) {
+		Map<Project, Integer> map = new HashMap<Project, Integer>();
+		for(int i = 0 ; i < projects.length ; i++){
+			map.put(projects[i], 0);
 		}
 		for(int i = 0 ; i < ballots.size() ; i++){
-			for(int j = 0 ; j < choices.length ;j++){
-				if(ballots.get(i).getChoice()==choices[j]){
-					int oldscore = map.get(choices[j]);
-					map.put(choices[j], oldscore+1);
+			for(int j = 0 ; j < projects.length ;j++){
+				if(ballots.get(i).getProject()==projects[j]){
+					int oldscore = map.get(projects[j]);
+					map.put(projects[j], oldscore+1);
 				}
 			}
 		}
 		List<Object[]> cols = new ArrayList<Object[]>();
-		for(int i = 0 ; i < choices.length ; i++){
+		for(int i = 0 ; i < projects.length ; i++){
 			Object[] ob = new Object[2];
-			ob[0] = choices[i];
-			ob[1] = map.get(choices[i]);
+			ob[0] = projects[i];
+			ob[1] = map.get(projects[i]);
 			cols.add(ob);
 		}
 		Collections.sort(cols, new Comparator<Object[]>(){

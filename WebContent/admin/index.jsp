@@ -5,8 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Exceed vote admin</title>
-<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css"></link>
- <link href="/ExceedVote/bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"></link>
+ <link href="../bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
 </head>
 <body>
 <div id="wrapper">
@@ -19,8 +19,8 @@
 	<!-- end #header -->
 	<div id="menu">
 		<ul>
-			<li><a href="Admin.do?type=choice">Edit Choice</a></li>
-			<li><a href="Admin.do?type=statement">Edit Statement</a></li>
+			<li><a href="Admin.do?type=project">Edit Project</a></li>
+			<li><a href="Admin.do?type=criteria">Edit Criteria</a></li>
 			<li><a href="Admin.do?type=user">Edit User</a></li>
 			<li><a href="Admin.do?type=role">Edit Role</a></li>
 			<li><a href="Admin.do?type=time">Edit Time</a></li>

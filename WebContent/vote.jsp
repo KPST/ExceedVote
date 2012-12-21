@@ -3,9 +3,9 @@ vote page collect the information and send it to voting page
 @author Kunat Pipatanakul
 @version 2012.11.07
  -->
-<%@page import="com.exceedvote.entity.Choice"%>
+<%@page import="com.exceedvote.entity.Project"%>
 <%@page import="com.exceedvote.entity.User"%>
-<%@ page import="com.exceedvote.entity.Statement"%>
+<%@ page import="com.exceedvote.entity.Criteria"%>
 <%@ page import="com.exceedvote.model.*"%>
 <%@ page import="com.mysql.jdbc.*" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -14,8 +14,8 @@ vote page collect the information and send it to voting page
 <html lang="en">
 <!-- get user id & question id -->
 <%
-	Choice[] choices = (Choice[])request.getAttribute("choices");
-    Statement s  = (Statement) session.getAttribute("Statement");
+	Project[] projects = (Project[])request.getAttribute("projects");
+    Criteria s  = (Criteria) session.getAttribute("criteria");
     User user = (User) session.getAttribute("user");
 %>
 
@@ -78,7 +78,6 @@ vote page collect the information and send it to voting page
 </head>
 
 <body>
-<%System.out.println(request.getCookies()[0].getValue()); %>
 <div id="wrapper">
 	<div id="header">
 		<div id="logo">
@@ -99,13 +98,13 @@ vote page collect the information and send it to voting page
 		<!-- MovingBoxes Slider -->
 		<ul id="slider1">
             <%
-            //vote choice edit here
-				for(int i = 0 ; i < choices.length ;i++){
+            //vote project edit here
+				for(int i = 0 ; i < projects.length ;i++){
 				out.println("<li>");
-				out.println("<img src="+choices[i].getImg()+">");
+				out.println("<img src="+projects[i].getImg()+">");
 				out.println("<p>");
-				out.println("<br>"+choices[i].getName());
-				out.println("<br>Description : "+choices[i].getDescription());
+				out.println("<br>"+projects[i].getName());
+				out.println("<br>Description : "+projects[i].getDescription());
 				out.println("</p></li>");
 		     } %>
 		      
@@ -125,7 +124,7 @@ function getVote()
 {
 	var i = window.location.hash;
 	var h = i.split("=");
-	var j = <%= choices.length %>
+	var j = <%= projects.length %>
 	if(h.length!=1){
 		if(h[1]>j){
 			window.alert("Hacked");
@@ -142,8 +141,8 @@ function getVote()
 </script>
 <script type="text/javascript">
 //send post to voting
-function post(path, id , question , choice) {
-	if(confirm("Do you choose "+choice+" ?")){
+function post(path, id , question , project) {
+	if(confirm("Do you choose "+project+" ?")){
     var form = $('<form></form>');
     form.attr("method", "post");
     form.attr("action", path);
@@ -159,8 +158,8 @@ function post(path, id , question , choice) {
 			form.append(field2);
 			var field3 = $('<input></input>');
             field3.attr("type", "hidden");
-            field3.attr("name", "choice");
-            field3.attr("value", choice);
+            field3.attr("name", "project");
+            field3.attr("value", project);
 			form.append(field3);
 			
         

@@ -8,8 +8,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Time Edit</title>
-<link rel="stylesheet" href="/ExceedVote/bootstrap/css/bootstrap.min.css"></link>
-<link href="/ExceedVote/bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"></link>
+<link href="../bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
 <style type="text/css">
 	#test{
 		font-size: 32px;
@@ -20,6 +20,9 @@
 	}
 	#table1{
 		margin-bottom: 20px;
+	}
+	#special{
+		color: #cd0000;
 	}
 	#spacc{
 		width: 60px;
@@ -41,8 +44,8 @@
 	<!-- end #header -->
 	<div id="menu">
 		<ul>
-			<li><a href="Admin.do?type=choice">Edit Choice</a></li>
-			<li><a href="Admin.do?type=statement">Edit Statement</a></li>
+			<li><a href="Admin.do?type=project">Edit Project</a></li>
+			<li><a href="Admin.do?type=criteria">Edit Criteria</a></li>
 			<li><a href="Admin.do?type=user">Edit User</a></li>
 			<li><a href="Admin.do?type=role">Edit Role</a></li>
 			<li class="current_page_item"><a href="Admin.do?type=time">Edit Time</a></li>
@@ -64,22 +67,18 @@
 	}
 	out.print("</table>");
 %>
-		<form name="form1" method="post" action="Add.do">			
-  			<!--center-->
-  			<div id="test2">Edit Time</div>
+			<div id="test2">Edit VoteEnd Time</div>
+  			<form name="form1" method="post" action="Add.do">
   			<table id="table2">
-  				<tr><td>
-        		Year :</td><td><input name="year" type="text" id="year"></td></tr>
-       			<tr><td>Month :</td><td><input name="month" type="text" id="month"></td>
-       			<tr><td>Day :</td><td><input name="day" type="text" id="day"></td>
-       			<tr><td>Hour :</td><td><input name="hour" type="text" id="hour"> in 24 format</td>
-       			<tr><td>Min :</td><td><input name="min" type="text" id="min"></td>
-       			<tr><td>Timezone :</td><td><input name="timezone" type="text" id="timezone"> Bangkok is +7</td>
-        		<td><input name="type" type="hidden" value="time"></td></tr>
-			<!--/center-->
-		</form>
-	</table>
+  				<input type="hidden" name="type" value="time">
+  				<tr><td>Select a date: <input type="date" name="date">
+  				<div id="special"> Note: format yyyy-mm-dd </div>
+  				<tr><td>Select a time: <input type="time" name="time"><div id="special"> Note: format hh:mm </div>
+   				<tr><td><div id="special"> Note: Date and Time Picker won't work with IE,Firefox. </div>
+			</table>
+			
 	<input class="btn" type="submit" name="Submit" value="Add">
+	</form>
 	</div>
 </div>
 <div id="footer">

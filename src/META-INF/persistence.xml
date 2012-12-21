@@ -3,8 +3,8 @@
 	<persistence-unit name="ExceedVote">
 	    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>com.exceedvote.entity.Ballot</class>
-		<class>com.exceedvote.entity.Choice</class>
-		<class>com.exceedvote.entity.Statement</class>
+		<class>com.exceedvote.entity.Project</class>
+		<class>com.exceedvote.entity.Criteria</class>
 		<class>com.exceedvote.entity.Role</class>
 		<class>com.exceedvote.entity.User</class>
 		<class>com.exceedvote.entity.Time</class>

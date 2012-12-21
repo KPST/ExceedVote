@@ -31,7 +31,6 @@
 	<div id="menu">
 		<ul>
 			<li class="current_page_item"><a href="#">Login</a></li>
-			<li><a href="Register.do">Register</a></li>
 		</ul>
 	</div>
 	<div id="banner"><img src="images/headerpic.jpg" width="1200" height="400" alt="" /></div>

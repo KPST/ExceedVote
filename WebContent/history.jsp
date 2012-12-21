@@ -1,4 +1,4 @@
-<%@page import="com.exceedvote.entity.Statement"%>
+<%@page import="com.exceedvote.entity.Criteria"%>
 <%@page import="com.exceedvote.entity.Ballot"%>
 <%@page import="java.util.List" %>
 <%@page import="com.exceedvote.entity.User" %>
@@ -58,7 +58,7 @@ left: 0px; /* change to position the timer; delete this property and it's value 
 
 <body>
 <%
-User user = (User)session.getAttribute("user");
+	User user = (User)session.getAttribute("user");
 %>
 <div id="wrapper">
 	<div id="header">
@@ -78,22 +78,21 @@ User user = (User)session.getAttribute("user");
 	<div id="welcome">
 		<font size="3">
 <%
-	
-	Statement[] statements = (Statement[]) request.getAttribute("statement");
+	Criteria[] criterias = (Criteria[]) request.getAttribute("criteria");
 	@SuppressWarnings("unchecked")
 	List<List<Ballot>> ballots = (List<List<Ballot>>) request.getAttribute("ballot");
-	for(int i = 0 ; i < statements.length ;i++){
-	int sid = statements[i].getId();
-	out.println(statements[i].getDescription());
+	for(int i = 0 ; i < criterias.length ;i++){
+	int sid = criterias[i].getId();
+	out.println(criterias[i].getDescription());
 	out.print("<br>");
 	out.print("<br>");
 	for(int j = 0 ; j < ballots.get(i).size() ;j++){
-			out.print("<form name=\"form1\" method=\"post\" action=\"DeleteVote\">");
-			out.print(" - Your vote is "+ballots.get(i).get(j).getChoice().getName()+" ");
-			out.print("<input type=\"hidden\" name=\"id\" value="+ballots.get(i).get(j).getId()+">");
-			out.print(" <input class=\"btn\" type=\"submit\" value=Delete >");	
-			out.print("</form>");
-			out.print("<br>");
+	out.print("<form name=\"form1\" method=\"post\" action=\"DeleteVote.do\">");
+	out.print(" - Your vote is "+ballots.get(i).get(j).getProject().getName()+" ");
+	out.print("<input type=\"hidden\" name=\"id\" value="+ballots.get(i).get(j).getId()+">");
+	out.print("<input class=\"btn\" type=\"submit\" value=Delete >");	
+	out.print("</form>");
+	out.print("<br>");
 		
 	}
 	

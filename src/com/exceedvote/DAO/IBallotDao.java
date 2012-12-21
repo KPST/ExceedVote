@@ -3,8 +3,8 @@ package com.exceedvote.DAO;
 import java.util.List;
 
 import com.exceedvote.entity.Ballot;
-import com.exceedvote.entity.Choice;
-import com.exceedvote.entity.Statement;
+import com.exceedvote.entity.Project;
+import com.exceedvote.entity.Criteria;
 import com.exceedvote.entity.User;
 
 /**
@@ -25,30 +25,30 @@ public interface IBallotDao {
 	 */
 	public void deleteBallot(int id);
 	/**
-	 * findBallots that belong to User user Statement question
+	 * findBallots that belong to User user criteria question
 	 * @param user user that vote on ballot.
-	 * @param question Statement of the ballot. 
+	 * @param question criteria of the ballot. 
 	 * @return List<Ballot> that are in specific case.
 	 */
-	public List<Ballot> findBallots(User user,Statement question);
+	public List<Ballot> findBallots(User user,Criteria question);
 	/**
-	 * findBallots that belong to Choice choice Statement question
+	 * findBallots that belong to Choice choice criteria question
 	 * @param choice choice of that ballot.
-	 * @param question Statement of that ballot.
+	 * @param question criteria of that ballot.
 	 * @return List<Ballot> that are in specific case.
 	 */
-	public List<Ballot> findBallots(Choice choice,Statement question);
+	public List<Ballot> findBallots(Project choice,Criteria question);
 	/**
 	 * saveBallot
 	 * @param b ballot
 	 */
 	public void saveBallot(Ballot b);
 	/**
-	 * findBallotsByStatement
-	 * @param question Statement the ballot belong to.
+	 * findBallotsBycriteria
+	 * @param question criteria the ballot belong to.
 	 * @return List<Ballot> that are in specific case.
 	 */
-	public List<Ballot> findBallotsByStatement(Statement question);
+	public List<Ballot> findBallotsByCriteria(Criteria question);
 	/**
 	 * findAllBallot
 	 * @return List<Ballot> all of ballot in database.

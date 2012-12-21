@@ -1,14 +1,14 @@
 
-<%@page import="com.exceedvote.entity.Choice" %>
+<%@page import="com.exceedvote.entity.Project" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Choice Edit</title>
-<link rel="stylesheet" href="/ExceedVote/bootstrap/css/bootstrap.min.css"></link>
-<link href="/ExceedVote/bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
+<title>Project Edit</title>
+<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"></link>
+<link href="../bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
 <style type="text/css">
 	#spacc{
 		width: 60px;
@@ -42,8 +42,8 @@
 	<!-- end #header -->
 	<div id="menu">
 		<ul>
-			<li class="current_page_item"><a href="Admin.do?type=choice">Edit Choice</a></li>
-			<li><a href="Admin.do?type=statement">Edit Statement</a></li>
+			<li class="current_page_item"><a href="Admin.do?type=project">Edit Project</a></li>
+			<li><a href="Admin.do?type=criteria">Edit Criteria</a></li>
 			<li><a href="Admin.do?type=user">Edit User</a></li>
 			<li><a href="Admin.do?type=role">Edit Role</a></li>
 			<li><a href="Admin.do?type=time">Edit Time</a></li>
@@ -52,17 +52,17 @@
 	</div>
 	<div id="banner"></div>
 	<div id="welcome">
-		<div id="test">Choice List</div>
+		<div id="test">Project List</div>
 		<br>
 		<%
-				Choice[] choices = (Choice[]) request.getAttribute("choice");
+			Project[] projects = (Project[]) request.getAttribute("project");
 				out.print("<table id=\"table1\">");
-				for(int i = 0 ; i < choices.length ; i ++){
+				for(int i = 0 ; i < projects.length ; i ++){
 					out.print("<tr> <td>");
 					out.print("<form name=\"form1\" method=\"post\" action=\"Delete.do\">");
-					out.print(choices[i].getName()+" "+choices[i].getDescription()+" ");
-					out.print("<input type=\"hidden\" name=\"id\" value="+choices[i].getId()+">");
-					out.print("<input type=\"hidden\" name=\"type\" value=choice>");
+					out.print(projects[i].getName()+" "+projects[i].getDescription()+" ");
+					out.print("<input type=\"hidden\" name=\"id\" value="+projects[i].getId()+">");
+					out.print("<input type=\"hidden\" name=\"type\" value=project>");
 					out.print("</td> <td id=\"spacc\"> </td> <td>");
 					out.print(" <input class=\"btn\" type=\"submit\" value=Delete>");	
 					out.print("</form>");
@@ -73,11 +73,11 @@
 		<form name="form1" method="post" action="Add.do">
   			<!--center-->
   			<table id="table2">
-			<font id="test2">Add new Choice</font><br>
+			<font id="test2">Add new Project</font><br>
         		<tr><td>Name :</td><td><input name="name" type="text" id="name"></td></tr>
         		<tr><td>Description :</td><td><input name="des" type="text" id="des"></td></tr>
         		<tr><td>Image URL : </td><td><input name="img" type="text" id="img">
-        		<input name="type" type="hidden" value="choice"></td></tr>
+        		<input name="type" type="hidden" value="project"></td></tr>
 			<!--/center-->
 			</table>
 			<input id="ff" class="btn" type="submit" name="Submit" value="Add">

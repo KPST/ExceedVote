@@ -13,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.exceedvote.entity.Ballot;
-import com.exceedvote.entity.Choice;
-import com.exceedvote.entity.Statement;
+import com.exceedvote.entity.Project;
+import com.exceedvote.entity.Criteria;
 import com.exceedvote.factory.IFactory;
 import com.exceedvote.factory.JpaFactory;
 import com.exceedvote.model.Rank;
@@ -44,13 +44,13 @@ public class TimeOut extends HttpServlet {
 		IFactory b = JpaFactory.getInstance();
 		Timer timer = Timer.getTimer();
 		if(timer.getDiffTime()==0){
-		Statement[] st = b.getStatementDAO().getStatement();
+		Criteria[] st = b.getCriteriaDAO().getCriteria();
 		List<Collection<Object[]>> lists = new ArrayList<Collection<Object[]>>();
 		for(int i = 0 ; i < st.length ; i++){
-		List<Ballot> ballots = b.getBallotDAO().findBallotsByStatement(st[i]);
+		List<Ballot> ballots = b.getBallotDAO().findBallotsByCriteria(st[i]);
 		RankStategy rank = new Rank();
-		Choice[] choices = b.getChoiceDAO().getChoice();
-		Collection<Object[]> list = rank.computeRank(ballots, choices);
+		Project[] projects = b.getProjectDAO().getProject();
+		Collection<Object[]> list = rank.computeRank(ballots, projects);
 		lists.add(list);
 		}
 		request.setAttribute("rank", lists);

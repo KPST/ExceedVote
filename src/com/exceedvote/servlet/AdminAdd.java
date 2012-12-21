@@ -8,9 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.exceedvote.entity.Choice;
+import com.exceedvote.entity.Project;
 import com.exceedvote.entity.Role;
-import com.exceedvote.entity.Statement;
+import com.exceedvote.entity.Criteria;
 import com.exceedvote.entity.Time;
 import com.exceedvote.entity.User;
 import com.exceedvote.factory.IFactory;
@@ -47,33 +47,33 @@ public class AdminAdd extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		User usr = (User)session .getAttribute("user");
+		User usr = (User)session.getAttribute("user");
 		Log log = Log.getLog();
 		if(usr.hasRoles("Admin")){
 		String type = request.getParameter("type");
 		IFactory factory = JpaFactory.getInstance();
-		if(type.equals("choice")){
+		if(type.equals("project")){
 			String name = request.getParameter("name");
 			String des = request.getParameter("des");
 			String img = request.getParameter("img");
-			Choice c = new Choice();
-			log.adminLog(usr.getUser(), "Choice" , request.getRemoteAddr() , "add Name:"+name+" Description:"+des+" img:"+img);
+			Project c = new Project();
+			log.adminLog(usr.getUser(), "Project" , request.getRemoteAddr() , "add Name:"+name+" Description:"+des+" img:"+img);
 			c.setName(name);
 			c.setDescription(des);
 			c.setImg(img);
-			factory.getChoiceDAO().saveChoice(c);
-			response.sendRedirect("Admin.do?type=choice");
+			factory.getProjectDAO().saveProject(c);
+			response.sendRedirect("Admin.do?type=project");
 			return;
 		}
-		else if(type.equals("statement")){
+		else if(type.equals("criteria")){
 			String des = request.getParameter("des");
 			int multiply = Integer.parseInt(request.getParameter("multiply"));
-			Statement s = new Statement();
-			log.adminLog(usr.getUser(), "Statement" , request.getRemoteAddr() , "add Description:"+des+" BallotMultiply:"+multiply);
+			Criteria s = new Criteria();
+			log.adminLog(usr.getUser(), "Criteria" , request.getRemoteAddr() , "add Description:"+des+" BallotMultiply:"+multiply);
 			s.setDescription(des);
 			s.setBallotMultiply(multiply);
-			factory.getStatementDAO().saveStatement(s);
-			response.sendRedirect("Admin.do?type=statement");
+			factory.getCriteriaDAO().saveCriteria(s);
+			response.sendRedirect("Admin.do?type=criteria");
 			return;
 		}
 		else if(type.equals("role")){
@@ -88,20 +88,19 @@ public class AdminAdd extends HttpServlet {
 			return;
 		}
 		else if(type.equals("time")){
-			String year = request.getParameter("year");
-			String month = request.getParameter("month");
-			String day = request.getParameter("day");
-			String hour = request.getParameter("hour");
-			String min = request.getParameter("min");
-			String tz = request.getParameter("timezone");
-			log.adminLog(usr.getUser(), "Time" , request.getRemoteAddr(), "Change Time to "+year+"/"+month+"/"+day+" "+hour+":"+min+" Timezone:"+tz);
+			String[] date = request.getParameter("date").split("-");
+			String[] timei = request.getParameter("time").split(":");
+			for(int i = 0 ; i < date.length ;i++){
+				System.out.println(date[i]);
+			}
+			log.adminLog(usr.getUser(), "Time" , request.getRemoteAddr(), "Change Time to "+date[0]+"/"+date[1]+"/"+date[2]+" "+timei[0]+":"+timei[1]+" Timezone:"+7);
 			Time time = new Time();
-			time.setYear(Integer.parseInt(year));
-			time.setMonth(Integer.parseInt(month));
-			time.setDay(Integer.parseInt(day));
-			time.setHour(Integer.parseInt(hour));
-			time.setMin(Integer.parseInt(min));
-			time.setTimezone(Integer.parseInt(tz));
+			time.setYear(Integer.parseInt(date[0]));
+			time.setMonth(Integer.parseInt(date[1]));
+			time.setDay(Integer.parseInt(date[2]));
+			time.setHour(Integer.parseInt(timei[0]));
+			time.setMin(Integer.parseInt(timei[1]));
+			time.setTimezone(Integer.parseInt("7"));
 			factory.getTimeDAO().setTimer(time);
 			DatabaseGarbageCollector.getInstance().cleanUpTime();
 			DatabaseGarbageCollector.getInstance().clearAllBallot();

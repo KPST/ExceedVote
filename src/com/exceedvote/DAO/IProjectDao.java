@@ -1,26 +1,26 @@
 package com.exceedvote.DAO;
 
-import com.exceedvote.entity.Choice;
+import com.exceedvote.entity.Project;
 
 /**
  * IChoiceDAO is a Interface the contain all method Choice DAO have to implements.
  * @author Kunat Pipatanakul
  * @version 2012.12.10
  */
-public interface IChoiceDao {
+public interface IProjectDao {
 	/**
 	 * getChoice from database
 	 * @return Choice[]
 	 */
-	public Choice[] getChoice();
+	public Project[] getProject();
 	/**
 	 * saveChoice
 	 * @param c choice object
 	 */
-	public void saveChoice(Choice c);
+	public void saveProject(Project c);
 	/**
 	 * DeleteChoice
 	 * @param id id of choice
 	 */
-	public void deleteChoice(int id);
+	public void deleteProject(int id);
 }

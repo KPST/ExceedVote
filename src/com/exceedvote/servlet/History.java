@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.exceedvote.entity.Statement;
+import com.exceedvote.entity.Criteria;
 import com.exceedvote.entity.User;
 import com.exceedvote.entity.Ballot;
 import com.exceedvote.factory.IFactory;
@@ -44,16 +44,16 @@ public class History extends HttpServlet {
 			HttpSession session = request.getSession();
 			User usr = (User) session.getAttribute("user");
 			IFactory factory = JpaFactory.getInstance();
-			Statement[] statement = factory.getStatementDAO().getStatement();
+			Criteria[] criteria = factory.getCriteriaDAO().getCriteria();
 			List<List<Ballot>> ballots = new ArrayList<List<Ballot>>();
-		    for(int i = 0 ; i < statement.length ; i++){
-				List<Ballot> b = factory.getBallotDAO().findBallots(usr, statement[i]);
+		    for(int i = 0 ; i < criteria.length ; i++){
+				List<Ballot> b = factory.getBallotDAO().findBallots(usr, criteria[i]);
 				ballots.add(b);
 			}
 		    request.setAttribute("timer", timer.getDiffTime());
 			request.setAttribute("ballot", ballots);
-			request.setAttribute("choice", ballots);
-			request.setAttribute("statement", statement);
+			request.setAttribute("project", ballots);
+			request.setAttribute("criteria", criteria);
 			RequestDispatcher view = request.getRequestDispatcher("history.jsp");
 			view.forward(request, response);
 			return;

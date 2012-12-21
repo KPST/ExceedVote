@@ -8,8 +8,8 @@ import javax.persistence.Query;
 
 import com.exceedvote.DAO.IBallotDao;
 import com.exceedvote.entity.Ballot;
-import com.exceedvote.entity.Choice;
-import com.exceedvote.entity.Statement;
+import com.exceedvote.entity.Project;
+import com.exceedvote.entity.Criteria;
 import com.exceedvote.entity.User;
 
 /**
@@ -39,7 +39,7 @@ public class JpaBallotDAO implements IBallotDao{
 			}
 	}
 	@SuppressWarnings("unchecked")
-	public List<Ballot> findBallots(User user,Statement question){
+	public List<Ballot> findBallots(User user,Criteria question){
 		Query q;
 		q = em.createQuery("SELECT b from Ballot b where b.user = :id and b.questionid = :question");
 		q.setParameter("id", user);
@@ -47,7 +47,7 @@ public class JpaBallotDAO implements IBallotDao{
 		return q.getResultList();
 	}
 	@SuppressWarnings("unchecked")
-	public List<Ballot> findBallots(Choice id,Statement question){
+	public List<Ballot> findBallots(Project id,Criteria question){
 		Query q;
 		q = em.createQuery("SELECT b from Ballot b where b.questionid = :question and b.choice = :id");
 		q.setParameter("id", id);
@@ -55,7 +55,7 @@ public class JpaBallotDAO implements IBallotDao{
 		return q.getResultList();
 	}
 	@SuppressWarnings("unchecked")
-	public List<Ballot> findBallotsByStatement(Statement question){
+	public List<Ballot> findBallotsByCriteria(Criteria question){
 		Query q = em.createQuery("SELECT b from Ballot b WHERE b.questionid = :question");
 		q.setParameter("question", question);
 		return q.getResultList();

@@ -1,9 +1,9 @@
 package com.exceedvote.factory;
 
 import com.exceedvote.DAO.IBallotDao;
-import com.exceedvote.DAO.IChoiceDao;
+import com.exceedvote.DAO.IProjectDao;
 import com.exceedvote.DAO.IRoleDao;
-import com.exceedvote.DAO.IStatementDao;
+import com.exceedvote.DAO.ICriteriaDao;
 import com.exceedvote.DAO.ITimeDAO;
 import com.exceedvote.DAO.IUserDao;
 
@@ -14,15 +14,15 @@ import com.exceedvote.DAO.IUserDao;
  */
 public interface IFactory {
 	/**
-	 * getChoiceDAO
-	 * @return IChoiceDao
+	 * getprojectDAO
+	 * @return IprojectDao
 	 */
-	public IChoiceDao getChoiceDAO();
+	public IProjectDao getProjectDAO();
 	/**
-	 * getStatementDAO
-	 * @return IStatementDAO
+	 * getcriteriaDAO
+	 * @return IcriteriaDAO
 	 */
-	public IStatementDao getStatementDAO();
+	public ICriteriaDao getCriteriaDAO();
 	/**
 	 * getUserDAO
 	 * @return IUserDAO

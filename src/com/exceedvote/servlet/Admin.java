@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.exceedvote.entity.Ballot;
-import com.exceedvote.entity.Choice;
+import com.exceedvote.entity.Project;
 import com.exceedvote.entity.Role;
-import com.exceedvote.entity.Statement;
+import com.exceedvote.entity.Criteria;
 import com.exceedvote.entity.Time;
 import com.exceedvote.entity.User;
 import com.exceedvote.factory.IFactory;
@@ -56,24 +56,26 @@ public class Admin extends HttpServlet {
 		if(usr.hasRoles("Admin")){
 			IFactory b = JpaFactory.getInstance();
 			String type = request.getParameter("type");
-			if(type.equals("statement")){
-				Statement[] statements = b.getStatementDAO().getStatement();
-				request.setAttribute("statement", statements);
-				RequestDispatcher view = request.getRequestDispatcher("statement.jsp");
+			if(type.equals("criteria")){
+				Criteria[] criterias = b.getCriteriaDAO().getCriteria();
+				request.setAttribute("criteria", criterias);
+				RequestDispatcher view = request.getRequestDispatcher("criteria.jsp");
 				view.forward(request, response);
 				return;
 			}
-			else if(type.equals("choice")){
-				Choice[] choices = b.getChoiceDAO().getChoice();
-				request.setAttribute("choice", choices);
-				RequestDispatcher view = request.getRequestDispatcher("choice.jsp");
+			else if(type.equals("project")){
+				Project[] projects = b.getProjectDAO().getProject();
+				request.setAttribute("project", projects);
+				RequestDispatcher view = request.getRequestDispatcher("project.jsp");
 				view.forward(request, response);
 				return;
 			}
 			else if(type.equals("user")){
 				User[] user = b.getUserDAO().getAllUser();
 				request.setAttribute("usr", user);
-				RequestDispatcher view = request.getRequestDispatcher("user.jsp");
+				Role[] role = b.getRoleDAO().findAll();
+		      	request.setAttribute("role", role);
+		      	RequestDispatcher view = request.getRequestDispatcher("user.jsp");
 				view.forward(request, response);
 				return;
 			}
@@ -86,13 +88,13 @@ public class Admin extends HttpServlet {
 			}
 			else if(type.equals("rank")){
 				response.setHeader("Refresh", "5; URL=Admin.do?type=rank");
-				Statement[] st = b.getStatementDAO().getStatement();
+				Criteria[] st = b.getCriteriaDAO().getCriteria();
 				List<Collection<Object[]>> lists = new ArrayList<Collection<Object[]>>();
 				for(int i = 0 ; i < st.length ; i++){
-				List<Ballot> ballots = b.getBallotDAO().findBallotsByStatement(st[i]);
+				List<Ballot> ballots = b.getBallotDAO().findBallotsByCriteria(st[i]);
 				RankStategy rank = new RankScore();
-				Choice[] choices = b.getChoiceDAO().getChoice();
-				Collection<Object[]> list = rank.computeRank(ballots, choices);
+				Project[] projects = b.getProjectDAO().getProject();
+				Collection<Object[]> list = rank.computeRank(ballots, projects);
 				lists.add(list);
 				}
 				request.setAttribute("rank", lists);

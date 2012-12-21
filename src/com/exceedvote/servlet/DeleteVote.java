@@ -19,7 +19,7 @@ import com.exceedvote.model.Timer;
  * Servlet implementation class Delete
  * @author Kunat Pipatanakul
  */
-@WebServlet("/DeleteVote")
+@WebServlet("/DeleteVote.do")
 public class DeleteVote extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

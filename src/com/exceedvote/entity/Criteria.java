@@ -5,12 +5,12 @@ import javax.persistence.*;
 
 
 /**
- * The persistent class for the statement database table.
+ * The persistent class for the criteria database table.
  * 
  */
 @Entity
 @Table(name="statement")
-public class Statement implements Serializable {
+public class Criteria implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -26,24 +26,24 @@ public class Statement implements Serializable {
 	/**
 	 * Constructor
 	 */
-    public Statement() {
+    public Criteria() {
     }
     /**
      * getId
-     * @return id of statement
+     * @return id of criteria
      */
 	public int getId() {
 		return this.id;
 	}
 	/**
 	 * setId
-	 * @param id id of statement
+	 * @param id id of criteria
 	 */
 	public void setId(int id) {
 		this.id = id;
 	}
 	/**
-	 * getBallotMultiply of this statement.
+	 * getBallotMultiply of this criteria.
 	 * @return
 	 */
 	public int getBallotMultiply() {
@@ -51,21 +51,21 @@ public class Statement implements Serializable {
 	}
 	/**
 	 * setBallotMultyply
-	 * @param ballotMultiply ballotMultiply of this statement.
+	 * @param ballotMultiply ballotMultiply of this criteria.
 	 */
 	public void setBallotMultiply(int ballotMultiply) {
 		this.ballotMultiply = ballotMultiply;
 	}
 	/**
 	 * getDescription
-	 * @return description of the statement
+	 * @return description of the criteria
 	 */
 	public String getDescription() {
 		return this.description;
 	}
 	/**
 	 * setDescription
-	 * @param description of the statement.
+	 * @param description of the criteria.
 	 */
 	public void setDescription(String description) {
 		this.description = description;

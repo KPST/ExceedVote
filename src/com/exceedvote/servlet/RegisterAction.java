@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.exceedvote.entity.Role;
+import com.exceedvote.entity.User;
 import com.exceedvote.factory.IFactory;
 import com.exceedvote.factory.JpaFactory;
 import com.exceedvote.model.Authentication;
@@ -20,7 +21,7 @@ import com.exceedvote.model.Authentication;
  * Servlet implementation class RegisterAction
  * @author Kunat Pipatanakul
  */
-@WebServlet("/RegisterAction.do")
+@WebServlet("/admin/RegisterAction.do")
 public class RegisterAction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -44,8 +45,10 @@ public class RegisterAction extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		if(session!=null)
-			session.invalidate();
+		User usr = (User) session.getAttribute("user");
+		if(!usr.hasRoles("Admin")){
+			response.sendRedirect("gg.jsp");
+		}
 		String user = request.getParameter("username");
 		String pass = request.getParameter("password");
 		IFactory factory = JpaFactory.getInstance();
@@ -58,13 +61,9 @@ public class RegisterAction extends HttpServlet {
 		Authentication c = new Authentication(JpaFactory.getInstance());
 		String ip = request.getRemoteAddr();
 		//check and add username in DB
-		if (c.addUser(user, pass, 1, ip,roles)) {
-			response.sendRedirect("Login.do");
-		}
-		else{
-			response.sendRedirect("Register.do");
+		c.addUser(user, pass, 1, ip,roles);
+			response.sendRedirect("Admin.do?type=user");
 			return;
-		}
 	}
 
 }
