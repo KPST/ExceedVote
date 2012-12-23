@@ -1,0 +1,12 @@
+
+1.copy kpstExceed.war to your tomcat webapps folder
+
+#Note. this project request tomcat version 7 as it have some servlet annotation
+
+2.start tomcat
+
+3.goto http://host:8080/kpstExceed/
+
+4.finish
+
+#Note. this project have config jpa to mysql://se.cpe.ku.ac.th:3306/kpst so if you have edit some database address we have to reconfig by build it again.

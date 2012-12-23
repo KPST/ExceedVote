@@ -17,3 +17,7 @@ ExceedUI/ contain draw of UI
 template/ contain UI template that have to edit
 
 web/ contain beta stege web version
+
+dist/ contain final version web app war file
+
+INSTALL.txt contain document how to install the war file
