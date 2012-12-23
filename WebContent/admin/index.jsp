@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Exceed vote admin</title>
+<title>Exceed vote Admin</title>
 <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"></link>
  <link href="../bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
 </head>
@@ -19,6 +19,7 @@
 	<!-- end #header -->
 	<div id="menu">
 		<ul>
+			<li><a href="../Main.do">Main</a></li>
 			<li><a href="Admin.do?type=project">Edit Project</a></li>
 			<li><a href="Admin.do?type=criteria">Edit Criteria</a></li>
 			<li><a href="Admin.do?type=user">Edit User</a></li>
@@ -27,7 +28,7 @@
 			<li><a href="Admin.do?type=rank">Show Score</a></li>
 		</ul>
 	</div>
-	<div id="banner"><img src="/ExceedVote/images/headerpic.jpg" width="1200" height="400" alt="" /></div>
+	<div id="banner"><img src="../images/headerpic.jpg" width="1200" height="400" alt="" /></div>
 	<div id="welcome">
 	</div>
 </div>

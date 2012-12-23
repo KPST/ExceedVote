@@ -40,6 +40,7 @@
 	<!-- end #header -->
 	<div id="menu">
 		<ul>
+			<li><a href="../Main.do">Main</a></li>
 			<li><a href="Admin.do?type=project">Edit Project</a></li>
 			<li><a href="Admin.do?type=criteria">Edit Criteria</a></li>
 			<li><a href="Admin.do?type=user">Edit User</a></li>
@@ -64,7 +65,7 @@
 					out.print("</td></tr></form>");
 				}
 				out.print("</table>");
-				out.print("<div id =\"special\"><b>Note</b>: when you delete role all user will be delete.<br><b>Note2</b>: don't remove Admin or you will lose all control to Admin section.</div> ");
+				out.print("<div id =\"special\"><b>Note</b>: when you delete role all user will be delete and you can login as user:admin pass:admin.<br><b>Note2</b>: don't remove Admin or you will lose all control to Admin section.</div> ");
 		%>
 		
 		<form name="form1" method="post" action="Add.do">

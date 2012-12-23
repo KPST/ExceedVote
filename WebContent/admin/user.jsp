@@ -36,6 +36,7 @@
 	<!-- end #header -->
 	<div id="menu">
 		<ul>
+			<li><a href="../Main.do">Main</a></li>
 			<li><a href="Admin.do?type=project">Edit Project</a></li>
 			<li><a href="Admin.do?type=criteria">Edit Criteria</a></li>
 			<li class="current_page_item"><a href="Admin.do?type=user">Edit User</a></li>

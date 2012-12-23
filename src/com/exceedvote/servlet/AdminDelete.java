@@ -64,6 +64,7 @@ public class AdminDelete extends HttpServlet {
 		else if(type.equals("user")){
 			log.adminLog(usr.getUser(), "User" , request.getRemoteAddr() , "Delete User id:"+id);
 			factory.getUserDAO().deleteUser(id);
+			DatabaseGarbageCollector.getInstance().cleanUpBallot();
 			response.sendRedirect("Admin.do?type=user");
 			return;
 		}
@@ -71,6 +72,7 @@ public class AdminDelete extends HttpServlet {
 			log.adminLog(usr.getUser(), "Role" , request.getRemoteAddr() , "Delete Role id:"+id);
 			factory.getRoleDAO().delete(id);
 			DatabaseGarbageCollector.getInstance().cleanUpUser();
+			DatabaseGarbageCollector.getInstance().clearAllBallot();
 			response.sendRedirect("Admin.do?type=role");
 			return;
 		}

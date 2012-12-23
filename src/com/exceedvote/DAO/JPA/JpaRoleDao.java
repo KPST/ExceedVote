@@ -25,10 +25,10 @@ public class JpaRoleDao implements IRoleDao{
 	@Override
 	public void save(Role role) {
 		EntityTransaction tx = em.getTransaction(); 
-	    tx.begin();
-	    em.persist(role);
-	    tx.commit();
-		
+		tx.begin();
+		em.persist(role);
+		tx.commit();
+
 	}
 
 	@SuppressWarnings("unchecked")
@@ -46,7 +46,7 @@ public class JpaRoleDao implements IRoleDao{
 		Query q = em.createQuery("SELECT a from Role a where a.id = :id");
 		q.setParameter("id", id);
 		try{
-		return (Role) q.getSingleResult();
+			return (Role) q.getSingleResult();
 		}catch (Exception e) {
 			return null;
 		}
@@ -76,7 +76,11 @@ public class JpaRoleDao implements IRoleDao{
 	public Role findRole(String name) {
 		Query q = em.createQuery("SELECT b FROM Role b WHERE b.name = :name");
 		q.setParameter("name", name);
-		return (Role) q.getSingleResult();
+		try{
+			return (Role) q.getSingleResult();
+		}catch(Exception e){
+			return null;
+		}
 	}
-	
 }
+

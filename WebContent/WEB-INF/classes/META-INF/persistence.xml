@@ -3,15 +3,16 @@
 	<persistence-unit name="ExceedVote">
 	    <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 		<class>com.exceedvote.entity.Ballot</class>
-		<class>com.exceedvote.entity.Choice</class>
-		<class>com.exceedvote.entity.Statement</class>
+		<class>com.exceedvote.entity.Project</class>
+		<class>com.exceedvote.entity.Criteria</class>
 		<class>com.exceedvote.entity.Role</class>
 		<class>com.exceedvote.entity.User</class>
+		<class>com.exceedvote.entity.Time</class>
 		<properties> 
 		<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver"/>
-        <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost/exceedvote"/>
-        <property name="javax.persistence.jdbc.password" value="exceed"/> 
-        <property name="javax.persistence.jdbc.user" value="exceed"/> 
+        <property name="javax.persistence.jdbc.url" value="jdbc:mysql://se.cpe.ku.ac.th:3306/kpst"/>
+        <property name="javax.persistence.jdbc.password" value="kpstadmin"/> 
+        <property name="javax.persistence.jdbc.user" value="kpst"/> 
     </properties>
 	</persistence-unit>
 </persistence>

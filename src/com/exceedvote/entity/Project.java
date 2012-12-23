@@ -10,7 +10,7 @@ import javax.persistence.*;
  * @version 2012.11.11
  */
 @Entity
-@Table(name="choice")
+@Table(name="project")
 public class Project implements Serializable {
 	private static final long serialVersionUID = 1L;
 	private int id;

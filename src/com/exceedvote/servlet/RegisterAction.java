@@ -62,8 +62,8 @@ public class RegisterAction extends HttpServlet {
 		String ip = request.getRemoteAddr();
 		//check and add username in DB
 		c.addUser(user, pass, 1, ip,roles);
-			response.sendRedirect("Admin.do?type=user");
-			return;
+		response.sendRedirect("Admin.do?type=user");
+		return;
 	}
 
 }

@@ -12,8 +12,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Show Score</title>
-<link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"></link>
-<link href="../bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="/ExceedVote/bootstrap/css/bootstrap.min.css"></link>
+<link href="/ExceedVote/bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
 <style type="text/css">
 	#test{
 		font-size: 32px;
@@ -44,18 +44,15 @@
 	<!-- end #header -->
 	<div id="menu">
 		<ul>
-			<li><a href="../Main.do">Main</a></li>
-			<li><a href="Admin.do?type=project">Edit Project</a></li>
-			<li><a href="Admin.do?type=criteria">Edit Criteria</a></li>
-			<li><a href="Admin.do?type=user">Edit User</a></li>
-			<li><a href="Admin.do?type=role">Edit Role</a></li>
-			<li><a href="Admin.do?type=time">Edit Time</a></li>
-			<li class="current_page_item"><a href="Admin.do?type=rank">Show Score</a></li>
+			<li><a href="Main.do">Main Menu</a></li>
+			<li><a href="History.do">History</a></li>
+			<li><a href="admin/">Go to Admin Panel</a></li>
+			<li><a href="logout.jsp">Logout</a></li>
 		</ul>
 	</div>
 	<div id="banner"></div>
 	<div id="welcome">
-		<div id="test">Score List<br></div>
+		<div id="test">Vote Timeout.<br></div>
 		<br>
 		<%
 			@SuppressWarnings("unchecked")

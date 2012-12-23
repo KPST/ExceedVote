@@ -26,14 +26,14 @@ import com.exceedvote.model.Timer;
 @WebServlet("/History.do")
 public class History extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public History() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public History() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -46,17 +46,24 @@ public class History extends HttpServlet {
 			IFactory factory = JpaFactory.getInstance();
 			Criteria[] criteria = factory.getCriteriaDAO().getCriteria();
 			List<List<Ballot>> ballots = new ArrayList<List<Ballot>>();
-		    for(int i = 0 ; i < criteria.length ; i++){
+			for(int i = 0 ; i < criteria.length ; i++){
 				List<Ballot> b = factory.getBallotDAO().findBallots(usr, criteria[i]);
 				ballots.add(b);
 			}
-		    request.setAttribute("timer", timer.getDiffTime());
+			request.setAttribute("timer", timer.getDiffTime());
 			request.setAttribute("ballot", ballots);
 			request.setAttribute("project", ballots);
 			request.setAttribute("criteria", criteria);
-			RequestDispatcher view = request.getRequestDispatcher("history.jsp");
-			view.forward(request, response);
-			return;
+			if(usr.hasRoles("Admin")){
+				RequestDispatcher view = request.getRequestDispatcher("historya.jsp");
+				view.forward(request, response);
+				return;
+			}
+			else{
+				RequestDispatcher view = request.getRequestDispatcher("history.jsp");
+				view.forward(request, response);
+				return;
+			}
 		}
 		else{
 			RequestDispatcher view = request.getRequestDispatcher("Timeout.do");

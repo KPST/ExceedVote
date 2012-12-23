@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>criteria Edit</title>
+<title>Criteria Edit</title>
 <link rel="stylesheet" href="../bootstrap/css/bootstrap.min.css"></link>
 <link href="../bootstrap/css/default.css" rel="stylesheet" type="text/css" media="all" />
 <style type="text/css">
@@ -36,12 +36,14 @@
 	<!-- end #header -->
 	<div id="menu">
 		<ul>
+			<li><a href="../Main.do">Main</a></li>
 			<li><a href="Admin.do?type=project">Edit Project</a></li>
 			<li class="current_page_item"><a href="Admin.do?type=criteria">Edit Criteria</a></li>
 			<li><a href="Admin.do?type=user">Edit User</a></li>
 			<li><a href="Admin.do?type=role">Edit Role</a></li>
 			<li><a href="Admin.do?type=time">Edit Time</a></li>
 			<li><a href="Admin.do?type=rank">Show Score</a></li>
+			
 		</ul>
 	</div>
 	<div id="banner"></div>

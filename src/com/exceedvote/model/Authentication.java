@@ -23,9 +23,10 @@ public class Authentication {
 	this.log = Log.getLog();
 	}
 	/**
-	 * login func
+	 * login function
 	 * @param user,username that user have inputed.
 	 * @param pass,password that user have inputed.
+	 * @return User object of that user.
 	 */
 	public User login(String user,String pass,String ip){
 		User out = b.getUserDAO().findUser(user, pass);
@@ -41,6 +42,8 @@ public class Authentication {
      * @param user username
      * @param pass password
      * @param ballot numberofballot
+     * @param roles List<Role> that user are in.
+     * @return boolean that Register fail or pass
      */
     public boolean addUser(String user,String pass,int ballot,String ip,List<Role> roles){
     	if(b.getUserDAO().findUser(user)==null){

@@ -6,10 +6,11 @@ import javax.persistence.*;
 
 /**
  * The persistent class for the criteria database table.
- * 
+ * @author Kunat Pipatanakul
+ * @version 2012.12.20
  */
 @Entity
-@Table(name="statement")
+@Table(name="criteria")
 public class Criteria implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -21,7 +22,7 @@ public class Criteria implements Serializable {
 	@Column(name="ballot_multiply", nullable=false)
 	private int ballotMultiply;
 
-	@Column(nullable=false, length=50)
+	@Column(nullable=false, length=1024)
 	private String description;
 	/**
 	 * Constructor

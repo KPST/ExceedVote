@@ -44,6 +44,7 @@
 	<!-- end #header -->
 	<div id="menu">
 		<ul>
+			<li><a href="../Main.do">Main</a></li>
 			<li><a href="Admin.do?type=project">Edit Project</a></li>
 			<li><a href="Admin.do?type=criteria">Edit Criteria</a></li>
 			<li><a href="Admin.do?type=user">Edit User</a></li>
@@ -73,8 +74,12 @@
   				<input type="hidden" name="type" value="time">
   				<tr><td>Select a date: <input type="date" name="date">
   				<div id="special"> Note: format yyyy-mm-dd </div>
-  				<tr><td>Select a time: <input type="time" name="time"><div id="special"> Note: format hh:mm </div>
+  				<tr><td>Select a time: <input type="time" name="time">
+  				<tr><td><div id="special"> Note: format hh:mm </div>
+  				<br>
+   				<tr><td><div id="special"> Note: When you edit time,all ballot will be deleted. </div>
    				<tr><td><div id="special"> Note: Date and Time Picker won't work with IE,Firefox. </div>
+   				<br>
 			</table>
 			
 	<input class="btn" type="submit" name="Submit" value="Add">

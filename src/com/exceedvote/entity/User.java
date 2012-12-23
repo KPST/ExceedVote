@@ -7,7 +7,8 @@ import java.util.List;
 
 /**
  * The persistent class for the user database table.
- * 
+ * @author Kunat Pipatanakul
+ * @version 2012.12.20
  */
 @Entity
 @Table(name="user")

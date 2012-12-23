@@ -26,6 +26,8 @@ public class DatabaseGarbageCollector {
 	}
 	/**
 	 * cleanUp user database.
+	 * by Clear all user.
+	 * and add new User "admin"
 	 */
 	public void cleanUpUser(){
 		factory.getUserDAO().deleteAll();
@@ -34,17 +36,27 @@ public class DatabaseGarbageCollector {
 		admin.setUser("admin");
 		admin.setPass("admin");
 		List<Role> roles = new ArrayList<Role>();
-		roles.add(factory.getRoleDAO().findRole("Admin"));
+		Role radmin = factory.getRoleDAO().findRole("Admin");
+		if(radmin == null){
+			radmin = new Role();
+			radmin.setName("Admin");
+			factory.getRoleDAO().save(radmin);
+		}
+		roles.add(radmin);
 		admin.setRoles(roles);
 		factory.getUserDAO().saveUser(admin);
 	}
 	/**
 	 * cleanUp ballot database.
+	 * by check all ballot have to have own criteria project and user that are in database.
+	 * if not delete it.
 	 */
 	public void cleanUpBallot(){
+		System.out.println("Clean ballot");
 		List<Criteria> lists = Arrays.asList(factory.getCriteriaDAO().getCriteria());
 		List<Project> listc = Arrays.asList(factory.getProjectDAO().getProject());
 		List<User> listu = Arrays.asList(factory.getUserDAO().getAllUser());
+		
 		List<Ballot> ballots = factory.getBallotDAO().findAllBallot();
 		for(int i = 0 ; i < ballots.size() ;i++){
 			Ballot temp = ballots.get(i);
@@ -55,6 +67,7 @@ public class DatabaseGarbageCollector {
 	}
 	/**
 	 * cleanUp Time database.
+	 * clear all time in database but not latest one.
 	 */
 	public void cleanUpTime(){
 		ITimeDAO tdao = factory.getTimeDAO();
@@ -64,7 +77,7 @@ public class DatabaseGarbageCollector {
 		}
 	}
 	/**
-	 * 
+	 * clearAllballot in the database.
 	 */
 	public void clearAllBallot(){
 		IBallotDao bdao = factory.getBallotDAO();
