@@ -10,3 +10,4 @@
 4.finish
 
 #Note. this project have config jpa to mysql://se.cpe.ku.ac.th:3306/kpst so if you have edit some database address we have to reconfig by build it again.
+#Note. log file are on tomcat log folder named ExceedVote.log
